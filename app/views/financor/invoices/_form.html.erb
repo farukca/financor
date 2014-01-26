@@ -1,0 +1,36 @@
+<div class="portlet box green">
+  <%= render "shared/portlet_title", title: t("invoices.title.invoices") %>
+
+  <div class="portlet-body form">
+    <%= simple_form_for @invoice, :html => {:class => 'horizontal-form'}, :validate => true do |f| %>
+      <%= f.error_notification %>
+      <%= f.error :base, :error_method => :to_sentence %>
+
+      <div class="form-body">
+
+        <div class="row">
+          <div class="col-md-6">        
+            <%= f.input :company_id, label: t("invoices.label.company"), input_html: { class: "chosen_input", "data-url" => "/companies.json", "data-newrecurl" => "/companies/new", "data-placeholder" => t("invoices.placeholder.company") } %>
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.input :debit_credit, label: t("invoices.label.debit_credit") %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :invoice_type, label: t("invoices.label.invoice_type") %>
+              </div>
+            </div>
+            <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("invoices.label.curr") %>
+            <%= f.input :name, label: t("invoices.label.name") %>
+            <%= f.input :invoice_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.invoice_date") %>
+            <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
+          </div>
+        </div>
+
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, t("invoices.action.save"), :class => 'btn btn-info' %>
+        <a href="" class="btn"><%= t("defaults.link.cancel") %></a>
+      </div>
+    <% end %>
+  </div>
+</div>

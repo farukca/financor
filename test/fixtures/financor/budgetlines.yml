@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  company_id: 1
+  amount: 
+  curr: MyString
+  item_type: MyString
+  budgeted_type: MyString
+  budgeted_id: 1
+  notes: MyText
+  user_id: 1
+  patron_id: 1
+
+two:
+  name: MyString
+  company_id: 1
+  amount: 
+  curr: MyString
+  item_type: MyString
+  budgeted_type: MyString
+  budgeted_id: 1
+  notes: MyText
+  user_id: 1
+  patron_id: 1

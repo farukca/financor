@@ -1,0 +1,26 @@
+<div id="invoices_index" class="row">
+
+  <%= render "shared/page_title", page_title: t("invoices.title.invoices"), page_small_title: t("invoices.defaults.intro_message"), model_name: "invoices", model_path: "financor/invoices" %>
+
+  <div class="row inbox">
+    <div class="col-md-2">
+      <ul class="inbox-nav margin-bottom-10">
+        <li class="compose-btn">
+          <%= link_to financor.new_invoice_path, class: "btn green" do %>
+            <i class="icon-edit"></i> <%= t("invoices.defaults.new_record_label") %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <div class="inbox-header">
+        <h1 class="pull-left"><small><%= t("invoices.defaults.last_records_title") %></small></h1>
+        <%= render "shared/quick_search_form", model_name: "invoices" %>
+      </div>
+
+      <div class="inbox-content" id="invoices_list">
+        <%= render "financor/invoices/list", objects: @invoices %>
+      </div>
+    </div>
+  </div>
+</div>

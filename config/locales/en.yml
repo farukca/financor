@@ -1,0 +1,67 @@
+en:
+  invoices:
+    defaults:
+      new_record_label: "New Invoice"
+    title:
+      invoices: "Invoices"
+    label:
+      uuid: "Invoice UUID"
+      name: "Invoice Number"
+      invoice_date: "Invoice Date"
+      invoice_type: "Invoice Type"
+      debit_credit: "Debit/Credit Type"
+      company: "Invoice Company"
+      curr: "Invoice Currency"
+      curr_rate: "Invoice currency rate"
+      invoice_amount: "Invoice Total"
+      payment_terms: "Payment terms"
+      due_date: "Due date"
+      status: "Invoice Status"
+      notes: "Notes"
+    placeholder:
+      company: "Select invoice company"
+    action:
+      save: "Save Invoice"
+    message:
+      created: "Invoice created successfully"
+      updated: "Invoice updated successfully"
+      deleted: "Invoice deleted"
+  involines:
+    title:
+      involines: "Invoice Lines"
+    label:
+      name: "Invoice line description"
+      curr: "Line Currency"
+      unit_number: "Unit number"
+      unit_price: "Unit price"
+      total_amount: "Line Total"
+      notes: "Line Notes"
+    placeholder:
+      name: "will be printed on invoice"
+    action:
+      save: "Save Invoice Line"
+    message:
+      created: "Invoice line added to invoice"
+      updated: "Invoice line updated successfully"
+      deleted: "Invoice line removed from system"
+  budgetlines:
+    title:
+      budgetlines: "Budget Lines"
+    label:
+      name: "Description"
+      line_type: "Debit/Credit Type"
+      debit: "Debit"
+      credit: "Credit"
+      amount: "Amount"
+      amount_curr: "Currency"
+      company: "Invoice Company"
+      line_group: "Item Group"
+      notes: "Notes"
+    placeholder:
+      name: "Enter debit or credit description"
+      company: "Select invoice company"
+      line_group: "Select item group"
+    action:
+      create: "Save"
+      update: "Edit"
+      delete: "Delete"

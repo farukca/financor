@@ -1,0 +1,36 @@
+<div class="portlet box green">
+  <%= render "shared/portlet_title", title: t("budgetlines.title.new_budgetline") %>
+
+  <div class="portlet-body form">
+    <%= simple_form_for @budgetline, :html => {:class => 'horizontal-form'}, :validate => true do |f| %>
+      <%= f.error_notification %>
+      <%= f.error :base, :error_method => :to_sentence %>
+
+      <div class="form-body">
+
+        <div class="row">
+          <div class="col-md-8">
+            <%= f.collection_radio_buttons :options, [["debit", t("budgetlines.label.debit")] ,["credit", t("budgetlines.label.credit")]], :first, :last %>
+            <%= f.input :name, input_html: { class: "col-md-8" }, label: t("budgetlines.label.name"), placeholder: t("budgetlines.placeholder.name") %>
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.input :amount, label: t("budgetlines.label.amount") %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("budgetlines.label.amount_curr") %>
+              </div>
+            </div>
+            <%= f.input :company_id, label: t("budgetlines.label.company"), input_html: { class: "chosen_input", "data-url" => "/companies.json", "data-newrecurl" => "/companies/new", "data-placeholder" => t("budgetlines.placeholder.company") } %>
+            <%= f.input :line_group, input_html: { class: "col-md-8" }, label: t("budgetlines.label.line_group"), placeholder: t("budgetlines.placeholder.line_group") %>
+            <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("budgetlines.label.notes") %>
+          </div>
+        </div>
+
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, t("budgetlines.action.create"), :class => 'btn btn-info' %>
+        <a href="" class="btn"><%= t("defaults.link.cancel") %></a>
+      </div>
+    <% end %>
+  </div>
+</div>

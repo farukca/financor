@@ -1,0 +1,15 @@
+<ul class="page-breadcrumb breadcrumb">
+  <% if content_for?(:breadcrumb_actions) %>
+    <%= yield(:breadcrumb_actions) %>
+  <% end %>
+  <li>
+    <i class="icon-sitemap"></i>
+    <%= link_to t("defaults.vocabulary.mainpage"), main_app.root_url %> 
+    <i class="icon-angle-right"></i>
+  </li>
+  <li>
+    <%= link_to t("invoices.title.invoices"), financor.invoices_path %> 
+    <i class="icon-angle-right"></i>
+  </li>
+  <li><%= link_to t("invoices.title.invoices"), financor.invoices_path %></li>
+</ul>

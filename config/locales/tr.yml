@@ -1,0 +1,67 @@
+tr:
+  invoices:
+    defaults:
+      new_record_label: "Yeni Fatura Oluştur"
+    title:
+      invoices: "Faturalar"
+    label:
+      uuid: "Fatura ID"
+      name: "Fatura No"
+      invoice_date: "Fatura Tarihi"
+      invoice_type: "Fatura Tipi"
+      debit_credit: "Gelir/Gider Tipi"
+      company: "Fatura Firması"
+      curr: "Fatura Dövizi"
+      curr_rate: "Fatura Kuru"
+      invoice_amount: "Fatura Toplamı"
+      payment_terms: "Ödeme Süresi"
+      due_date: "Vade Tarihi"
+      status: "Fatura Statüsü"
+      notes: "Notlar"
+    placeholder:
+      company: "Fatura firmasını seçiniz"
+    action:
+      save: "Fatura Bilgisini Kaydet"
+    message:
+      created: "Fatura kaydı oluşturuldu"
+      updated: "Fatura kaydı güncellendi"
+      deleted: "Fatura kaydı silindi"
+  involines:
+    title:
+      involines: "Fatura Kalemleri"
+    label:
+      name: "Fatura kalem açıklaması"
+      curr: "Döviz"
+      unit_number: "Birim adedi"
+      unit_price: "Birim fiyatı"
+      total_amount: "Satır Toplamı"
+      notes: "Satır açıklaması"
+    placeholder:
+      name: "faturada satır açıklaması olarak çıkacak"
+    action:
+      save: "Fatura kelemini kaydet"
+    message:
+      created: "Fatura kalemi oluşturuldu"
+      updated: "Fatura kalemi güncellendi"
+      deleted: "Fatura kalemi silindi"
+  budgetlines:
+    title:
+      budgetlines: "Bütçe kalemleri"
+    label:
+      name: "Açıklama"
+      line_type: "Gelir/Gider Tipi"
+      debit: "Gelir"
+      credit: "Gider"
+      amount: "Kalem Tutarı"
+      amount_curr: "Kalem dövizi"
+      company: "Fatura firması"
+      line_group: "Kalem Grubu"
+      notes: "Notlar"
+    placeholder:
+      name: "Tahmini gelir veya gider açıklamasını giriniz, ör. Navlun geliri..."
+      company: "Kalem faturalanacaksa ilgili firmayı seçiniz"
+      line_group: "Gelir/Gider grubunu seçiniz"
+    action:
+      create: "Kaydet"
+      update: "Güncelle"
+      delete: "Sil"

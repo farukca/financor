@@ -1,0 +1,33 @@
+<div class="portlet box green">
+  <%= render "shared/portlet_title", title: t("involines.title.involines") %>
+
+  <div class="portlet-body form">
+    <%= simple_form_for [@invoice, @involine], :html => {:class => 'horizontal-form'}, :remote => true do |f| %>
+      <%= f.error_notification %>
+      <%= f.error :base, :error_method => :to_sentence %>
+
+      <div class="form-body">
+
+        <div class="row">
+          <div class="col-md-6">        
+            <%= f.input :name, label: t("involines.label.name") %>
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.input :total_amount, label: t("involines.label.total_amount") %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("involines.label.curr"), input_html: { "data-invoice-curr" => @invoice.curr} %>
+              </div>
+            </div>
+            <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("involines.label.notes") %>
+          </div>
+        </div>
+
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, t("involines.action.save"), :class => 'btn btn-info' %>
+        <a href="" class="btn"><%= t("defaults.link.cancel") %></a>
+      </div>
+    <% end %>
+  </div>
+</div>
