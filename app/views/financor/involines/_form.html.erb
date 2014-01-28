@@ -1,33 +1,26 @@
-<div class="portlet box green">
-  <%= render "shared/portlet_title", title: t("involines.title.involines") %>
-
-  <div class="portlet-body form">
-    <%= simple_form_for [@invoice, @involine], :html => {:class => 'horizontal-form'}, :remote => true do |f| %>
-      <%= f.error_notification %>
-      <%= f.error :base, :error_method => :to_sentence %>
-
-      <div class="form-body">
-
-        <div class="row">
-          <div class="col-md-6">        
-            <%= f.input :name, label: t("involines.label.name") %>
-            <div class="row">
-              <div class="col-md-6">
-                <%= f.input :total_amount, label: t("involines.label.total_amount") %>
-              </div>
-              <div class="col-md-6">
-                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("involines.label.curr"), input_html: { "data-invoice-curr" => @invoice.curr} %>
-              </div>
-            </div>
-            <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("involines.label.notes") %>
-          </div>
-        </div>
-
-      </div>
-      <div class="form-actions">
-        <%= f.button :submit, t("involines.action.save"), :class => 'btn btn-info' %>
-        <a href="" class="btn"><%= t("defaults.link.cancel") %></a>
-      </div>
-    <% end %>
+<%= simple_form_for [@invoice, @involine], html: { class: 'form-inline' }, remote: true do |f| %>
+  <%#= f.error_notification %>
+  <%#= f.error :base, :error_method => :to_sentence %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :name, label: false, placeholder: t("involines.label.name") %>
+      <%#= f.input :notes, label: false, placeholder: t("involines.label.notes") %>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :unit_number, label: false, placeholder: t("involines.label.unit_number") %>
+    </div>
+    <div class="col-md-1">
+      <%= f.input :unit_price, label: false, placeholder: t("involines.label.unit_price") %>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :total_amount, label: false do %>
+        <%= f.input_field :total_amount, label: false, placeholder: t("involines.label.total_amount"), style: "width: 70%;" %>
+        <%= f.input_field :curr, as: :select, collection: Nimbos::Currency.all, label: false, "data-invoice-curr" => @invoice.curr, style: "width: 25%;" %>
+      <% end %>
+    </div>
+    <div class="col-md-1 pull-right">
+      <%= f.submit t("involines.action.save"), class: 'btn btn-info' %>
+      <%#= link_to t("defaults.link.cancel"), [@invoice, @involine], remote: true %>
+    </div>
   </div>
-</div>
+<% end %>

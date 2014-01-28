@@ -2,6 +2,8 @@ tr:
   invoices:
     defaults:
       new_record_label: "Yeni Fatura Oluştur"
+      intro_message: "Gelir ve gider faturalarınızı yönetebilirsiniz"
+      last_records_title: "En Son Oluşturulmuş Faturalar"
     title:
       invoices: "Faturalar"
     label:
@@ -36,10 +38,11 @@ tr:
       unit_price: "Birim fiyatı"
       total_amount: "Satır Toplamı"
       notes: "Satır açıklaması"
+      add_involine: "Fatura Kalemi Ekle"
     placeholder:
       name: "faturada satır açıklaması olarak çıkacak"
     action:
-      save: "Fatura kelemini kaydet"
+      save: "Kaydet"
     message:
       created: "Fatura kalemi oluşturuldu"
       updated: "Fatura kalemi güncellendi"

@@ -22,7 +22,8 @@ module Financor
 	  default_scope { where(patron_id: Nimbos::Patron.current_id) }
 
     before_save :set_vat_amount 
-	  after_save :update_invoice
+	  after_save  :update_invoice
+	  before_destroy :update_invoice_for_destroy
 
     def set_invoice_values(invoice)
       self.company_id = invoice.company_id
@@ -76,6 +77,21 @@ module Financor
     		invoice.involines_count += 1
     	end
     	invoice.save!
+    end
+
+    def update_invoice_for_destroy
+      invoice = self.invoice
+
+	    #subtract old values
+	    invoice.invoice_amount   = invoice.invoice_amount - total_amount
+	    invoice.tax_amount       = invoice.tax_amount - vat_amount
+	    if vat_rate == 0
+	      invoice.taxfree_amount = invoice.taxfree_amount - total_amount
+	    else
+	      invoice.taxed_amount   = invoice.taxed_amount - total_amount
+	    end
+      invoice.save!
+
     end
 
   end

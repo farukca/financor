@@ -2,6 +2,6 @@
   $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= escape_javascript error_messages_for(@involine) %></div>');
   toastr.error('<%= j error_messages_for(@involine) %>');
 <% else %>
-  $("#invoice_<%= @invoice.id %>_involines").append('<%= j render @involine %>');
+  $("#new_involine_div").html('<%= j render "financor/involines/form" %>');
   $('#new_involine').each(function() { this.reset(); });
 <% end %>

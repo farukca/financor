@@ -2,6 +2,8 @@ en:
   invoices:
     defaults:
       new_record_label: "New Invoice"
+      intro_message: ""
+      last_records_title: "Last added invoices"
     title:
       invoices: "Invoices"
     label:
@@ -36,10 +38,11 @@ en:
       unit_price: "Unit price"
       total_amount: "Line Total"
       notes: "Line Notes"
+      add_involine: "Add Invoice Lines"
     placeholder:
       name: "will be printed on invoice"
     action:
-      save: "Save Invoice Line"
+      save: "Save"
     message:
       created: "Invoice line added to invoice"
       updated: "Invoice line updated successfully"

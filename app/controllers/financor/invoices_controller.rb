@@ -11,7 +11,6 @@ module Financor
 
     def show
       @invoice = Invoice.find(params[:id])
-      @involine = @invoice.involines.new
     end
 
     def new

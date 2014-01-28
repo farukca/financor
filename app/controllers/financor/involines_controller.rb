@@ -2,15 +2,25 @@ require_dependency "financor/application_controller"
 
 module Financor
   class InvolinesController < ApplicationController
-    def new
-    end
-
-    def edit
-    end
 
     def index
     end
 
+    def new
+      @invoice = Invoice.find(params[:invoice_id])
+      @involine = @invoice.involines.new(curr: @invoice.curr, unit_number: 1)
+
+    end
+
+    def edit
+      @invoice  = Invoice.find(params[:invoice_id])
+      @involine = Involine.find(params[:id])
+    end
+
+    def show
+      @invoice  = Invoice.find(params[:invoice_id])
+      @involine = Involine.find(params[:id])
+    end
 
     def create
       @invoice = Invoice.find(params[:invoice_id])
@@ -30,6 +40,36 @@ module Financor
           format.json { render json: @invoice.errors, status: :unprocessable_entity }
           format.js
         end
+      end
+    end
+
+    def update
+      @invoice  = Invoice.find(params[:invoice_id])
+      @involine = Involine.find(params[:id])
+      respond_to do |format|
+        if @involine.update_attributes(involine_params)
+          format.html { redirect_to @involine, notice: t("involines.message.updated") }
+          format.json { head :ok }
+          format.js
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @involine.errors, status: :unprocessable_entity }
+          format.js
+        end
+      end
+    end
+
+    def destroy
+      @invoice  = Invoice.find(params[:invoice_id])
+      @involine = Involine.find(params[:id])
+      @involine.destroy!
+
+      flash[:notice] = t("involines.message.deleted")
+
+      respond_to do |format|
+        format.html { redirect_to @invoice }
+        format.json { head :ok }
+        format.js
       end
     end
 
