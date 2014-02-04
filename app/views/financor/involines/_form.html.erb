@@ -1,26 +1,32 @@
 <%= simple_form_for [@invoice, @involine], html: { class: 'form-inline' }, remote: true do |f| %>
   <%#= f.error_notification %>
   <%#= f.error :base, :error_method => :to_sentence %>
-  <div class="row">
-    <div class="col-md-4">
+  <div class="row" style="margin-bottom:5px;">
+    <div class="col-md-3">
       <%= f.input :name, label: false, placeholder: t("involines.label.name") %>
       <%#= f.input :notes, label: false, placeholder: t("involines.label.notes") %>
     </div>
-    <div class="col-md-3">
-      <%= f.input :unit_number, label: false, placeholder: t("involines.label.unit_number") %>
+    <div class="col-md-2">
+      <%= f.input :unit_number, label: false do %>
+        <%= f.input_field :unit_number, placeholder: t("involines.label.unit_number"), style: "width: 45%;" %>
+        <%= f.input_field :unit_type, as: :select, collection: Financor::Involine.invoice_unit_types.map { |t| [t("involines.invoice_unit_types.#{t}"), t] }, include_blank: false, style: "width: 50%;" %>
+      <% end %>
     </div>
-    <div class="col-md-1">
-      <%= f.input :unit_price, label: false, placeholder: t("involines.label.unit_price") %>
-    </div>
     <div class="col-md-3">
-      <%= f.input :total_amount, label: false do %>
-        <%= f.input_field :total_amount, label: false, placeholder: t("involines.label.total_amount"), style: "width: 70%;" %>
+      <%= f.input :unit_price, label: false do %>
+        <%= f.input_field :unit_price, placeholder: t("involines.label.unit_price"), style: "width: 70%;" %>
         <%= f.input_field :curr, as: :select, collection: Nimbos::Currency.all, label: false, "data-invoice-curr" => @invoice.curr, style: "width: 25%;" %>
       <% end %>
     </div>
-    <div class="col-md-1 pull-right">
-      <%= f.submit t("involines.action.save"), class: 'btn btn-info' %>
-      <%#= link_to t("defaults.link.cancel"), [@invoice, @involine], remote: true %>
+    <div class="col-md-2">
+      <%= f.input :vat_status, as: :select, collection: Financor::Involine.vat_statuses.map { |t| [t("involines.vat_statuses.#{t}"), t] }, label: false %>
     </div>
+    <div class="col-md-2">
+      <span id="involine_total_amount" class="pull-right" style="margin-right:35px;font-size:14px;"></span>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit t("involines.action.save"), class: 'btn btn-info' %>
+    <a href="#" data-href="#new_involine" class="cancelbtn btn red"><%= t("defaults.link.cancel") %></a>
   </div>
 <% end %>

@@ -3,4 +3,5 @@
   toastr.error('<%= j error_messages_for(@involine) %>');
 <% else %>
   $("#involine_<%= @involine.id %>_div").remove();
+  $("invoice_<%= @invoice.id %>_totals").html('<%= j render "financor/invoices/totals", invoice: @invoice %>');
 <% end %>

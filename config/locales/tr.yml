@@ -28,6 +28,16 @@ tr:
       created: "Fatura kaydı oluşturuldu"
       updated: "Fatura kaydı güncellendi"
       deleted: "Fatura kaydı silindi"
+    status:
+      active: "Onay Bekliyor"
+      confirmed: "Onaylandı"
+      cancelled: "Iptal Edildi"
+    debit_credit_types:
+      debit: "Gelir Faturası"
+      credit: "Gider Faturası"
+    invoice_types:
+      refundable: "Ticari Fatura"
+      nonrefund: "Temel Fatura"
   involines:
     title:
       involines: "Fatura Kalemleri"
@@ -47,6 +57,17 @@ tr:
       created: "Fatura kalemi oluşturuldu"
       updated: "Fatura kalemi güncellendi"
       deleted: "Fatura kalemi silindi"
+    invoice_unit_types:
+      number: "Adet"
+      day: "Gün"
+      hour: "Saat"
+      week: "Hafta"
+      year: "Yıl"
+      km: "Km"
+    vat_statuses:
+      novat: "KDV Yok"
+      vatincluded: "KDV tutara dahil"
+      excludedvat: "KDV ayrıca eklenecek"
   budgetlines:
     title:
       budgetlines: "Bütçe kalemleri"

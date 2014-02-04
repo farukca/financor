@@ -1,0 +1,27 @@
+<tr class="invoice-line">
+  <td>&nbsp;</td>
+	<td class="col-md-2" style="padding:0;">
+		<%= f.input :name, label: false, placeholder: t("involines.label.name") %>
+	</td>
+	<td class="col-md-3" style="padding:0;">
+		<%= f.input :notes, label: false, placeholder: t("involines.label.notes") %>
+	</td>
+	<td class="col-md-2" style="padding:0;">
+		<%= f.input :unit_number, label: false do %>
+      <%= f.input_field :unit_number, placeholder: t("involines.label.unit_number"), style: "width: 45%;", class: "involine-unit-number changes-invoice-total" %>
+      <%= f.input_field :unit_type, as: :select, collection: Financor::Involine.invoice_unit_types.map { |t| [t("involines.invoice_unit_types.#{t}"), t] }, include_blank: false, style: "width: 40%;" %>
+    <% end %>
+	</td>
+	<td class="col-md-2" style="padding:0;">
+		<%= f.input :unit_price, label: false do %>
+      <%= f.input_field :unit_price, placeholder: t("involines.label.unit_price"), style: "width: 60%;", class: "involine-unit-price changes-invoice-total" %>
+      <%= f.input_field :curr, as: :select, collection: Nimbos::Currency.all, label: false, "data-invoice-curr" => @invoice.curr, style: "width: 35%;" %>
+    <% end %>
+	</td>
+	<td class="col-md-1" style="padding:0;">
+		<%= f.input :vat_status, as: :select, collection: Financor::Involine.vat_statuses.map { |t| [t("involines.vat_statuses.#{t}"), t, {"data-rate" => 18}] }, label: false,  input_html: { class: "involine-vat-code changes-invoice-total" } %>
+	</td>
+	<td class="col-md-2" style="padding:0;">
+		<%= f.input :total_amount, label: false, placeholder: t("involines.label.total_amount"), input_html: { disabled: true, class: "involine-total" } %>
+	</td>
+</tr>

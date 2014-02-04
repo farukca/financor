@@ -6,7 +6,7 @@ module Financor
 	  #belongs_to :branch, class_name: Financor.branch_class
 
   	has_many   :involines
-	  accepts_nested_attributes_for :involines
+	  accepts_nested_attributes_for :involines, :reject_if => proc { |a| a[:name].blank? }, :allow_destroy => true
 
 	  has_many :comments, class_name: Financor.comment_class, as: :commentable, dependent: :destroy
 
@@ -25,6 +25,19 @@ module Financor
 
   	before_create :generate_uuid
 
+  	def self.invoice_status
+      %w[active confirmed cancelled]
+    end
+
+  	def self.debit_credit_types
+      %w[debit credit]
+    end
+
+  	def self.invoice_types
+      %w[refundable nonrefund]
+    end
+
+		private
   	def generate_uuid
   		self.uuid = Time.now.to_i.to_s
   		self.curr_rate = 1

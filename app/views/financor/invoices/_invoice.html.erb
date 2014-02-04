@@ -6,8 +6,8 @@
 		<div class="col-xs-6">
 			<p>
 				<%= invoice.name %> / <%= invoice.invoice_date %>
-				<span class="muted">
-								Consectetuer adipiscing elit
+				<span class="text-muted">
+					<%= invoice.notes %>
 				</span>
 			</p>
 		</div>
@@ -15,18 +15,16 @@
 	<hr/>
 	<div class="row">
 		<div class="col-xs-4">
-			<h4>Client:</h4>
+			<h4><%= company_name(invoice.company) %></h4>
 			<ul class="list-unstyled">
-				<li>
-					<%= company_name(invoice.company) %>
-				</li>
-				<li>
+				<li class="text-muted">
 					<%= company_fulladdress(invoice.company) %>
 				</li>
+				<li style="margin-top:5px;">Vergi Dairesi: Kartal VD. / Vergi No: 1231231231</li>
 			</ul>
 		</div>
 		<div class="col-xs-4">
-			<h4>About:</h4>
+			<!--h4>About:</h4>
 			<ul class="list-unstyled">
 				<li>
 								Drem psum dolor sit amet
@@ -46,7 +44,7 @@
 				<li>
 								Laoreet dolore magna
 				</li>
-			</ul>
+			</ul-->
 		</div>
 		<div class="col-xs-4 invoice-payment">
 			<h4>Payment Details:</h4>
@@ -77,6 +75,7 @@
 				<li class="list-group-item">
           <%= link_to t("involines.label.add_involine"), financor.new_invoice_involine_path(invoice), remote: true, class: "btn green" %>
 				  <!--span class="btn btn-info togglebutton" data-href="#add_invoice_line">Add invoice line</span--><%#= link_to "Add invoice line", "#add_invoice_line", class: "togglebutton btn green" %>
+				  <span class="pull-right" style="margin-right:20px;"><h4>Line Total</h4></span>
 				</li>
 				<li id="new_involine_div" class="list-group-item portlet" style="border:none">
 				</li>
@@ -118,20 +117,9 @@
 			</div>
 		</div>
 		<div class="col-xs-8 invoice-block">
-			<ul class="list-unstyled amounts">
-				<li>
-					<strong>Sub - Total amount:</strong> <%= invoice.invoice_amount %>
-				</li>
-				<li>
-					<strong>Discount:</strong> <%= invoice.discount_amount %>
-				</li>
-				<li>
-					<strong>VAT:</strong> <%= invoice.tax_amount %>
-				</li>
-				<li>
-					<strong>Grand Total:</strong> <%= invoice.invoice_amount %>
-				</li>
-			</ul>
+			<div id="invoice_<%= invoice.id %>_totals">
+				<%= render "financor/invoices/totals", invoice: invoice %>
+			</div>
 			<br/>
 			<a class="btn btn-lg blue hidden-print" onclick="javascript:window.print();">Print <i class="fa fa-print"></i></a>
 			<a class="btn btn-lg green hidden-print">Submit Your Invoice <i class="fa fa-check"></i></a>

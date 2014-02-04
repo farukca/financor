@@ -2,7 +2,7 @@
   <%= render "shared/portlet_title", title: t("invoices.title.invoices") %>
 
   <div class="portlet-body form">
-    <%= simple_form_for @invoice, :html => {:class => 'horizontal-form'}, :validate => true do |f| %>
+    <%= simple_form_for @invoice, :html => { class: 'form-inline' }, :validate => true do |f| %>
       <%= f.error_notification %>
       <%= f.error :base, :error_method => :to_sentence %>
 
@@ -13,20 +13,72 @@
             <%= f.input :company_id, label: t("invoices.label.company"), input_html: { class: "chosen_input", "data-url" => "/companies.json", "data-newrecurl" => "/companies/new", "data-placeholder" => t("invoices.placeholder.company") } %>
             <div class="row">
               <div class="col-md-6">
-                <%= f.input :debit_credit, label: t("invoices.label.debit_credit") %>
+                <%= f.input :debit_credit, as: :select, collection: Financor::Invoice.debit_credit_types.map { |t| [t("invoices.debit_credit_types.#{t}"), t] }, label: t("invoices.label.debit_credit") %>
               </div>
               <div class="col-md-6">
-                <%= f.input :invoice_type, label: t("invoices.label.invoice_type") %>
+                <%= f.input :invoice_type, as: :select, collection: Financor::Invoice.invoice_types.map { |t| [t("invoices.invoice_types.#{t}"), t] }, label: t("invoices.label.invoice_type") %>
               </div>
             </div>
             <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("invoices.label.curr") %>
-            <%= f.input :name, label: t("invoices.label.name") %>
-            <%= f.input :invoice_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.invoice_date") %>
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.input :name, label: t("invoices.label.name") %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :invoice_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.invoice_date") %>
+              </div>
+            </div>
+            <%#= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <table class="table table-condensed table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Item</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Unit Cost</th>
+                  <th>KDV</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= f.fields_for :involines, validate: false do |inf| %>
+                  <%= render 'financor/involines/involines_fields', :f => inf %>
+                <% end %>
+                <tr class="invoice-totals">
+                  <td colspan="5"></td>
+                  <td colspan="2">
+                    <strong>Invoice Total:</strong>
+                    <span id="invoice-total-cell" class="pull-right"></span>
+                    <br>
+                    <strong>VAT:</strong>
+                    <span id="invoice-tax-cell" class="pull-right"></span>
+                    <br>
+                    <strong>Invoice Balance:</strong>
+                    <span id="invoice-balance-cell" class="pull-right"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
+          </div>
+          <div class="col-xs-6">
             <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
           </div>
         </div>
 
       </div>
+
       <div class="form-actions">
         <%= f.button :submit, t("invoices.action.save"), :class => 'btn btn-info' %>
         <a href="" class="btn"><%= t("defaults.link.cancel") %></a>

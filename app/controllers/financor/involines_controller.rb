@@ -75,7 +75,7 @@ module Financor
 
     private
     def involine_params
-      params.require(:involine).permit(:name, :company_id, :unit_number, :unit_price, :total_amount, :line_type, :debit_credit, :branch_id, :curr, :curr_rate, :notes)
+      params.require(:involine).permit(:name, :company_id, :unit_number, :unit_type, :unit_price, :total_amount, :line_type, :debit_credit, :branch_id, :curr, :curr_rate, :notes)
     end
 
   end

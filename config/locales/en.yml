@@ -28,6 +28,16 @@ en:
       created: "Invoice created successfully"
       updated: "Invoice updated successfully"
       deleted: "Invoice deleted"
+    status:
+      active: "Active"
+      confirmed: "Confirmed"
+      cancelled: "Cancelled"
+    debit_credit_types:
+      debit: "Debit"
+      credit: "Credit"
+    invoice_types:
+      refundable: "Refundable"
+      nonrefund: "Non-Refundable"
   involines:
     title:
       involines: "Invoice Lines"
@@ -47,6 +57,17 @@ en:
       created: "Invoice line added to invoice"
       updated: "Invoice line updated successfully"
       deleted: "Invoice line removed from system"
+    invoice_unit_types:
+      number: "Number"
+      day: "Day"
+      hour: "Hour"
+      week: "Week"
+      year: "Year"
+      km: "Km"
+    vat_statuses:
+      novat: "No VAT"
+      vatincluded: "VAT included in total"
+      excludedvat: "VAT will be added"
   budgetlines:
     title:
       budgetlines: "Budget Lines"

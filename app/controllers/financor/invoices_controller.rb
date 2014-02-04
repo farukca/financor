@@ -15,6 +15,9 @@ module Financor
 
     def new
     	@invoice = Invoice.new
+      3.times do
+        @involine = @invoice.involines.new
+      end
     end
 
     def edit
@@ -65,7 +68,7 @@ module Financor
 
     private
     def invoice_params
-      params.require(:invoice).permit(:name, :company_id, :invoice_type, :debit_credit, :branch_id, :curr, :curr_rate, :invoice_date, :notes, :status, :involines_attributes)
+      params.require(:invoice).permit(:name, :company_id, :invoice_type, :debit_credit, :branch_id, :curr, :curr_rate, :invoice_date, :notes, :status, involines_attributes: [:name, :notes, :unit_number, :unit_type, :unit_price, :curr, :vat_code, :total_amount])
     end
 
   end
