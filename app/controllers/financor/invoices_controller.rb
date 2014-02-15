@@ -4,9 +4,10 @@ module Financor
   class InvoicesController < ApplicationController
 
     before_filter :require_login
+    before_filter(:only => [:index]) { |c| c.set_tab "financenavigator" }
 
     def index
-      @invoices = Invoice.all
+      @invoices = Invoice.order("created_at desc").limit(10).page(params[:page]).per(10)
     end
 
     def show
@@ -21,6 +22,7 @@ module Financor
     end
 
     def edit
+      @invoice = Invoice.find(params[:id])
     end
 
     def create
@@ -68,7 +70,7 @@ module Financor
 
     private
     def invoice_params
-      params.require(:invoice).permit(:name, :company_id, :invoice_type, :debit_credit, :branch_id, :curr, :curr_rate, :invoice_date, :notes, :status, involines_attributes: [:name, :notes, :unit_number, :unit_type, :unit_price, :curr, :vat_code, :total_amount])
+      params.require(:invoice).permit(:name, :company_id, :invoice_type, :debit_credit, :branch_id, :curr, :curr_rate, :invoice_date, :notes, :status, involines_attributes: [:name, :notes, :unit_number, :unit_type, :unit_price, :curr, :vat_id, :total_amount, :vat_status])
     end
 
   end

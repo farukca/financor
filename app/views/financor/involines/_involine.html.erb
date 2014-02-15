@@ -1,25 +1,17 @@
-<li id="involine_<%= involine.id %>_div" class="list-group-item" >
-  <div class="row">
-		<div class="col-md-4">
+<tr id="involine_<%= involine.id %>_div">
+  <td class="hidden-print"></td>
+  <td><%= involine.name %></td>
+  <td><%= involine.notes %></td>
+	<td><%= involine.unit_number %> <%= t("involines.invoice_unit_types.#{involine.unit_type}") %></td>
+	<td><%= involine.unit_price %></td>
+	<td><%= involine.vat_amount %></td>
+	<td><%= involine.total_amount %></td>
+	<td class="hidden-print">
 			<%= link_to financor.edit_invoice_involine_path(involine.invoice, involine), remote: true, title: t("defaults.link.edit") do %>
 			  <i class="icon-edit"></i>
 			<% end %>		
-			<%= involine.name %><br>
-	    <span class="text-muted"><%= involine.notes %></span>
-		</div>
-		<div class="col-md-3">
-			<%= involine.unit_number %> <%= t("involines.invoice_unit_types.#{involine.unit_type}") %>
-		</div>
-		<div class="col-md-2">
-			<%= involine.unit_price %>
-		</div>
-		<div class="col-md-2">
-	    <%= involine.total_amount %>
-		</div>
-		<div class="col-md-1">
 			<%= link_to [involine.invoice, involine], method: :delete, remote: true, data: { confirm: t("defaults.messages.destroy_confirm") }, title: t("defaults.link.destroy") do %>
 			  <i class="icon-trash"></i>
 			<% end %>
-		</div>
-	</div>
-</li>
+	</td>
+</tr>

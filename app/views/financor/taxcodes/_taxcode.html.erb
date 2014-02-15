@@ -1,0 +1,10 @@
+<tr id="taxcode_<%= taxcode.id %>_div">
+	<td><%= taxcode.name %></td>
+	<td><%= taxcode.rate %></td>
+	<td><%= taxcode.code %></td>
+	<td>
+	  <%= link_to financor.edit_taxcode_path(taxcode), remote: true do %>
+	    <i class="icon-edit"></i>
+	  <% end %>
+	</td>
+</tr>

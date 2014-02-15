@@ -47,6 +47,7 @@ tr:
       unit_number: "Birim adedi"
       unit_price: "Birim fiyatı"
       total_amount: "Satır Toplamı"
+      tax: "KDV"
       notes: "Satır açıklaması"
       add_involine: "Fatura Kalemi Ekle"
     placeholder:
@@ -68,6 +69,23 @@ tr:
       novat: "KDV Yok"
       vatincluded: "KDV tutara dahil"
       excludedvat: "KDV ayrıca eklenecek"
+  taxcodes:
+    title:
+      taxcodes: "Vergi Kod Tanımları"
+    label:
+      name: "Vergi Adı"
+      rate: "Oran %"
+      code: "Maliye Kodu"
+      new_taxcode: "Vergi Kodu Ekle"
+    hint:
+      name: "Örn:KDV18"
+      rate: "Örn: 18"
+      code: "Örn: KDV"
+    message:
+      created: "Vergi kodu oluşturuldu"
+      updated: "Vergi kodu güncellendi"
+    action:
+      save: "Kaydet"
   budgetlines:
     title:
       budgetlines: "Bütçe kalemleri"

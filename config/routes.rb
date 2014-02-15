@@ -5,4 +5,6 @@ Financor::Engine.routes.draw do
   end
   resources :budgetlines
 
+  resources :taxcodes
+
 end

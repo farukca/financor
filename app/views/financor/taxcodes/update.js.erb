@@ -1,0 +1,7 @@
+<% if @taxcode.errors.present? %>
+  $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= escape_javascript error_messages_for(@taxcode) %></div>');
+  toastr.error('<%= j error_messages_for(@taxcode) %>');
+<% else %>
+  $("#taxcode_<%= @taxcode.id %>_div").replaceWith('<%= j render @taxcode %>');
+  $('#edit_taxcode_<%= @taxcode.id %>').remove();
+<% end %>

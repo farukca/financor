@@ -1,0 +1,6 @@
+<% if @taxcode.errors.present? %>
+  $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= escape_javascript error_messages_for(@taxcode) %></div>');
+  toastr.error('<%= j error_messages_for(@taxcode) %>');
+<% else %>
+  $("#taxcode_form_div").html('<%= j render "financor/taxcodes/form" %>');
+<% end %>

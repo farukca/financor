@@ -47,6 +47,7 @@ en:
       unit_number: "Unit number"
       unit_price: "Unit price"
       total_amount: "Line Total"
+      tax: "Tax"
       notes: "Line Notes"
       add_involine: "Add Invoice Lines"
     placeholder:
@@ -68,6 +69,23 @@ en:
       novat: "No VAT"
       vatincluded: "VAT included in total"
       excludedvat: "VAT will be added"
+  taxcodes:
+    title:
+      taxcodes: "Tax Rates"
+    label:
+      name: "Tax Name"
+      rate: "Rate %"
+      code: "Code"
+      new_taxcode: "Add Taxcode"
+    hint:
+      name: "Ex: VAT18"
+      rate: "Ex: 18"
+      code: "Ex: VAT"
+    message:
+      created: "Tax code created"
+      updated: "Tax code updated"
+    action:
+      save: "Kaydet"
   budgetlines:
     title:
       budgetlines: "Budget Lines"

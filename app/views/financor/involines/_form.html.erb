@@ -1,32 +1,41 @@
-<%= simple_form_for [@invoice, @involine], html: { class: 'form-inline' }, remote: true do |f| %>
-  <%#= f.error_notification %>
-  <%#= f.error :base, :error_method => :to_sentence %>
-  <div class="row" style="margin-bottom:5px;">
-    <div class="col-md-3">
-      <%= f.input :name, label: false, placeholder: t("involines.label.name") %>
-      <%#= f.input :notes, label: false, placeholder: t("involines.label.notes") %>
+<div class="modal-dialog">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+      <h4 class="modal-title"><%= t("companies.title.quick_company") %></h4>
     </div>
-    <div class="col-md-2">
-      <%= f.input :unit_number, label: false do %>
-        <%= f.input_field :unit_number, placeholder: t("involines.label.unit_number"), style: "width: 45%;" %>
-        <%= f.input_field :unit_type, as: :select, collection: Financor::Involine.invoice_unit_types.map { |t| [t("involines.invoice_unit_types.#{t}"), t] }, include_blank: false, style: "width: 50%;" %>
-      <% end %>
-    </div>
-    <div class="col-md-3">
-      <%= f.input :unit_price, label: false do %>
-        <%= f.input_field :unit_price, placeholder: t("involines.label.unit_price"), style: "width: 70%;" %>
-        <%= f.input_field :curr, as: :select, collection: Nimbos::Currency.all, label: false, "data-invoice-curr" => @invoice.curr, style: "width: 25%;" %>
-      <% end %>
-    </div>
-    <div class="col-md-2">
-      <%= f.input :vat_status, as: :select, collection: Financor::Involine.vat_statuses.map { |t| [t("involines.vat_statuses.#{t}"), t] }, label: false %>
-    </div>
-    <div class="col-md-2">
-      <span id="involine_total_amount" class="pull-right" style="margin-right:35px;font-size:14px;"></span>
-    </div>
+    <%= simple_form_for [@invoice, @involine], html: { class: 'horizontal-form invoice-line' }, remote: true do |f| %>
+      <%= f.error_notification %>
+      <%= f.error :base, :error_method => :to_sentence %>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.input :name, label: t("involines.label.name") %>
+            <%= f.input :notes, label: t("involines.label.notes") %>
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.input :unit_number, label: t("involines.label.unit_number"), input_html: { class: "involine-unit-number" } %>
+              </div>
+              <div class="col-md-2">
+                <%= f.input :unit_type, as: :select, collection: Financor::Involine.invoice_unit_types.map { |t| [t("involines.invoice_unit_types.#{t}"), t] }, label: "", include_blank: false %>
+              </div>
+              <div class="col-md-4">
+                <%= f.input :unit_price, label: t("involines.label.unit_price"), placeholder: t("involines.label.unit_price"), input_html: { class: "involine-unit-price" } %>
+                <%#= f.input_field :curr, as: :select, collection: Nimbos::Currency.all, label: false, "data-invoice-curr" => @invoice.curr, style: "width: 25%;" %>
+              </div>
+              <div class="col-md-3">
+                <%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] }, label: t("involines.label.tax"), placeholder: t("involines.label.tax"), input_html: { class: "involine-vat-code" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit t("involines.action.save"), class: 'btn btn-info' %>
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true"><%= t("defaults.action.close") %></a>
+      </div>
+    <% end %>
   </div>
-  <div class="form-actions">
-    <%= f.submit t("involines.action.save"), class: 'btn btn-info' %>
-    <a href="#" data-href="#new_involine" class="cancelbtn btn red"><%= t("defaults.link.cancel") %></a>
-  </div>
-<% end %>
+</div>

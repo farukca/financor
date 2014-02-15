@@ -6,7 +6,7 @@ calculate_involine_total = ->
   $invoice_balance = 0
   $tax_total       = 0
 
-  $("tr.invoice-line").each ->
+  $(".invoice-line").each ->
     $qnt_col = $(this).find(".involine-unit-number")
     $price_col = $(this).find(".involine-unit-price")
     $tax_col = $(this).find(".involine-vat-code")

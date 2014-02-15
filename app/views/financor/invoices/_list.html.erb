@@ -21,12 +21,17 @@
 						<td><%= link_to invoice.name, financor.invoice_path(invoice) %></td>
 						<td><%= invoice.invoice_date %></td>
 						<td><%= link_to company_name(invoice.company), network.company_path(invoice.company) %></td>
-						<td><%= invoice.debit_credit %></td>
+						<td><%= t("invoices.debit_credit_types.#{invoice.debit_credit}") %></td>
 						<td><%= invoice.invoice_amount %></td>
 						<td><%= invoice.curr %></td>
 					</tr>
 				<% end %>
 			</tbody>
 		</table>
+		<% if @invoices.respond_to? :current_page %>
+		  <div class: "pagination">
+			  <%= paginate @invoices %>
+			 </div>
+		<% end %>
 	</div>
 </div>

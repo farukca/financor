@@ -2,5 +2,11 @@
   $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= escape_javascript error_messages_for(@involine) %></div>');
   toastr.error('<%= j error_messages_for(@involine) %>');
 <% else %>
-  $("#involine_<%= @involine.id %>_div").html('<%= j render "financor/involines/form" %>');
+  //$("#involine_<%#= @involine.id %>_div").html('<%#= j render "financor/involines/form" %>');
+	$("#modalWindow").html("<%= escape_javascript(render 'financor/involines/form') %>");
+	$("#modalWindow").modal();
+	jQuery(document).ready(function() {       
+	  App.initAjax();
+	  FormComponents.init();
+	});
 <% end %>

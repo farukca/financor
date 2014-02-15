@@ -3,6 +3,8 @@ require_dependency "financor/application_controller"
 module Financor
   class InvolinesController < ApplicationController
 
+    before_filter :require_login
+
     def index
     end
 
@@ -27,6 +29,7 @@ module Financor
       @involine = @invoice.involines.build(involine_params)
       @involine.set_invoice_values(@invoice)
       @involine.user_id = current_user.id
+      @involine.isfrom  = "manuel"
 
       respond_to do |format|
         if @involine.save
@@ -37,7 +40,7 @@ module Financor
           format.js
         else
           format.html { render action: "new" }
-          format.json { render json: @invoice.errors, status: :unprocessable_entity }
+          format.json { render json: @involine.errors, status: :unprocessable_entity }
           format.js
         end
       end
@@ -48,6 +51,8 @@ module Financor
       @involine = Involine.find(params[:id])
       respond_to do |format|
         if @involine.update_attributes(involine_params)
+          @invoice.reload
+
           format.html { redirect_to @involine, notice: t("involines.message.updated") }
           format.json { head :ok }
           format.js
@@ -75,7 +80,7 @@ module Financor
 
     private
     def involine_params
-      params.require(:involine).permit(:name, :company_id, :unit_number, :unit_type, :unit_price, :total_amount, :line_type, :debit_credit, :branch_id, :curr, :curr_rate, :notes)
+      params.require(:involine).permit(:name, :company_id, :unit_number, :unit_type, :unit_price, :total_amount, :line_type, :debit_credit, :branch_id, :curr, :curr_rate, :notes, :vat_id, :vat_status)
     end
 
   end

@@ -8,9 +8,8 @@
 
       <div class="form-body">
 
-        <div class="row">
-          <div class="col-md-6">        
-            <%= f.input :company_id, label: t("invoices.label.company"), input_html: { class: "chosen_input", "data-url" => "/companies.json", "data-newrecurl" => "/companies/new", "data-placeholder" => t("invoices.placeholder.company") } %>
+        <div class="row" style="margin-bottom:40px;">
+          <div class="col-md-6">
             <div class="row">
               <div class="col-md-6">
                 <%= f.input :debit_credit, as: :select, collection: Financor::Invoice.debit_credit_types.map { |t| [t("invoices.debit_credit_types.#{t}"), t] }, label: t("invoices.label.debit_credit") %>
@@ -19,31 +18,28 @@
                 <%= f.input :invoice_type, as: :select, collection: Financor::Invoice.invoice_types.map { |t| [t("invoices.invoice_types.#{t}"), t] }, label: t("invoices.label.invoice_type") %>
               </div>
             </div>
+            <%= f.input :company_id, label: t("invoices.label.company"), input_html: { class: "chosen_input", "data-url" => "/companies.json", "data-newrecurl" => "/companies/new", "data-placeholder" => t("invoices.placeholder.company") } %>
+          </div>
+          <div class="col-md-3 col-md-offset-3">
+            <%= f.input :name, label: t("invoices.label.name") %>
+            <%= f.input :invoice_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.invoice_date") %>
             <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("invoices.label.curr") %>
-            <div class="row">
-              <div class="col-md-6">
-                <%= f.input :name, label: t("invoices.label.name") %>
-              </div>
-              <div class="col-md-6">
-                <%= f.input :invoice_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.invoice_date") %>
-              </div>
-            </div>
             <%#= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
           </div>
         </div>
-
+        <% if params[:action] != "edit" %>
         <div class="row">
           <div class="col-xs-12">
-            <table class="table table-condensed table-hover">
+            <table class="table">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Item</th>
-                  <th>Description</th>
-                  <th>Quantity</th>
-                  <th>Unit Cost</th>
-                  <th>KDV</th>
-                  <th>Total</th>
+                  <th><%= t("involines.label.name") %></th>
+                  <th><%= t("involines.label.notes") %></th>
+                  <th><%= t("involines.label.unit_number") %></th>
+                  <th><%= t("involines.label.unit_price") %></th>
+                  <th><%= t("involines.label.tax") %> <%= link_to financor.taxcodes_path, remote: true do %><i class="icon-gear"></i><% end %></th>
+                  <th><%= t("involines.label.total_amount") %></th>
                 </tr>
               </thead>
               <tbody>
@@ -67,13 +63,13 @@
             </table>
           </div>
         </div>
-
+        <% end %>
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-md-3">
             <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
           </div>
-          <div class="col-xs-6">
-            <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
+          <div class="col-md-3 col-md-offset-6">
+            <%#= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
           </div>
         </div>
 

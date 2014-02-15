@@ -1,6 +1,6 @@
 <ul class="list-unstyled amounts">
 	<li>
-		<strong>Sub - Total amount:</strong> <%= invoice.invoice_amount %>
+		<strong>Sub - Total amount:</strong> <%= invoice_amount_without_taxes(invoice) %>
 	</li>
 	<li>
 		<strong>Discount:</strong> <%= invoice.discount_amount %>

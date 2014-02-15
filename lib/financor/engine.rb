@@ -8,8 +8,9 @@ module Financor
     initializer "financor.action_controller" do |app|
       ActiveSupport.on_load :action_controller do
         helper Financor::BudgetlinesHelper
-        #helper Financor::InvoicesHelper
-        #helper Financor::InvoicelinesHelper
+        helper Financor::InvoicesHelper
+        helper Financor::InvolinesHelper
+        helper Financor::TaxcodesHelper
       end
     end
 

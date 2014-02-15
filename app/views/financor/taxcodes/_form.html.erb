@@ -1,0 +1,22 @@
+<%= simple_form_for @taxcode, html: { class: 'form-inline' }, remote: true, validate: true do |f| %>
+	<%= f.error_notification %>
+	<%= f.error :base, :error_method => :to_sentence %>
+
+  <div class="col-md-12">
+
+    <div class="col-md-3">
+      <%= f.input :name, label: t("taxcodes.label.name"), hint: t("taxcodes.hint.name") %>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :rate, label: t("taxcodes.label.rate"), hint: t("taxcodes.hint.rate")  %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :code, label: t("taxcodes.label.code"), hint: t("taxcodes.hint.code") %>
+    </div>
+    <div class="col-md-2">
+      <br><br>
+      <%= f.submit t("taxcodes.action.save"), class: "btn btn-success" %>
+    </div>
+
+  </div>
+<% end %>

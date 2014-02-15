@@ -1,8 +1,8 @@
 module Financor
   module InvoicesHelper
 
-  	def brut_amount(invoice=@invoice)
-  		0
+  	def invoice_amount_without_taxes(invoice=@invoice)
+  		invoice.taxfree_amount + invoice.taxed_amount
   	end
   end
 end
