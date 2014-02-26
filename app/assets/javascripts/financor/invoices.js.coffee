@@ -29,5 +29,33 @@ calculate_involine_total = ->
   $("#invoice-tax-cell").text $tax_total
   $("#invoice-balance-cell").text $invoice_balance
 
+add_line_to_invoice = ->
+  lastNestedForm = $('.invoice-line').last()
+  newNestedForm  = $(lastNestedForm).clone()
+  $(newNestedForm).insertAfter(lastNestedForm)
+
+get_company_invoice_infos = (id) ->
+  $.ajax
+    type: "GET"
+    url: "/companies/" + id + "/financials"
+    dataType: "JSON"
+    success: (data) ->
+      console.log data
+      fill_invoice_form(data)
+
+fill_invoice_form = (data) ->
+  $("#invoice-company-title").html(data['title'])
+  $("#invoice-company-address").html(data['invoice_address'])
+  $("#invoice-company-taxinfo").html(data['taxoffice'] + ' - ' + data['taxno'])
+
 $(document).on "change", ".changes-invoice-total", (event) ->
   calculate_involine_total()
+
+$(document).on "click", "#new_invoice_line_btn", (event) ->
+  event.preventDefault()
+  add_line_to_invoice()
+
+$(document).on "change", "#invoice_company_id", (event) ->
+  get_company_invoice_infos($(this).val())
+  event.preventDefault()
+  

@@ -6,10 +6,12 @@
 	<td class="col-md-3" style="padding:0;">
 		<%= f.input :notes, label: false, placeholder: t("involines.label.notes") %>
 	</td>
-	<td class="col-md-2" style="padding:0;">
+	<td class="col-md-1" style="padding:0;">
 		<%= f.input :unit_number, label: false do %>
-      <%= f.input_field :unit_number, placeholder: t("involines.label.unit_number"), style: "width: 45%;", class: "involine-unit-number changes-invoice-total" %>
-      <%= f.input_field :unit_type, as: :select, collection: Financor::Involine.invoice_unit_types.map { |t| [t("involines.invoice_unit_types.#{t}"), t] }, include_blank: false, style: "width: 40%;" %>
+      <%= f.input_field :unit_number, placeholder: t("involines.label.unit_number"), class: "involine-unit-number changes-invoice-total" %>
+  </td>
+  <td class="col-md-1" style="padding:0;">
+      <%= f.input_field :unit_type, as: :select, collection: Financor::Involine.invoice_unit_types.map { |t| [t("involines.invoice_unit_types.#{t}"), t] }, include_blank: false %>
     <% end %>
 	</td>
 	<td class="col-md-2" style="padding:0;">

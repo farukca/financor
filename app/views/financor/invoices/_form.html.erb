@@ -2,7 +2,7 @@
   <%= render "shared/portlet_title", title: t("invoices.title.invoices") %>
 
   <div class="portlet-body form">
-    <%= simple_form_for @invoice, :html => { class: 'form-inline' }, :validate => true do |f| %>
+    <%= simple_form_for @invoice, :html => { class: 'form-vertical' }, :validate => true do |f| %>
       <%= f.error_notification %>
       <%= f.error :base, :error_method => :to_sentence %>
 
@@ -19,6 +19,13 @@
               </div>
             </div>
             <%= f.input :company_id, label: t("invoices.label.company"), input_html: { class: "chosen_input", "data-url" => "/companies.json", "data-newrecurl" => "/companies/new", "data-placeholder" => t("invoices.placeholder.company") } %>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <p><strong id="invoice-company-title"></strong></p>
+                <p><span id="invoice-company-address" class="text-muted"></span></p>
+                <p><strong id="invoice-company-taxinfo"></strong></p>
+              </div>
+            </div>
           </div>
           <div class="col-md-3 col-md-offset-3">
             <%= f.input :name, label: t("invoices.label.name") %>
@@ -29,14 +36,15 @@
         </div>
         <% if params[:action] != "edit" %>
         <div class="row">
-          <div class="col-xs-12">
-            <table class="table">
+          <div class="col-xs-12 table-responsive">
+            <table class="table table-condensed">
               <thead>
                 <tr>
                   <th>#</th>
                   <th><%= t("involines.label.name") %></th>
                   <th><%= t("involines.label.notes") %></th>
                   <th><%= t("involines.label.unit_number") %></th>
+                  <th><%= t("involines.label.unit_type") %></th>
                   <th><%= t("involines.label.unit_price") %></th>
                   <th><%= t("involines.label.tax") %> <%= link_to financor.taxcodes_path, remote: true do %><i class="fa fa-gear"></i><% end %></th>
                   <th><%= t("involines.label.total_amount") %></th>
@@ -47,7 +55,9 @@
                   <%= render 'financor/involines/involines_fields', :f => inf %>
                 <% end %>
                 <tr class="invoice-totals">
-                  <td colspan="5"></td>
+                  <td colspan="5">
+                    <%= link_to "Add New Line", "#", class: "btn green", id: "new_invoice_line_btn" %>
+                  </td>
                   <td colspan="2">
                     <strong>Invoice Total:</strong>
                     <span id="invoice-total-cell" class="pull-right"></span>
