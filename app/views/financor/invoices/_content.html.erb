@@ -1,0 +1,30 @@
+<div class="row">
+
+  <div class="col-md-2">
+  </div>
+
+  <div class="col-md-10">
+
+    <div class="portlet box grey">
+      <% content_for(:portlet_actions, flush: true) do %>
+        <%= link_to financor.new_invoice_involine_path(invoice), remote: true, class: "btn green btn-sm" do %>
+          <i class="fa fa-plus"></i> <%= t("involines.label.add_involine") %>
+        <% end %>
+      <% end %>
+      <%= render "shared/portlet_title", title: t("involines.title.involines") %>
+
+      <div id="invoice_<%= invoice.id %>_involines_list" class="portlet-body">
+        <%= render "financor/involines/list", objects: invoice.involines %>
+      </div>
+      <div id="invoice_<%= invoice.id %>_new_involine_div" class="portlet-body">
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:20px;">
+      <div class="col-md-12">
+        <%= render "nimbos/comments/commentable", object: invoice %>
+      </div>
+    </div>
+
+  </div>
+</div>

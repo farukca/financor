@@ -1,0 +1,11 @@
+<div class="row" id="invoice_<%= invoice.id %>_profile">
+
+  <div class="col-md-12" id="invoice_<%= invoice.id %>_profile_header">
+    <%= render partial: "header", locals: { invoice: invoice } %>
+  </div>
+
+  <div class="col-md-12" id="invoice_<%= invoice.id %>_profile_content">
+    <%= render partial: "content", locals: { invoice: invoice } %>
+  </div>
+
+</div>

@@ -1,0 +1,31 @@
+<div id="invoice_#{invoice.id}_profile_header" class="row">
+
+  <div class="col-md-2">
+    <p>
+    <i class="fa fa-money fa-4x pull-right"></i>
+    </p>
+  </div>
+
+  <div class="col-md-10">
+    <div class="profile-info">
+        <h1>
+          <%= invoice.name %>
+          <span class="small"><%= company_name(invoice.company) %></span>
+        </h1>
+        <p>
+          <%= invoice.invoice_date %>
+          <span class="text-muted" style="white-space:pre-wrap"><%= invoice.notes %></span>
+        </p>
+        <ul class="list-inline blog-tags">
+          <li>
+            <i class="fa fa-map-marker"></i> <%= company_fulladdress(invoice.company) %>
+          </li>
+          <li>
+            <i class="fa fa-flag"></i> <%= t("invoices.status.#{invoice.status}") %>
+          </li>
+        </ul>
+    </div>
+    <hr>
+  </div>
+
+</div>

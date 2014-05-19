@@ -28,6 +28,7 @@ en:
       created: "Invoice created successfully"
       updated: "Invoice updated successfully"
       deleted: "Invoice deleted"
+      destroy_confirm: "Invoice will be deleted, are you sure ?"
     status:
       active: "Active"
       confirmed: "Confirmed"

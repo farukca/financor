@@ -18,7 +18,7 @@
                 <%= f.input :invoice_type, as: :select, collection: Financor::Invoice.invoice_types.map { |t| [t("invoices.invoice_types.#{t}"), t] }, label: t("invoices.label.invoice_type") %>
               </div>
             </div>
-            <%= f.input :company_id, label: t("invoices.label.company"), input_html: { class: "chosen_input", "data-url" => "/companies.json", "data-newrecurl" => "/companies/new", "data-placeholder" => t("invoices.placeholder.company") } %>
+            <%= f.input :company_id, as: :company, label: t("invoices.label.company"), placeholder: t("invoices.placeholder.company") %>
             <div class="panel panel-default">
               <div class="panel-body">
                 <p><strong id="invoice-company-title"></strong></p>

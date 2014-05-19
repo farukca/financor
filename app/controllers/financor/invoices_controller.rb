@@ -56,6 +56,15 @@ module Financor
       end
     end
 
+    def preview
+      @invoice = Invoice.find(params[:id])
+      respond_to do |format|
+        format.html { render layout: "preview" }
+        format.json { render json: @lead }
+        format.pdf
+      end
+    end
+
     def destroy
       @invoice = Invoice.find(params[:id])
       @junk = Junk.send_to_junk(current_user.id, @invoice, @invoice.reference, @invoice.company_name)

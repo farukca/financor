@@ -1,8 +1,11 @@
 <div class="row">
+  
+  <% content_for(:breadcrumb_actions, flush: true) do %>
+    <%= render "actions", invoice: @invoice %>
+  <% end %>
+
   <%= render "shared/page_title", page_title: t("invoices.title.invoices"), page_small_title: t("invoices.defaults.intro_message"), model_name: "invoices", model_path: "financor/invoices" %>
   
-  <div class="col-md-12">
-    <%= render @invoice %>	
-  </div>
+	<%= render partial: "profile", locals: { invoice: @invoice } %>
 
 </div>

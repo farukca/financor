@@ -28,6 +28,7 @@ tr:
       created: "Fatura kaydı oluşturuldu"
       updated: "Fatura kaydı güncellendi"
       deleted: "Fatura kaydı silindi"
+      destroy_confirm: "Fatura silinecek, devam etmek istiyor musunuz ?"
     status:
       active: "Onay Bekliyor"
       confirmed: "Onaylandı"

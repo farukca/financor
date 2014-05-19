@@ -20,7 +20,7 @@
                 <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("budgetlines.label.amount_curr") %>
               </div>
             </div>
-            <%= f.input :company_id, label: t("budgetlines.label.company"), input_html: { class: "chosen_input", "data-url" => "/companies.json", "data-newrecurl" => "/companies/new", "data-placeholder" => t("budgetlines.placeholder.company") } %>
+            <%= f.input :company_id, as: :company, label: t("budgetlines.label.company"), placeholder: t("budgetlines.placeholder.company") %>
             <%= f.input :line_group, input_html: { class: "col-md-8" }, label: t("budgetlines.label.line_group"), placeholder: t("budgetlines.placeholder.line_group") %>
             <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("budgetlines.label.notes") %>
           </div>
