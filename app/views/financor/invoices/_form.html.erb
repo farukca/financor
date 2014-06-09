@@ -32,6 +32,8 @@
             <%= f.input :invoice_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.invoice_date") %>
             <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("invoices.label.curr") %>
             <%#= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
+            <%= f.input :invoiced_type, as: :hidden, label: false %>
+            <%= f.input :invoiced_id, as: :hidden, label: false %>
           </div>
         </div>
         <% if params[:action] != "edit" %>

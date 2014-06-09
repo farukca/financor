@@ -14,7 +14,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% @invoices.each do |invoice| %>
+					<% objects.each do |invoice| %>
 					  <tr>
 							<td>
 								#
@@ -29,9 +29,9 @@
 					<% end %>
 				</tbody>
 			</table>
-			<% if @invoices.respond_to? :current_page %>
+			<% if objects.respond_to? :current_page %>
 			  <div class: "pagination">
-				  <%= paginate @invoices %>
+				  <%= paginate objects %>
 				 </div>
 			<% end %>
 		</div>

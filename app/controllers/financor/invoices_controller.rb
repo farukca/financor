@@ -15,9 +15,13 @@ module Financor
     end
 
     def new
-    	@invoice = Invoice.new
+    	@invoice = Invoice.new      
       3.times do
         @involine = @invoice.involines.new
+      end
+      if params[:position_id].present?
+        @position = Logistics::Position.find(params[:position_id])
+        @invoice.invoiced = @position
       end
     end
 
@@ -79,7 +83,7 @@ module Financor
 
     private
     def invoice_params
-      params.require(:invoice).permit(:name, :company_id, :invoice_type, :debit_credit, :branch_id, :curr, :curr_rate, :invoice_date, :notes, :status, involines_attributes: [:name, :notes, :unit_number, :unit_type, :unit_price, :curr, :vat_id, :total_amount, :vat_status])
+      params.require(:invoice).permit(:name, :company_id, :invoice_type, :debit_credit, :branch_id, :curr, :curr_rate, :invoice_date, :notes, :status, :invoiced_type, :invoiced_id, involines_attributes: [:name, :notes, :unit_number, :unit_type, :unit_price, :curr, :vat_id, :total_amount, :vat_status])
     end
 
   end
