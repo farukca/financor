@@ -2,9 +2,11 @@
 	<li>
 		<strong>Sub - Total amount:</strong> <%= invoice_amount_without_taxes(invoice) %>
 	</li>
+	<% if invoice.discount_amount > 0 %>
 	<li>
 		<strong>Discount:</strong> <%= invoice.discount_amount %>
 	</li>
+	<% end %>
 	<li>
 		<strong>VAT:</strong> <%= invoice.tax_amount %>
 	</li>

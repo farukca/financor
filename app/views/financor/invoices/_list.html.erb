@@ -4,7 +4,6 @@
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th>#</th>
 						<th><%= t("invoices.label.name") %></th>
 						<th class="hidden-480"><%= t("invoices.label.invoice_date") %></th>
 						<th class="hidden-480"><%= t("invoices.label.company") %></th>
@@ -16,9 +15,6 @@
 				<tbody>
 					<% objects.each do |invoice| %>
 					  <tr>
-							<td>
-								#
-							</td>
 							<td><%= link_to invoice.name, financor.invoice_path(invoice) %></td>
 							<td><%= invoice.invoice_date %></td>
 							<td><%= link_to company_name(invoice.company), network.company_path(invoice.company) %></td>

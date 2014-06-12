@@ -11,12 +11,12 @@
           <%= patron_address(current_patron) %>
         </div>
         <!-- street-address -->
-        <div class="locality">Locality</div>
-        <div id="company-postcode"><span class="region">Region</span> <span class="postal-code">EX12 8PZ</span></div>
+        <!--div class="locality">Locality</div>
+        <div id="company-postcode"><span class="region">Region</span> <span class="postal-code">EX12 8PZ</span></div-->
       </div>
       <!-- adr -->
       <div class="email"><%= @invoice.user.email %></div>
-      <div id="sales-tax-reg-number">SALES TAX: 1234567</div>
+      <!--div id="sales-tax-reg-number">SALES TAX: 1234567</div-->
     </div>
     <!-- company-address vcard --> 
   </div> 
@@ -37,9 +37,9 @@
         <%= company_fulladdress(@invoice.company) %>
       </div>
       <!-- street-address -->
-      <div class="locality">LOCALITY</div>
-      <div id="client-postcode"><span class="region">Region</span> <span class="postal-code">MV2 8SX</span></div>
-      <div id="your-tax-number">SALES TAX: 193528491</div>
+      <!--div class="locality">LOCALITY</div>
+      <div id="client-postcode"><span class="region">Region</span> <span class="postal-code">MV2 8SX</span></div-->
+      <div id="your-tax-number"><%= "#{@invoice.company.financial.taxoffice} #{@invoice.company.financial.taxno}" if @invoice.company.financial %></div>
     </div>
     <!-- adr -->
   </div>
@@ -47,11 +47,11 @@
   <table id="invoice-amount">
     <thead>
       <tr id="header_row">
-        <th class="quantity_th">Quantity</th>
-        <th class="left details_th">Details</th>
-        <th class="unitprice_th">Unit Price (&#163;)</th>
-        <th class="salestax_th">VAT</th>
-        <th class="subtotal_th">Net Subtotal (&#163;)</th>
+        <th class="quantity_th"><%= t("involines.label.unit_number") %></th>
+        <th class="left details_th"><%= t("involines.label.notes") %></th>
+        <th class="unitprice_th"><%= t("involines.label.unit_price") %></th>
+        <th class="salestax_th"><%= t("involines.label.tax") %></th>
+        <th class="subtotal_th"><%= t("involines.label.total_amount") %></th>
       </tr>
     </thead>
     <tbody>
@@ -66,27 +66,22 @@
       <% end %>
     </tbody>
  
-    <tfoot> 
-      <tr id="discount_tr"> 
-        <td colspan="2">&nbsp;</td> 
-        <td colspan="2" class="item_r">10% Discount</td> 
-        <td class="item_r">&#163;250.00</td> 
-      </tr> 
-      <tr id="net_total_tr"> 
-        <td colspan="2">&nbsp;</td> 
-        <td colspan="2" class="item_r">Net Total</td> 
-        <td class="item_r">2250.00</td> 
-      </tr> 
-      <tr id="vat_tr"> 
-        <td colspan="2">&nbsp;</td> 
-        <td colspan="2" class="item_r">VAT</td> 
-        <td class="item_r">393.75</td> 
-      </tr> 
-      <tr id="total_tr"> 
-        <td colspan="2">&nbsp;</td> 
-        <td colspan="2" class="total" id="total_currency"><span class="currency">GBP </span> Total</td> 
-        <td class="total">&#163;2643.75</td> 
-      </tr> 
+    <tfoot>
+      <tr id="net_total_tr">
+        <td colspan="2">&nbsp;</td>
+        <td colspan="2" class="total item_r"><%= t("invoices.label.sub_total") %></td>
+        <td class="total item_r"><%= print_price(invoice_amount_without_taxes(@invoice), @invoice.curr) %></td>
+      </tr>
+      <tr id="net_total_tr">
+        <td colspan="2">&nbsp;</td>
+        <td colspan="2" class="total item_r"><%= t("invoices.label.vat_total") %></td>
+        <td class="total item_r"><%= print_price(@invoice.tax_amount, @invoice.curr) %></td>
+      </tr>
+      <tr id="net_total_tr">
+        <td colspan="2">&nbsp;</td>
+        <td colspan="2" class="total item_r"><%= t("invoices.label.net_total") %></td>
+        <td class="total item_r"><%= print_price(@invoice.invoice_amount, @invoice.curr) %></td>
+      </tr>
     </tfoot>
   </table> 
   <!-- invoice-amount --> 

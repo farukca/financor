@@ -20,6 +20,9 @@ tr:
       due_date: "Vade Tarihi"
       status: "Fatura Statüsü"
       notes: "Notlar"
+      sub_total: "Alt Toplam"
+      vat_total: "KDV Toplam"
+      net_total: "Net Toplam"
     placeholder:
       company: "Fatura firmasını seçiniz"
     action:

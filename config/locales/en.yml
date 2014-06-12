@@ -20,6 +20,9 @@ en:
       due_date: "Due date"
       status: "Invoice Status"
       notes: "Notes"
+      sub_total: "Sub Total"
+      vat_total: "VAT Total"
+      net_total: "Net Total"
     placeholder:
       company: "Select invoice company"
     action:
