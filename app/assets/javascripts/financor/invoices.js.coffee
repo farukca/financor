@@ -19,7 +19,7 @@ calculate_involine_total = ->
       tax_rate = $tax_col.children("option:selected").data("rate")
       if tax_rate == ""
         tax_rate=0
-    tax = (total * tax_rate) / 100
+    tax = (Math.round(((total * tax_rate)), 2) / 100)
     $total_col.val total
     $invoice_total += total
     $tax_total += tax

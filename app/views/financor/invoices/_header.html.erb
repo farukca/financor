@@ -10,19 +10,23 @@
     <div class="profile-info">
         <h1>
           <%= invoice.name %>
-          <span class="small"><%= company_name(invoice.company) %></span>
         </h1>
         <p>
-          <%= invoice.invoice_date %>
           <span class="text-muted" style="white-space:pre-wrap"><%= invoice.notes %></span>
         </p>
         <ul class="list-inline blog-tags">
           <li>
-            <i class="fa fa-map-marker"></i> <%= company_fulladdress(invoice.company) %>
+            <i class="fa fa-building-o"></i> <%= link_to company_name(invoice.company), network.company_path(invoice.company) %>
+          </li>
+          <li>
+            <i class="fa fa-calendar"></i> <%= invoice.invoice_date %>
           </li>
           <li>
             <i class="fa fa-flag"></i> <%= t("invoices.status.#{invoice.status}") %>
           </li>
+          <% if invoice.invoiced %>
+            <i class="fa fa-eject"></i> <%= link_to invoice.invoiced.to_s, polymorphic_url([logistics, invoice.invoiced]) %>
+          <% end %>
         </ul>
     </div>
     <hr>
