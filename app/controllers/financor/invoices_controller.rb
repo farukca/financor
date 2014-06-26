@@ -62,6 +62,13 @@ module Financor
 
     def preview
       @invoice = Invoice.find(params[:id])
+      
+      if @invoice.company.country_id == "TR"
+        I18n.locale = "tr"
+      else
+        I18n.locale = "en"
+      end
+      
       respond_to do |format|
         format.html { render layout: "preview" }
         format.json { render json: @lead }
@@ -71,12 +78,12 @@ module Financor
 
     def destroy
       @invoice = Invoice.find(params[:id])
-      @junk = Arsiv::Junk.send_to_junk(current_user.id, @invoice, @invoice.reference, @invoice.company_name)
+      #@junk = Arsiv::Junk.send_to_junk(current_user.id, @invoice, @invoice.reference, @invoice.company_name)
       @invoice.destroy
       flash[:notice] = t("invoices.message.deleted")
 
       respond_to do |format|
-        format.html { redirect_to invoices_url }
+        format.html { redirect_to financor.invoices_url }
         format.json { head :ok }
       end
     end
