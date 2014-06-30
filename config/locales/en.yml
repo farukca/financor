@@ -48,7 +48,7 @@ en:
     label:
       name: "Invoice line description"
       curr: "Line Currency"
-      unit_number: "Unit number"
+      unit_number: "Unit"
       unit_price: "Unit price"
       total_amount: "Line Total"
       tax: "Tax"

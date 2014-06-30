@@ -1,16 +1,16 @@
-<ul class="list-unstyled amounts">
+<ul class="list-unstyled amounts pull-right">
 	<li>
-		<strong>Sub - Total amount:</strong> <%= invoice_amount_without_taxes(invoice) %>
+		<strong>Sub - Total amount:</strong> <%= print_price(invoice_amount_without_taxes(invoice), invoice.curr) %>
 	</li>
 	<% if invoice.discount_amount > 0 %>
 	<li>
-		<strong>Discount:</strong> <%= invoice.discount_amount %>
+		<strong>Discount:</strong> <%= print_price(invoice.discount_amount, invoice.curr) %>
 	</li>
 	<% end %>
 	<li>
-		<strong>VAT:</strong> <%= invoice.tax_amount %>
+		<strong>VAT:</strong> <%= print_price(invoice.tax_amount, invoice.curr) %>
 	</li>
 	<li>
-		<strong>Grand Total:</strong> <%= invoice.invoice_amount %>
+		<strong>Grand Total:</strong> <%= print_price(invoice.invoice_amount, invoice.curr) %>
 	</li>
 </ul>

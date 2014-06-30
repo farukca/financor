@@ -27,9 +27,16 @@
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-md-offset-3">
+          <div class="col-md-4 col-md-offset-2">
             <%= f.input :name, label: t("invoices.label.name") %>
-            <%= f.input :invoice_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.invoice_date") %>
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.input :invoice_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.invoice_date") %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :due_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.due_date") %>
+              </div>
+            </div>
             <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("invoices.label.curr") %>
             <%#= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
             <%= f.input :invoiced_type, as: :hidden, label: false %>

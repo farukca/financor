@@ -22,11 +22,12 @@
   </div> 
   <!-- #invoice-header --> 
   <div id="invoice-info"> 
-    <h2>Invoice <strong><%= @invoice.name %></strong></h2> 
-    <h3><%= @invoice.invoice_date %></h3> 
-    <p id="payment-terms">Payment Terms: 30 days</p> 
-    <p id="payment-due">Payment due by 21 March 2008</p> 
-	  <p id="payment-total">&#163;2643.75</p>
+    <h2>Invoice No: <strong><%= @invoice.name %></strong></h2> 
+    <h3>Invoice Date: <%= @invoice.invoice_date %></h3> 
+    <h3>Payment Due: <%= @invoice.due_date %></h3> 
+    <!--p id="payment-terms">Payment Terms: 30 days</p> 
+    <p id="payment-due">Payment due by 21 March 2008</p>
+	  <p id="payment-total">&#163;2643.75</p-->
   </div>
   <!-- #invoice-info -->
   <div class="vcard" id="client-details">
@@ -57,11 +58,11 @@
     <tbody>
       <% @invoice.involines.each do |involine| %>
       <tr class="">
-        <td class="item_l"><%= involine.unit_number %> <%= t("involines.invoice_unit_types.#{involine.unit_type}") %></td>
-        <td class="item_l"><%= involine.name %> <%= involine.notes %></td>
-        <td class="item_r"><%= involine.unit_price %></td>
-        <td class="item_r"><%= involine.vat_amount %></td>
-        <td class="item_r"><%= involine.total_amount %></td>
+        <td class="item_l quantity_th"><%= involine.unit_number %> <%= t("involines.invoice_unit_types.#{involine.unit_type}") %></td>
+        <td class="item_l details_th"><%= involine.name %> <%= involine.notes %></td>
+        <td class="item_r unitprice_th"><%= involine.unit_price %></td>
+        <td class="item_r salestax_th"><%= involine.vat_amount %></td>
+        <td class="item_r subtotal_th"><%= involine.total_amount %></td>
       </tr>
       <% end %>
     </tbody>
@@ -86,21 +87,21 @@
   </table> 
   <!-- invoice-amount --> 
   <div id="invoice-other"> 
-    <h2>Other Information</h2> 
-    <div id="company-reg-number"><strong>Company Registration Number:</strong> 9273109</div>  
-    <div id="contract-number"><strong>Contract/PO:</strong> PO 87227643</div> 
+    <h2>Other Information</h2>
+    <div id="company-reg-number"><strong>Project Info:</strong> <%= @invoice.invoiced.to_s if @invoice.invoiced %></div>  
+    <!--div id="contract-number"><strong>Contract/PO:</strong> PO 87227643</div-->
   </div> 
   <!-- invoice-other --> 
   <div id="payment-details"> 
-    <h2>Payment Details</h2> 
-    <div id="bank_name">Bank Name</div> 
-    <div id="sort-code"><strong>Bank/Sort Code:</strong> 32-75-97</div> 
-    <div id="account-number"><strong>Account Number:</strong> 28270761</div> 
-    <div id="iban"><strong>IBAN:</strong> 973547</div> 
-    <div id="bic"><strong>BIC:</strong> 220197</div> 
-    <div id="payment-reference"><strong>Payment Reference:</strong> INV001</div> 
+    <h2>Invoice Notes</h2> 
+    <div id="bank_name"><%= @invoice.notes %></div> 
+    <div id="sort-code">&nbsp;</div> 
+    <div id="account-number"><%= user_name(@invoice.user) %></div> 
+    <div id="iban"><%= mail_to @invoice.user.email, @invoice.user.email %></div> 
+    <!--div id="bic"><strong>BIC:</strong> 220197</div> 
+    <div id="payment-reference"><strong>Payment Reference:</strong> INV001</div-->
   </div> 
   <!-- payment-details --> 
-  <div id="comments">Payment should be made by bank transfer or cheque made payable to John Smith.</div> 
+  <!--div id="comments">Payment should be made by bank transfer or cheque made payable to John Smith.</div-->
   <!-- comments --> 
 </div>

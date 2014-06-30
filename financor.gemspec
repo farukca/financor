@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
  s.add_dependency "rails", "~> 4.1.0.beta1"
   # s.add_dependency "jquery-rails"
   s.add_dependency "resque"
-  s.add_dependency "simple_form", "~> 3.0.0"
+  #s.add_dependency "simple_form", "~> 3.1.0.rc1"#, github: "plataformatec/simple_form", branch: "master"
   s.add_dependency "execjs"
   s.add_dependency "therubyracer"
   s.add_dependency "sass-rails",   "~> 4.0.0"

@@ -1,12 +1,10 @@
-<div id="invoice_#{invoice.id}_profile_header" class="row">
+<div id="invoice_#{invoice.id}_profile_header" class="">
 
-  <div class="col-md-2">
-    <p>
-    <i class="fa fa-money fa-4x pull-right"></i>
-    </p>
+  <div class="col-md-1">
+    <i class="fa fa-money fa-5x pull-right"></i>
   </div>
 
-  <div class="col-md-10">
+  <div class="col-md-7">
     <div class="profile-info">
         <h1>
           <%= invoice.name %>
@@ -29,7 +27,10 @@
           <% end %>
         </ul>
     </div>
-    <hr>
   </div>
+  <div class="col-md-3 col-md-offset-1" id="invoice_<%= invoice.id %>_totals">
+    <%= render "totals", invoice: invoice %>
+  </div>
+  <hr>
 
 </div>

@@ -4,7 +4,7 @@ module Financor
   class InvoicesController < ApplicationController
 
     before_filter :require_login
-    before_filter(:only => [:index]) { |c| c.set_tab "financenavigator" }
+    before_filter(:only => [:index]) { |c| c.set_tab "financenavigator" if params[:home].present? }
 
     def index
       @invoices = Invoice.order("created_at desc").limit(10).page(params[:page]).per(10)
@@ -15,7 +15,7 @@ module Financor
     end
 
     def new
-    	@invoice = Invoice.new      
+    	@invoice = Invoice.new(invoice_date: Time.zone.today)
       3.times do
         @involine = @invoice.involines.new
       end
@@ -90,7 +90,7 @@ module Financor
 
     private
     def invoice_params
-      params.require(:invoice).permit(:name, :company_id, :invoice_type, :debit_credit, :branch_id, :curr, :curr_rate, :invoice_date, :notes, :status, :invoiced_type, :invoiced_id, involines_attributes: [:name, :notes, :unit_number, :unit_type, :unit_price, :curr, :vat_id, :total_amount, :vat_status])
+      params.require(:invoice).permit(:name, :company_id, :invoice_type, :debit_credit, :branch_id, :curr, :curr_rate, :invoice_date, :due_date, :notes, :status, :invoiced_type, :invoiced_id, involines_attributes: [:name, :notes, :unit_number, :unit_type, :unit_price, :curr, :vat_id, :total_amount, :vat_status])
     end
 
   end

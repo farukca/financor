@@ -48,7 +48,7 @@ tr:
     label:
       name: "Fatura kalem açıklaması"
       curr: "Döviz"
-      unit_number: "Birim adedi"
+      unit_number: "Birim"
       unit_price: "Birim fiyatı"
       total_amount: "Satır Toplamı"
       tax: "KDV"
