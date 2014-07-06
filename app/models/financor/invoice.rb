@@ -4,14 +4,17 @@ module Financor
 		belongs_to :company, class_name: Financor.company_class
 	  belongs_to :user, class_name: Financor.user_class
     belongs_to :invoiced, polymorphic: true, touch: true#, counter_cache: true
-	  #belongs_to :branch, class_name: Financor.branch_class
+	  belongs_to :branch, class_name: Financor.branch_class
 
   	has_many   :involines
 	  accepts_nested_attributes_for :involines, :reject_if => proc { |a| a[:name].blank? }
 
 	  has_many :comments, class_name: Financor.comment_class, as: :commentable, dependent: :destroy
 
+    attr_accessor :invoice_financial_id
+
 	  validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :patron_id }
+    validates :invoice_title, presence: true, length: { maximum: 255 }
 	  #validates :branch_id, presence: true
 	  validates :company_id, presence: true
 	  validates :invoice_date, presence: true
@@ -25,6 +28,7 @@ module Financor
 	  scope :active, where(status: "active")
 
   	before_create :generate_uuid, :set_invoice_lines
+    after_create  :set_company_financial
 
   	def self.invoice_status
       %w[active confirmed cancelled]
@@ -77,6 +81,15 @@ module Financor
         self.invoice_amount   += line.vat_amount
 
         self.involines_count  += 1
+      end
+    end
+
+    def set_company_financial
+      if self.invoice_financial_id.blank?
+        financial_info = self.company.financial
+        unless financial_info
+          self.company.create_financial(title: self.invoice_title, taxno: self.invoice_taxno, taxoffice: self.invoice_taxoffice, invoice_country_id: self.invoice_country_id, invoice_city: self.invoice_city, invoice_address: self.invoice_address, user_id: self.user_id)
+        end
       end
     end
   	

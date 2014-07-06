@@ -8,4 +8,5 @@ module Financor
 	mattr_accessor :discussion_class
 	mattr_accessor :reminder_class
 	mattr_accessor :comment_class
+	mattr_accessor :branch_class
 end

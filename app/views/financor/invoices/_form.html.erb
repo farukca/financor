@@ -10,6 +10,30 @@
 
         <div class="row" style="margin-bottom:40px;">
           <div class="col-md-6">
+            <%= f.input :company_id, as: :company, label: t("invoices.label.company"), placeholder: t("invoices.placeholder.company") %>
+            <div class="row slidingDiv" id="invoice_company_financials">
+              <div class="col-md-6">
+                <%= f.input :invoice_title %>
+              </div>
+              <div class="col-md-3">
+                <%= f.input :invoice_taxoffice %>
+              </div>
+              <div class="col-md-3">
+                <%= f.input :invoice_taxno %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :invoice_address, input_html: { rows: "1" } %>
+              </div>
+              <div class="col-md-3">
+                <%= f.input :invoice_city %>
+              </div>
+              <div class="col-md-3">
+                <%= f.input :invoice_country_id, as: :select, collection: Nimbos::Country.all, input_html: { class: "country_select" } %>
+              </div>
+              <%= f.input :invoice_financial_id, as: :hidden, label: false %>
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-1">
             <div class="row">
               <div class="col-md-6">
                 <%= f.input :debit_credit, as: :select, collection: Financor::Invoice.debit_credit_types.map { |t| [t("invoices.debit_credit_types.#{t}"), t] }, label: t("invoices.label.debit_credit") %>
@@ -18,26 +42,26 @@
                 <%= f.input :invoice_type, as: :select, collection: Financor::Invoice.invoice_types.map { |t| [t("invoices.invoice_types.#{t}"), t] }, label: t("invoices.label.invoice_type") %>
               </div>
             </div>
-            <%= f.input :company_id, as: :company, label: t("invoices.label.company"), placeholder: t("invoices.placeholder.company") %>
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <p><strong id="invoice-company-title"></strong></p>
-                <p><span id="invoice-company-address" class="text-muted"></span></p>
-                <p><strong id="invoice-company-taxinfo"></strong></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-md-offset-2">
-            <%= f.input :name, label: t("invoices.label.name") %>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-4">
+                <%= f.input :name, label: t("invoices.label.name") %>
+              </div>
+              <div class="col-md-4">
                 <%= f.input :invoice_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.invoice_date") %>
               </div>
+              <div class="col-md-4">
+                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("invoices.label.curr") %>
+              </div>
+            </div>
+            <div class="row">
               <div class="col-md-6">
                 <%= f.input :due_date, as: :string, input_html: { class: "datepicker" }, label: t("invoices.label.due_date") %>
               </div>
+              <div class="col-md-6">
+                <%= f.input :branch_id, as: :select, label: t("defaults.label.branch"), collection: current_patron.branches, include_blank: false %>
+              </div>
             </div>
-            <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("invoices.label.curr") %>
+            
             <%#= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("invoices.label.notes") %>
             <%= f.input :invoiced_type, as: :hidden, label: false %>
             <%= f.input :invoiced_id, as: :hidden, label: false %>

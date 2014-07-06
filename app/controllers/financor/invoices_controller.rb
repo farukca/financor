@@ -15,7 +15,7 @@ module Financor
     end
 
     def new
-    	@invoice = Invoice.new(invoice_date: Time.zone.today)
+    	@invoice = Invoice.new(invoice_date: Time.zone.today, branch_id: current_user.branch_id)
       3.times do
         @involine = @invoice.involines.new
       end
@@ -90,7 +90,7 @@ module Financor
 
     private
     def invoice_params
-      params.require(:invoice).permit(:name, :company_id, :invoice_type, :debit_credit, :branch_id, :curr, :curr_rate, :invoice_date, :due_date, :notes, :status, :invoiced_type, :invoiced_id, involines_attributes: [:name, :notes, :unit_number, :unit_type, :unit_price, :curr, :vat_id, :total_amount, :vat_status])
+      params.require(:invoice).permit(:name, :company_id, :invoice_type, :debit_credit, :branch_id, :curr, :curr_rate, :invoice_date, :due_date, :notes, :status, :invoiced_type, :invoiced_id, :invoice_title, :invoice_taxno, :invoice_taxoffice, :invoice_city, :invoice_country_id, :invoice_address, :invoice_financial_id, involines_attributes: [:name, :notes, :unit_number, :unit_type, :unit_price, :curr, :vat_id, :total_amount, :vat_status])
     end
 
   end
