@@ -1,0 +1,49 @@
+tr:
+  simple_form:
+    labels:
+      invoice:
+        uuid: "Fatura ID"
+        name: "Fatura No"
+        invoice_date: "Fatura Tarihi"
+        invoice_type: "Fatura Tipi"
+        debit_credit: "Gelir/Gider Tipi"
+        company_id: "Fatura Firması"
+        invoice_title: "Firma Fatura Ünvanı"
+        invoice_taxoffice: "Vergi Dairesi"
+        invoice_taxno: "Vergi No"
+        invoice_address: "Fatura Adresi"
+        invoice_city: "Şehir"
+        invoice_country_id: "Ülke"
+        curr: "Fatura Dövizi"
+        curr_rate: "Fatura Kuru"
+        invoice_amount: "Fatura Toplamı"
+        payment_terms: "Ödeme Süresi"
+        due_date: "Vade Tarihi"
+        status: "Fatura Statüsü"
+        notes: "Notlar"
+        sub_total: "Alt Toplam"
+        vat_total: "KDV Toplam"
+        net_total: "Fatura Toplamı"
+      involine:
+        name: "Fatura kalem açıklaması"
+        curr: "Döviz"
+        unit_number: "Birim"
+        unit_type: "Tipi"
+        unit_price: "Birim fiyatı"
+        total_amount: "Satır Toplamı"
+        tax: "KDV"
+        notes: "Satır açıklaması"
+      taxcode:
+        name: "Vergi Adı"
+        rate: "Oran %"
+        code: "Maliye Kodu"
+    placeholders:
+      invoice:
+        company_id: "Fatura firmasını seçiniz"
+      involine:
+        name: "faturada satır açıklaması olarak çıkacak"
+    hints:
+      taxcode:
+        name: "Örn:KDV18"
+        rate: "Örn: 18"
+        code: "Örn: KDV"

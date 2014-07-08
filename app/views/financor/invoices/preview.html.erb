@@ -70,17 +70,17 @@
     <tfoot>
       <tr id="net_total_tr">
         <td colspan="2">&nbsp;</td>
-        <td colspan="2" class="total item_r"><%= t("invoices.label.sub_total") %></td>
+        <td colspan="2" class="total item_r"><%= t("simple_form.labels.invoice.sub_total") %></td>
         <td class="total item_r"><%= print_price(invoice_amount_without_taxes(@invoice), @invoice.curr) %></td>
       </tr>
       <tr id="net_total_tr">
         <td colspan="2">&nbsp;</td>
-        <td colspan="2" class="total item_r"><%= t("invoices.label.vat_total") %></td>
+        <td colspan="2" class="total item_r"><%= t("simple_form.labels.invoice.vat_total") %></td>
         <td class="total item_r"><%= print_price(@invoice.tax_amount, @invoice.curr) %></td>
       </tr>
       <tr id="net_total_tr">
         <td colspan="2">&nbsp;</td>
-        <td colspan="2" class="total item_r"><%= t("invoices.label.net_total") %></td>
+        <td colspan="2" class="total item_r"><%= t("simple_form.labels.invoice.net_total") %></td>
         <td class="total item_r"><%= print_price(@invoice.invoice_amount, @invoice.curr) %></td>
       </tr>
     </tfoot>

@@ -1,0 +1,49 @@
+en:
+  simple_form:
+    labels:
+      invoice:
+        uuid: "Invoice UUID"
+        name: "Invoice Number"
+        invoice_date: "Invoice Date"
+        invoice_type: "Invoice Type"
+        debit_credit: "Debit/Credit Type"
+        company_id: "Invoice Company"
+        invoice_title: "Company Title"
+        invoice_taxoffice: "Tax Office"
+        invoice_taxno: "Tax No"
+        invoice_address: "Invoice Adresi"
+        invoice_city: "City"
+        invoice_country_id: "Country"
+        curr: "Invoice Currency"
+        curr_rate: "Invoice currency rate"
+        invoice_amount: "Invoice Total"
+        payment_terms: "Payment terms"
+        due_date: "Due date"
+        status: "Invoice Status"
+        notes: "Notes"
+        sub_total: "Sub Total"
+        vat_total: "VAT Total"
+        net_total: "Net Total"
+      involine:
+        name: "Invoice line description"
+        curr: "Line Currency"
+        unit_number: "Unit"
+        unit_type: "Type"
+        unit_price: "Unit price"
+        total_amount: "Line Total"
+        tax: "Tax"
+        notes: "Line Notes"
+      taxcode:
+        name: "Tax Name"
+        rate: "Rate %"
+        code: "Code"
+    placeholders:
+      invoice:
+        company_id: "Fatura firmasını seçiniz"
+      involine:
+        name: "will be printed on invoice"
+    hints:
+      taxcode:
+        name: "Ex: VAT18"
+        rate: "Ex: 18"
+        code: "Ex: VAT"

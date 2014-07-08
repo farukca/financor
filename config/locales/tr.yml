@@ -6,25 +6,6 @@ tr:
       last_records_title: "En Son Oluşturulmuş Faturalar"
     title:
       invoices: "Faturalar"
-    label:
-      uuid: "Fatura ID"
-      name: "Fatura No"
-      invoice_date: "Fatura Tarihi"
-      invoice_type: "Fatura Tipi"
-      debit_credit: "Gelir/Gider Tipi"
-      company: "Fatura Firması"
-      curr: "Fatura Dövizi"
-      curr_rate: "Fatura Kuru"
-      invoice_amount: "Fatura Toplamı"
-      payment_terms: "Ödeme Süresi"
-      due_date: "Vade Tarihi"
-      status: "Fatura Statüsü"
-      notes: "Notlar"
-      sub_total: "Alt Toplam"
-      vat_total: "KDV Toplam"
-      net_total: "Net Toplam"
-    placeholder:
-      company: "Fatura firmasını seçiniz"
     action:
       save: "Fatura Bilgisini Kaydet"
     message:
@@ -45,17 +26,6 @@ tr:
   involines:
     title:
       involines: "Fatura Kalemleri"
-    label:
-      name: "Fatura kalem açıklaması"
-      curr: "Döviz"
-      unit_number: "Birim"
-      unit_price: "Birim fiyatı"
-      total_amount: "Satır Toplamı"
-      tax: "KDV"
-      notes: "Satır açıklaması"
-      add_involine: "Fatura Kalemi Ekle"
-    placeholder:
-      name: "faturada satır açıklaması olarak çıkacak"
     action:
       save: "Kaydet"
     message:
@@ -76,15 +46,6 @@ tr:
   taxcodes:
     title:
       taxcodes: "Vergi Kod Tanımları"
-    label:
-      name: "Vergi Adı"
-      rate: "Oran %"
-      code: "Maliye Kodu"
-      new_taxcode: "Vergi Kodu Ekle"
-    hint:
-      name: "Örn:KDV18"
-      rate: "Örn: 18"
-      code: "Örn: KDV"
     message:
       created: "Vergi kodu oluşturuldu"
       updated: "Vergi kodu güncellendi"

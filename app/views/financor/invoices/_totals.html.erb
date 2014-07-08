@@ -1,6 +1,6 @@
 <ul class="list-unstyled amounts pull-right">
 	<li>
-		<strong>Sub - Total amount:</strong> <%= print_price(invoice_amount_without_taxes(invoice), invoice.curr) %>
+		<strong><%= t("simple_form.labels.invoice.sub_total") %>:</strong> <%= print_price(invoice_amount_without_taxes(invoice), invoice.curr) %>
 	</li>
 	<% if invoice.discount_amount > 0 %>
 	<li>
@@ -8,9 +8,9 @@
 	</li>
 	<% end %>
 	<li>
-		<strong>VAT:</strong> <%= print_price(invoice.tax_amount, invoice.curr) %>
+		<strong><%= t("simple_form.labels.invoice.vat_total") %>:</strong> <%= print_price(invoice.tax_amount, invoice.curr) %>
 	</li>
 	<li>
-		<strong>Grand Total:</strong> <%= print_price(invoice.invoice_amount, invoice.curr) %>
+		<strong><%= t("simple_form.labels.invoice.net_total") %>:</strong> <%= print_price(invoice.invoice_amount, invoice.curr) %>
 	</li>
 </ul>

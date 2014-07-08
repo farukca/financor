@@ -6,25 +6,6 @@ en:
       last_records_title: "Last added invoices"
     title:
       invoices: "Invoices"
-    label:
-      uuid: "Invoice UUID"
-      name: "Invoice Number"
-      invoice_date: "Invoice Date"
-      invoice_type: "Invoice Type"
-      debit_credit: "Debit/Credit Type"
-      company: "Invoice Company"
-      curr: "Invoice Currency"
-      curr_rate: "Invoice currency rate"
-      invoice_amount: "Invoice Total"
-      payment_terms: "Payment terms"
-      due_date: "Due date"
-      status: "Invoice Status"
-      notes: "Notes"
-      sub_total: "Sub Total"
-      vat_total: "VAT Total"
-      net_total: "Net Total"
-    placeholder:
-      company: "Select invoice company"
     action:
       save: "Save Invoice"
     message:
@@ -45,17 +26,6 @@ en:
   involines:
     title:
       involines: "Invoice Lines"
-    label:
-      name: "Invoice line description"
-      curr: "Line Currency"
-      unit_number: "Unit"
-      unit_price: "Unit price"
-      total_amount: "Line Total"
-      tax: "Tax"
-      notes: "Line Notes"
-      add_involine: "Add Invoice Lines"
-    placeholder:
-      name: "will be printed on invoice"
     action:
       save: "Save"
     message:
@@ -76,15 +46,6 @@ en:
   taxcodes:
     title:
       taxcodes: "Tax Rates"
-    label:
-      name: "Tax Name"
-      rate: "Rate %"
-      code: "Code"
-      new_taxcode: "Add Taxcode"
-    hint:
-      name: "Ex: VAT18"
-      rate: "Ex: 18"
-      code: "Ex: VAT"
     message:
       created: "Tax code created"
       updated: "Tax code updated"
