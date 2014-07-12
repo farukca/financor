@@ -1,6 +1,16 @@
 en:
   simple_form:
     labels:
+      budgetline:
+        name: "Description"
+        line_type: "Debit/Credit Type"
+        debit: "Debit"
+        credit: "Credit"
+        amount: "Amount"
+        amount_curr: "Currency"
+        company: "Invoice Company"
+        line_group: "Item Group"
+        notes: "Notes"
       invoice:
         uuid: "Invoice UUID"
         name: "Invoice Number"
@@ -42,6 +52,10 @@ en:
         company_id: "Fatura firmasını seçiniz"
       involine:
         name: "will be printed on invoice"
+      budgetline:
+        name: "Enter debit or credit description"
+        company: "Select invoice company"
+        line_group: "Select item group"
     hints:
       taxcode:
         name: "Ex: VAT18"

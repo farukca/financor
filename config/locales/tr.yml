@@ -1,7 +1,7 @@
 tr:
   invoices:
     defaults:
-      new_record_label: "Yeni Fatura Oluştur"
+      new_record_label: "Fatura Oluştur"
       intro_message: "Gelir ve gider faturalarınızı yönetebilirsiniz"
       last_records_title: "En Son Oluşturulmuş Faturalar"
     title:
@@ -54,21 +54,21 @@ tr:
   budgetlines:
     title:
       budgetlines: "Bütçe kalemleri"
-    label:
-      name: "Açıklama"
-      line_type: "Gelir/Gider Tipi"
-      debit: "Gelir"
-      credit: "Gider"
-      amount: "Kalem Tutarı"
-      amount_curr: "Kalem dövizi"
-      company: "Fatura firması"
-      line_group: "Kalem Grubu"
-      notes: "Notlar"
-    placeholder:
-      name: "Tahmini gelir veya gider açıklamasını giriniz, ör. Navlun geliri..."
-      company: "Kalem faturalanacaksa ilgili firmayı seçiniz"
-      line_group: "Gelir/Gider grubunu seçiniz"
     action:
       create: "Kaydet"
       update: "Güncelle"
       delete: "Sil"
+  activerecord:
+    models:
+      budgetline:
+        one: "Bütçe kalemi"
+        other: "Bütçe kalemleri"
+      invoice:
+        one: "Fatura"
+        other: "Faturalar"
+      involine:
+        one: "Fatura Kalemi"
+        other: "Fatura Kalemleri"
+      taxcode:
+        one: "Vergi Kod Tanımı"
+        other: "Vergi Kod Tanımları"

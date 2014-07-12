@@ -54,21 +54,21 @@ en:
   budgetlines:
     title:
       budgetlines: "Budget Lines"
-    label:
-      name: "Description"
-      line_type: "Debit/Credit Type"
-      debit: "Debit"
-      credit: "Credit"
-      amount: "Amount"
-      amount_curr: "Currency"
-      company: "Invoice Company"
-      line_group: "Item Group"
-      notes: "Notes"
-    placeholder:
-      name: "Enter debit or credit description"
-      company: "Select invoice company"
-      line_group: "Select item group"
     action:
       create: "Save"
       update: "Edit"
       delete: "Delete"
+  activerecord:
+    models:
+      budgetline:
+        one: "Budget Line"
+        other: "Budget Lines"
+      invoice:
+        one: "Invoice"
+        other: "Invoices"
+      involine:
+        one: "Invoice Line"
+        other: "Invoice Lines"
+      taxcode:
+        one: "Tax Rate"
+        other: "Tax Rates"

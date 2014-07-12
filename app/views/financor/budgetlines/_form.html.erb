@@ -11,18 +11,18 @@
         <div class="row">
           <div class="col-md-8">
             <%= f.collection_radio_buttons :options, [["debit", t("budgetlines.label.debit")] ,["credit", t("budgetlines.label.credit")]], :first, :last %>
-            <%= f.input :name, input_html: { class: "col-md-8" }, label: t("budgetlines.label.name"), placeholder: t("budgetlines.placeholder.name") %>
+            <%= f.input :name, input_html: { class: "col-md-8" } %>
             <div class="row">
               <div class="col-md-6">
-                <%= f.input :amount, label: t("budgetlines.label.amount") %>
+                <%= f.input :amount %>
               </div>
               <div class="col-md-6">
-                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, label: t("budgetlines.label.amount_curr") %>
+                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all %>
               </div>
             </div>
-            <%= f.input :company_id, as: :company, label: t("budgetlines.label.company"), placeholder: t("budgetlines.placeholder.company") %>
-            <%= f.input :line_group, input_html: { class: "col-md-8" }, label: t("budgetlines.label.line_group"), placeholder: t("budgetlines.placeholder.line_group") %>
-            <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("budgetlines.label.notes") %>
+            <%= f.input :company_id, as: :company %>
+            <%= f.input :line_group, input_html: { class: "col-md-8" } %>
+            <%= f.input :notes, as: :text, input_html: { rows: "2" } %>
           </div>
         </div>
 

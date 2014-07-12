@@ -1,6 +1,16 @@
 tr:
   simple_form:
     labels:
+      budgetline:
+        name: "Açıklama"
+        line_type: "Gelir/Gider Tipi"
+        debit: "Gelir"
+        credit: "Gider"
+        amount: "Kalem Tutarı"
+        amount_curr: "Kalem dövizi"
+        company: "Fatura firması"
+        line_group: "Kalem Grubu"
+        notes: "Notlar"
       invoice:
         uuid: "Fatura ID"
         name: "Fatura No"
@@ -42,6 +52,10 @@ tr:
         company_id: "Fatura firmasını seçiniz"
       involine:
         name: "faturada satır açıklaması olarak çıkacak"
+      budgetline:
+        name: "Tahmini gelir veya gider açıklamasını giriniz, ör. Navlun geliri..."
+        company: "Kalem faturalanacaksa ilgili firmayı seçiniz"
+        line_group: "Gelir/Gider grubunu seçiniz"
     hints:
       taxcode:
         name: "Örn:KDV18"
