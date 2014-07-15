@@ -60,15 +60,15 @@ en:
       delete: "Delete"
   activerecord:
     models:
-      budgetline:
+      financor/budgetline:
         one: "Budget Line"
         other: "Budget Lines"
-      invoice:
+      financor/invoice:
         one: "Invoice"
         other: "Invoices"
-      involine:
+      financor/involine:
         one: "Invoice Line"
         other: "Invoice Lines"
-      taxcode:
+      financor/taxcode:
         one: "Tax Rate"
         other: "Tax Rates"

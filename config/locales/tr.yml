@@ -60,15 +60,15 @@ tr:
       delete: "Sil"
   activerecord:
     models:
-      budgetline:
+      financor/budgetline:
         one: "Bütçe kalemi"
         other: "Bütçe kalemleri"
-      invoice:
+      financor/invoice:
         one: "Fatura"
         other: "Faturalar"
-      involine:
+      financor/involine:
         one: "Fatura Kalemi"
         other: "Fatura Kalemleri"
-      taxcode:
+      financor/taxcode:
         one: "Vergi Kod Tanımı"
         other: "Vergi Kod Tanımları"

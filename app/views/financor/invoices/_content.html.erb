@@ -5,7 +5,7 @@
     <div class="portlet box grey">
       <% content_for(:portlet_actions, flush: true) do %>
         <%= link_to financor.new_invoice_involine_path(invoice), remote: true, class: "btn green btn-sm" do %>
-          <i class="fa fa-plus"></i> <%= t("involines.label.add_involine") %>
+          <%= iconed_link_label(Financor::Involine.model_name.human, "fa-plus", "add") %>
         <% end %>
       <% end %>
       <%= render "shared/portlet_title", title: t("involines.title.involines") %>
