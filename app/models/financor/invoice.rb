@@ -13,16 +13,27 @@ module Financor
 
     attr_accessor :invoice_financial_id
 
-	  validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :patron_id }
+	  validates :name, presence: true, length: { maximum: 30 }
+    validates :name, uniqueness: { case_sensitive: false, scope: :patron_id }, if: Proc.new { |a| (a.debit_credit == "debit") }
     validates :invoice_title, presence: true, length: { maximum: 255 }
-	  #validates :branch_id, presence: true
 	  validates :company_id, presence: true
-	  validates :invoice_date, presence: true
-	  validates :invoice_type, presence: true
-	  validates :debit_credit, presence: true
-	  validates :curr, presence: true
+    validates :invoice_date, presence: true
+	  validates :invoice_type, presence: true, length: { maximum: 20 }
+	  validates :debit_credit, presence: true, length: { maximum: 10 }
+	  validates :curr, presence: true, length: { maximum: 3 }
+    validates :curr_rate, numericality: true
 	  validates :user_id, presence: true
 	  validates :notes, length: { maximum: 500 }
+    validates :invoice_amount, numericality: true
+    validates :taxfree_amount, numericality: true
+    validates :taxed_amount, numericality: true
+    validates :tax_amount, numericality: true
+    #validates :discount_rate, numericality: true
+    #validates :discount_amount, numericality: true
+    validates :due_date, presence: true
+    validates :status, inclusion: { in: %w(active confirmed cancelled) }
+    validates_associated :branch
+    validates_associated :company
 
 	  default_scope { where(patron_id: Nimbos::Patron.current_id) }
 	  scope :active, where(status: "active")
