@@ -6,7 +6,7 @@ module Financor
 
 	  has_many :comments, class_name: Financor.comment_class, as: :commentable, dependent: :destroy
 	  
-	  validates :name, presence: { message: I18n.t('defaults.inputerror.cant_be_blank') }, length: { maximum: 255 }
+	  validates :name, presence: true, length: { maximum: 255 }
 	  validates :notes, length: { maximum: 500 }
 
 	  default_scope { where(patron_id: Nimbos::Patron.current_id) }

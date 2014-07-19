@@ -78,12 +78,12 @@
 			  <thead>
           <tr>
             <th style="width: 5%" class="hidden-print">#</th>
-            <th style="width: 20%"><%= t("involines.label.name") %></th>
-            <th style="width: 25%"><%= t("involines.label.notes") %></th>
-            <th style="width: 10%"><%= t("involines.label.unit_number") %></th>
-            <th style="width: 10%"><%= t("involines.label.unit_price") %></th>
-            <th style="width: 10%"><%= t("involines.label.tax") %></th>
-            <th style="width: 15%"><%= t("involines.label.total_amount") %></th>
+            <th style="width: 20%"><%= t("simple_form.labels.involine.name") %></th>
+            <th style="width: 25%"><%= t("simple_form.labels.involine.notes") %></th>
+            <th style="width: 10%"><%= t("simple_form.labels.involine.unit_number") %></th>
+            <th style="width: 10%"><%= t("simple_form.labels.involine.unit_price") %></th>
+            <th style="width: 10%"><%= t("simple_form.labels.involine.tax") %></th>
+            <th style="width: 15%"><%= t("simple_form.labels.involine.total_amount") %></th>
             <th style="width: 5%" class="hidden-print">#</th>
           </tr>
         </thead>
@@ -93,7 +93,7 @@
 			</table>
 		</div>
 		<div class="col-md-12 hidden-print">
-			<%= link_to t("involines.label.add_involine"), financor.new_invoice_involine_path(invoice), remote: true, class: "btn green" %>
+			<%= link_to t("simple_form.labels.involine.add_involine"), financor.new_invoice_involine_path(invoice), remote: true, class: "btn green" %>
 		</div>
 	</div>
 	<div class="row">

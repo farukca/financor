@@ -4,12 +4,8 @@
   <% end %>
   <li>
     <i class="fa fa-sitemap"></i>
-    <%= link_to t("defaults.vocabulary.mainpage"), main_app.root_url %> 
+    <%= link_to t("simple_form.labels.defaults.mainpage"), main_app.root_url %> 
     <i class="fa fa-angle-right"></i>
   </li>
-  <li>
-    <%= link_to t("invoices.title.invoices"), financor.invoices_path %> 
-    <i class="fa fa-angle-right"></i>
-  </li>
-  <li><%= link_to t("invoices.title.invoices"), financor.invoices_path %></li>
+  <li><%= link_to Financor::Invoice.model_name.human(count: 2), financor.invoices_path %></li>
 </ul>

@@ -61,3 +61,27 @@ tr:
         name: "Örn:KDV18"
         rate: "Örn: 18"
         code: "Örn: KDV"
+    options:
+      invoice:
+        status:
+          active: "Onay Bekliyor"
+          confirmed: "Onaylandı"
+          cancelled: "Iptal Edildi"
+        debit_credit:
+          debit: "Gelir Faturası"
+          credit: "Gider Faturası"
+        invoice_type:
+          refundable: "Ticari Fatura"
+          nonrefund: "Temel Fatura"
+      involine:
+        unit_type:
+          number: "Adet"
+          day: "Gün"
+          hour: "Saat"
+          week: "Hafta"
+          year: "Yıl"
+          km: "Km"
+        vat_status:
+          novat: "KDV Yok"
+          vatincluded: "KDV tutara dahil"
+          excludedvat: "KDV ayrıca eklenecek"

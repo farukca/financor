@@ -1,63 +1,63 @@
 en:
-  invoices:
-    defaults:
-      new_record_label: "New Invoice"
-      intro_message: ""
-      last_records_title: "Last added invoices"
-    title:
-      invoices: "Invoices"
-    action:
-      save: "Save Invoice"
-    message:
-      created: "Invoice created successfully"
-      updated: "Invoice updated successfully"
-      deleted: "Invoice deleted"
-      destroy_confirm: "Invoice will be deleted, are you sure ?"
-    status:
-      active: "Active"
-      confirmed: "Confirmed"
-      cancelled: "Cancelled"
-    debit_credit_types:
-      debit: "Debit"
-      credit: "Credit"
-    invoice_types:
-      refundable: "Refundable"
-      nonrefund: "Non-Refundable"
-  involines:
-    title:
-      involines: "Invoice Lines"
-    action:
-      save: "Save"
-    message:
-      created: "Invoice line added to invoice"
-      updated: "Invoice line updated successfully"
-      deleted: "Invoice line removed from system"
-    invoice_unit_types:
-      number: "Number"
-      day: "Day"
-      hour: "Hour"
-      week: "Week"
-      year: "Year"
-      km: "Km"
-    vat_statuses:
-      novat: "No VAT"
-      vatincluded: "VAT included in total"
-      excludedvat: "VAT will be added"
-  taxcodes:
-    title:
-      taxcodes: "Tax Rates"
-    message:
-      created: "Tax code created"
-      updated: "Tax code updated"
-    action:
-      save: "Kaydet"
-  budgetlines:
-    title:
-      budgetlines: "Budget Lines"
-    action:
-      create: "Save"
-      update: "Edit"
-      delete: "Delete"
+  # invoices:
+  #   defaults:
+  #     new_record_label: "New Invoice"
+  #     intro_message: ""
+  #     last_records_title: "Last added invoices"
+  #   title:
+  #     invoices: "Invoices"
+  #   action:
+  #     save: "Save Invoice"
+  #   message:
+  #     created: "Invoice created successfully"
+  #     updated: "Invoice updated successfully"
+  #     deleted: "Invoice deleted"
+  #     destroy_confirm: "Invoice will be deleted, are you sure ?"
+  #   status:
+  #     active: "Active"
+  #     confirmed: "Confirmed"
+  #     cancelled: "Cancelled"
+  #   debit_credit_types:
+  #     debit: "Debit"
+  #     credit: "Credit"
+  #   invoice_types:
+  #     refundable: "Refundable"
+  #     nonrefund: "Non-Refundable"
+  # involines:
+  #   title:
+  #     involines: "Invoice Lines"
+  #   action:
+  #     save: "Save"
+  #   message:
+  #     created: "Invoice line added to invoice"
+  #     updated: "Invoice line updated successfully"
+  #     deleted: "Invoice line removed from system"
+  #   invoice_unit_types:
+  #     number: "Number"
+  #     day: "Day"
+  #     hour: "Hour"
+  #     week: "Week"
+  #     year: "Year"
+  #     km: "Km"
+  #   vat_statuses:
+  #     novat: "No VAT"
+  #     vatincluded: "VAT included in total"
+  #     excludedvat: "VAT will be added"
+  # taxcodes:
+  #   title:
+  #     taxcodes: "Tax Rates"
+  #   message:
+  #     created: "Tax code created"
+  #     updated: "Tax code updated"
+  #   action:
+  #     save: "Kaydet"
+  # budgetlines:
+  #   title:
+  #     budgetlines: "Budget Lines"
+  #   action:
+  #     create: "Save"
+  #     update: "Edit"
+  #     delete: "Delete"
   activerecord:
     models:
       financor/budgetline:

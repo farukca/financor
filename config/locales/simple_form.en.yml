@@ -61,3 +61,27 @@ en:
         name: "Ex: VAT18"
         rate: "Ex: 18"
         code: "Ex: VAT"
+    options:
+      invoice:
+        status:
+          active: "Active"
+          confirmed: "Confirmed"
+          cancelled: "Cancelled"
+        debit_credit:
+          debit: "Debit"
+          credit: "Credit"
+        invoice_type:
+          refundable: "Refundable"
+          nonrefund: "Non-Refundable"
+      involine:
+        unit_type:
+          number: "Number"
+          day: "Day"
+          hour: "Hour"
+          week: "Week"
+          year: "Year"
+          km: "Km"
+        vat_status:
+          novat: "No VAT"
+          vatincluded: "VAT included in total"
+          excludedvat: "VAT will be added"

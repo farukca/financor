@@ -8,7 +8,7 @@
           <%= iconed_link_label(Financor::Involine.model_name.human, "fa-plus", "add") %>
         <% end %>
       <% end %>
-      <%= render "shared/portlet_title", title: t("involines.title.involines") %>
+      <%= render "shared/portlet_title", title: Financor::Involine.model_name.human(count: 2) %>
 
       <div id="invoice_<%= invoice.id %>_involines_list" class="portlet-body">
         <%= render "financor/involines/list", objects: invoice.involines %>

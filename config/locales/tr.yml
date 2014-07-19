@@ -1,63 +1,63 @@
 tr:
-  invoices:
-    defaults:
-      new_record_label: "Fatura Oluştur"
-      intro_message: "Gelir ve gider faturalarınızı yönetebilirsiniz"
-      last_records_title: "En Son Oluşturulmuş Faturalar"
-    title:
-      invoices: "Faturalar"
-    action:
-      save: "Fatura Bilgisini Kaydet"
-    message:
-      created: "Fatura kaydı oluşturuldu"
-      updated: "Fatura kaydı güncellendi"
-      deleted: "Fatura kaydı silindi"
-      destroy_confirm: "Fatura silinecek, devam etmek istiyor musunuz ?"
-    status:
-      active: "Onay Bekliyor"
-      confirmed: "Onaylandı"
-      cancelled: "Iptal Edildi"
-    debit_credit_types:
-      debit: "Gelir Faturası"
-      credit: "Gider Faturası"
-    invoice_types:
-      refundable: "Ticari Fatura"
-      nonrefund: "Temel Fatura"
-  involines:
-    title:
-      involines: "Fatura Kalemleri"
-    action:
-      save: "Kaydet"
-    message:
-      created: "Fatura kalemi oluşturuldu"
-      updated: "Fatura kalemi güncellendi"
-      deleted: "Fatura kalemi silindi"
-    invoice_unit_types:
-      number: "Adet"
-      day: "Gün"
-      hour: "Saat"
-      week: "Hafta"
-      year: "Yıl"
-      km: "Km"
-    vat_statuses:
-      novat: "KDV Yok"
-      vatincluded: "KDV tutara dahil"
-      excludedvat: "KDV ayrıca eklenecek"
-  taxcodes:
-    title:
-      taxcodes: "Vergi Kod Tanımları"
-    message:
-      created: "Vergi kodu oluşturuldu"
-      updated: "Vergi kodu güncellendi"
-    action:
-      save: "Kaydet"
-  budgetlines:
-    title:
-      budgetlines: "Bütçe kalemleri"
-    action:
-      create: "Kaydet"
-      update: "Güncelle"
-      delete: "Sil"
+  # invoices:
+  #   defaults:
+  #     new_record_label: "Fatura Oluştur"
+  #     intro_message: "Gelir ve gider faturalarınızı yönetebilirsiniz"
+  #     last_records_title: "En Son Oluşturulmuş Faturalar"
+  #   title:
+  #     invoices: "Faturalar"
+  #   action:
+  #     save: "Fatura Bilgisini Kaydet"
+  #   message:
+  #     created: "Fatura kaydı oluşturuldu"
+  #     updated: "Fatura kaydı güncellendi"
+  #     deleted: "Fatura kaydı silindi"
+  #     destroy_confirm: "Fatura silinecek, devam etmek istiyor musunuz ?"
+  #   status:
+  #     active: "Onay Bekliyor"
+  #     confirmed: "Onaylandı"
+  #     cancelled: "Iptal Edildi"
+  #   debit_credit_types:
+  #     debit: "Gelir Faturası"
+  #     credit: "Gider Faturası"
+  #   invoice_types:
+  #     refundable: "Ticari Fatura"
+  #     nonrefund: "Temel Fatura"
+  # involines:
+  #   title:
+  #     involines: "Fatura Kalemleri"
+  #   action:
+  #     save: "Kaydet"
+  #   message:
+  #     created: "Fatura kalemi oluşturuldu"
+  #     updated: "Fatura kalemi güncellendi"
+  #     deleted: "Fatura kalemi silindi"
+  #   invoice_unit_types:
+  #     number: "Adet"
+  #     day: "Gün"
+  #     hour: "Saat"
+  #     week: "Hafta"
+  #     year: "Yıl"
+  #     km: "Km"
+  #   vat_statuses:
+  #     novat: "KDV Yok"
+  #     vatincluded: "KDV tutara dahil"
+  #     excludedvat: "KDV ayrıca eklenecek"
+  # taxcodes:
+  #   title:
+  #     taxcodes: "Vergi Kod Tanımları"
+  #   message:
+  #     created: "Vergi kodu oluşturuldu"
+  #     updated: "Vergi kodu güncellendi"
+  #   action:
+  #     save: "Kaydet"
+  # budgetlines:
+  #   title:
+  #     budgetlines: "Bütçe kalemleri"
+  #   action:
+  #     create: "Kaydet"
+  #     update: "Güncelle"
+  #     delete: "Sil"
   activerecord:
     models:
       financor/budgetline:

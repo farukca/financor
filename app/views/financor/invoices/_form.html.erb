@@ -1,5 +1,5 @@
 <div class="portlet box green">
-  <%= render "shared/portlet_title", title: t("invoices.title.invoices") %>
+  <%= render "shared/portlet_title", title: Financor::Invoice.model_name.human(count: 2) %>
 
   <div class="portlet-body form">
     <%= simple_form_for @invoice, :html => { class: 'form-vertical' }, :validate => true do |f| %>
@@ -80,7 +80,7 @@
                   <th><%= t("simple_form.labels.involine.unit_type") %></th>
                   <th><%= t("simple_form.labels.involine.unit_price") %></th>
                   <th><%= t("simple_form.labels.involine.tax") %> <%= link_to financor.taxcodes_path, remote: true do %><i class="fa fa-gear"></i><% end %></th>
-                  <th><%= t("involines.label.total_amount") %></th>
+                  <th><%= t("simple_form.labels.involine.total_amount") %></th>
                 </tr>
               </thead>
               <tbody>
@@ -89,7 +89,7 @@
                 <% end %>
                 <tr class="invoice-totals">
                   <td colspan="5">
-                    <%= link_to t("involines.label.add_involine"), "#", class: "btn green", id: "new_invoice_line_btn" %>
+                    <%= link_to iconed_link_label(Financor::Involine.model_name.human, "fa-plus", "add"), "#", class: "btn green", id: "new_invoice_line_btn" %>
                   </td>
                   <td colspan="2">
                     <strong><%= t("simple_form.labels.invoice.sub_total") %>:</strong>
@@ -119,8 +119,8 @@
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, t("invoices.action.save"), :class => 'btn btn-info' %>
-        <a href="" class="btn"><%= t("defaults.link.cancel") %></a>
+        <%= f.button :submit, t("simple_form.helpers.defaults.save"), :class => 'btn btn-info' %>
+        <a href="" class="btn"><%= t("simple_form.helpers.defaults.cancel") %></a>
       </div>
     <% end %>
   </div>

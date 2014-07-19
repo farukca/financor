@@ -4,7 +4,7 @@ module Financor
   class InvoicesController < ApplicationController
 
     before_filter :require_login
-    before_filter(:only => [:index]) { |c| c.set_tab "financenavigator" if params[:home].present? }
+    before_filter(:only => [:index]) { |c| c.set_tab "financenavigator" unless request.xhr? }
 
     def index
       @invoices = Invoice.order("created_at desc").limit(10).page(params[:page]).per(10)

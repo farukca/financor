@@ -3,7 +3,7 @@
 
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-      <h4 class="modal-title"><%= t("taxcodes.title.taxcodes") %></h4>
+      <h4 class="modal-title"><%= Financor::Taxcode.model_name.human(count: 2) %></h4>
     </div>
 
     <div class="modal-body">
@@ -11,7 +11,7 @@
         <%= render "financor/taxcodes/list" %>
       </div>
 
-      <%= link_to t("taxcodes.label.new_taxcode"), financor.new_taxcode_path, remote: true, class: "btn green" %>
+      <%= link_to t("simple_form.helpers.defaults.new", model: Financor::Taxcode.model_name.human), financor.new_taxcode_path, remote: true, class: "btn green" %>
       <div class="row" id="taxcode_form_div">
         <%#= render "financor/taxcodes/form" %>
       </div>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="modal-footer">
-      <a href="#" class="btn" data-dismiss="modal" aria-hidden="true"><%= t("defaults.action.close") %></a>
+      <a href="#" class="btn" data-dismiss="modal" aria-hidden="true"><%= t("simple_form.helpers.defaults.close") %></a>
     </div>
 
 
