@@ -8,16 +8,26 @@ module Financor
 	  belongs_to :user, class_name: Financor.user_class
 	  #belongs_to :branch, class_name: Financor.branch_class
 
-
-	  validates :name, presence: true, length: { maximum: 100 }
+	  validates :name, presence: true, length: { maximum: 255 }
 	  #validates :branch_id, :load_coun, :unload_coun, presence: true
-	  #validates :debit_credit, presence: true
-	  #validates :curr, presence: true
+	  validates :debit_credit, presence: true, length: { maximum: 10 }
+	  validates :curr, presence: true, length: { maximum: 3 }
 	  validates :unit_number, numericality: { only_integer: true }
 	  validates :unit_price, numericality: { greater_than: 0 }
-	  #validates :total_amount, numericality: { greater_than: 0 }
-	  #validates :user_id, presence: true
-	  validates :notes, length: { maximum: 500 }
+	  validates :total_amount, numericality: { greater_than: 0 }
+	  validates :user_id, presence: true
+	  validates :notes, length: { maximum: 255 }
+    validates :line_type, length: { maximum: 30 }
+    validates :curr_rate, numericality: true
+    validates :invoice_rate, numericality: true
+    validates :unit_type, length: { maximum: 20 }
+    #validates :discount_rate, numericality: true
+    #validates :discount_amount, numericality: { greater_than: 0 }
+    validates :vat_rate, numericality: true
+    validates :vat_amount, numericality: { greater_than: 0 }
+    validates :taxfree_amount, numericality: { greater_than: 0 }
+    validates_associated :invoice
+    validates_associated :company
 
 	  default_scope { where(patron_id: Nimbos::Patron.current_id) }
 
