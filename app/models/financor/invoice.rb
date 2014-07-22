@@ -21,7 +21,7 @@ module Financor
 	  validates :invoice_type, presence: true, length: { maximum: 20 }
 	  validates :debit_credit, presence: true, length: { maximum: 10 }
 	  validates :curr, presence: true, length: { maximum: 3 }
-    validates :curr_rate, numericality: true
+    #validates :curr_rate, numericality: true
 	  validates :user_id, presence: true
 	  validates :notes, length: { maximum: 500 }
     validates :invoice_amount, numericality: true
@@ -32,13 +32,14 @@ module Financor
     #validates :discount_amount, numericality: true
     validates :due_date, presence: true
     validates :status, inclusion: { in: %w(active confirmed cancelled) }
-    validates_associated :branch
-    validates_associated :company
+    
+    #validates_associated :company
 
 	  default_scope { where(patron_id: Nimbos::Patron.current_id) }
 	  scope :active, where(status: "active")
 
-  	before_create :generate_uuid, :set_invoice_lines
+    before_validation :set_invoice_lines
+  	before_create :generate_uuid
     after_create  :set_company_financial
 
   	def self.invoice_status

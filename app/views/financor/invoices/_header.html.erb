@@ -20,7 +20,7 @@
             <i class="fa fa-calendar"></i> <%= invoice.invoice_date %>
           </li>
           <li>
-            <i class="fa fa-flag"></i> <%= t("invoices.status.#{invoice.status}") %>
+            <i class="fa fa-flag"></i> <%= t("simple_form.options.defaults.status.#{invoice.status}") %>
           </li>
           <% if invoice.invoiced %>
             <i class="fa fa-eject"></i> <%= link_to invoice.invoiced.to_s, polymorphic_url([logistics, invoice.invoiced]) %>
