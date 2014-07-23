@@ -24,7 +24,7 @@ module Financor
 
       respond_to do |format|
         if @taxcode.save
-          flash[:notice] = t("taxcodes.message.created")
+          flash[:notice] = t("simple_form.messages.defaults.created", model: Financor::Taxcode.model_name.human)
           format.html { redirect_to taxcodes_url }
           format.json { render json: @taxcode, status: :created, location: @taxcode }
           format.js
@@ -40,7 +40,7 @@ module Financor
       @taxcode = Taxcode.find(params[:id])
       respond_to do |format|
         if @taxcode.update_attributes(taxcode_params)
-          format.html { redirect_to @taxcode, notice: t("taxcodes.message.updated") }
+          format.html { redirect_to @taxcode, notice: t("simple_form.messages.defaults.updated", model: Financor::Taxcode.model_name.human) }
           format.json { head :ok }
           format.js
         else
@@ -55,7 +55,7 @@ module Financor
     #   @taxcode = Taxcode.find(params[:id])
     #   @taxcode.destroy!
 
-    #   flash[:notice] = t("taxcodes.message.deleted")
+    #   flash[:notice] = t("simple_form.messages.defaults.deleted", model: Financor::Taxcode.model_name.human)
 
     #   respond_to do |format|
     #     format.html { redirect_to taxcodes_url }

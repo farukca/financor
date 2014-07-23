@@ -33,7 +33,7 @@ module Financor
 
       respond_to do |format|
         if @involine.save
-          flash[:notice] = t("involines.message.created")
+          flash[:notice] = t("simple_form.messages.defaults.created", model: Financor::Involine.model_name.human)
           format.html { redirect_to @invoice }
           #format.html { render 'detail', notice: 'invoice was successfully created.' }
           format.json { render json: @involine, status: :created, location: @involine }
@@ -53,7 +53,7 @@ module Financor
         if @involine.update_attributes(involine_params)
           @invoice.reload
 
-          format.html { redirect_to @involine, notice: t("involines.message.updated") }
+          format.html { redirect_to @involine, notice: t("simple_form.messages.defaults.updated", model: Financor::Involine.model_name.human) }
           format.json { head :ok }
           format.js
         else
@@ -69,7 +69,7 @@ module Financor
       @involine = Involine.find(params[:id])
       @involine.destroy!
 
-      flash[:notice] = t("involines.message.deleted")
+      flash[:notice] = t("simple_form.messages.defaults.deleted", model: Financor::Involine.model_name.human)
 
       respond_to do |format|
         format.html { redirect_to @invoice }

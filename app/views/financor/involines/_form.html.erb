@@ -7,7 +7,7 @@
     </div>
     <%= simple_form_for [@invoice, @involine], html: { class: 'horizontal-form invoice-line' }, remote: true do |f| %>
       <%= f.error_notification %>
-      <%= f.error :base, :error_method => :to_sentence %>
+      <%= f.error :base, :error_method => :to_sentence, class: "alert alert-danger" %>
 
       <div class="modal-body">
         <div class="row">

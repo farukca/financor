@@ -35,7 +35,7 @@ module Financor
 
       respond_to do |format|
         if @invoice.save
-          flash[:notice] = t("invoices.message.created")
+          flash[:notice] = t("simple_form.messages.defaults.created", model: Financor::Invoice.model_name.human)
           format.html { redirect_to @invoice }
           #format.html { render 'detail', notice: 'invoice was successfully created.' }
           format.json { render json: @invoice, status: :created, location: @invoice }
@@ -51,7 +51,7 @@ module Financor
 
       respond_to do |format|
         if @invoice.update_attributes(invoice_params)
-          format.html { redirect_to @invoice, notice: t("invoices.message.updated") }
+          format.html { redirect_to @invoice, notice: t("simple_form.messages.defaults.updated", model: Financor::Invoice.model_name.human) }
           format.json { head :ok }
         else
           format.html { render action: "edit" }
@@ -80,7 +80,7 @@ module Financor
       @invoice = Invoice.find(params[:id])
       #@junk = Arsiv::Junk.send_to_junk(current_user.id, @invoice, @invoice.reference, @invoice.company_name)
       @invoice.destroy
-      flash[:notice] = t("invoices.message.deleted")
+      flash[:notice] = t("simple_form.messages.defaults.deleted", model: Financor::Invoice.model_name.human)
 
       respond_to do |format|
         format.html { redirect_to financor.invoices_url }

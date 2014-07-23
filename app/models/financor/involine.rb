@@ -18,14 +18,14 @@ module Financor
 	  validates :user_id, presence: true
 	  validates :notes, length: { maximum: 255 }
     validates :line_type, length: { maximum: 30 }
-    validates :curr_rate, numericality: true
+    #validates :curr_rate, numericality: true
     validates :invoice_rate, numericality: true
     validates :unit_type, length: { maximum: 20 }
     #validates :discount_rate, numericality: true
     #validates :discount_amount, numericality: { greater_than: 0 }
     validates :vat_rate, numericality: true
-    validates :vat_amount, numericality: { greater_than: 0 }
-    validates :taxfree_amount, numericality: { greater_than: 0 }
+    validates :vat_amount, numericality: true
+    validates :taxfree_amount, numericality: true
     validates_associated :invoice
     validates_associated :company
 
