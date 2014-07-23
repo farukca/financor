@@ -58,6 +58,7 @@ module Financor
       invoices = Financor::Invoice.order(:name)
       invoices = invoices.where("name like ?", "%#{search.filter["name"]}%") if search.filter["name"].present?
       invoices = invoices.where(invoice_date: search.filter["docdate1"]..search.filter["docdate2"]) if search.filter["docdate1"].present?
+      invoices = invoices.where(due_date: search.filter["due_date1"]..search.filter["due_date2"]) if search.filter["due_date1"].present?
       invoices = invoices.where(company_id: search.filter["company_id"]) if search.filter["company_id"].present?
       invoices = invoices.where(debit_credit: search.filter["debit_credit"]) if search.filter["debit_credit"].present?
       invoices = invoices.where(curr: search.filter["curr"]) if search.filter["curr"].present?
