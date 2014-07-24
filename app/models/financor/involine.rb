@@ -26,13 +26,13 @@ module Financor
     validates :vat_rate, numericality: true
     validates :vat_amount, numericality: true
     validates :taxfree_amount, numericality: true
-    validates_associated :invoice
-    validates_associated :company
+    #validates_associated :invoice
+    #validates_associated :company
 
 	  default_scope { where(patron_id: Nimbos::Patron.current_id) }
 
     #before_save :calculate_total
-    before_create  :set_calculations, :if => Proc.new { |involine| involine.isfrom == "manuel" }
+    before_validation :set_calculations, :if => Proc.new { |involine| involine.isfrom == "manuel" }
     before_update  :set_calculations
     after_create   :update_invoice, :if => Proc.new { |involine| involine.isfrom == "manuel" }
 	  after_update   :update_invoice
@@ -97,7 +97,7 @@ module Financor
 	    	  invoice.taxed_amount   += self.total_amount
 	    	end
 
-      	invoice.save!	    	
+      	invoice.save
       end
     end
 
@@ -113,7 +113,7 @@ module Financor
 	    else
 	      invoice.taxed_amount   -= self.total_amount
 	    end
-      invoice.save!
+      invoice.save
 
     end
 
