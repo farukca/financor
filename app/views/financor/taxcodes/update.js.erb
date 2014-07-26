@@ -1,7 +1,13 @@
 <% if @taxcode.errors.present? %>
-  $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= escape_javascript error_messages_for(@taxcode) %></div>');
   toastr.error('<%= j error_messages_for(@taxcode) %>');
+  $("#messages").show();
+  $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= j error_messages_for(@taxcode) %></div>');
+  $("#messages").fadeOut(4000);
 <% else %>
   $("#taxcode_<%= @taxcode.id %>_div").replaceWith('<%= j render @taxcode %>');
   $('#edit_taxcode_<%= @taxcode.id %>').remove();
+  toastr.info('<%= j flash[:notice] %>');
+  $("#messages").show();
+  $("#messages").html('<div id="flash_notice" class="alert alert-notice"><%= j flash[:notice] %></div>');
+  $("#messages").fadeOut(5000);
 <% end %>

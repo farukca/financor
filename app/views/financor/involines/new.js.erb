@@ -1,12 +1,12 @@
 <% if @involine.errors.present? %>
-  $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= escape_javascript error_messages_for(@involine) %></div>');
   toastr.error('<%= j error_messages_for(@involine) %>');
+  $("#messages").show();
+  $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= j error_messages_for(@involine) %></div>');
+  $("#messages").fadeOut(4000);
 <% else %>
-  //$("#new_involine_div").html('<%#= j render "financor/involines/form" %>');
-  //$('#new_involine').each(function() { this.reset(); });
 	$("#modalWindow").html("<%= escape_javascript(render 'financor/involines/form') %>");
 	$("#modalWindow").modal();
-	jQuery(document).ready(function() {       
-	  App.initAjax();
-	});
 <% end %>
+jQuery(document).ready(function() {       
+	App.initAjax();
+});
