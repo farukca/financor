@@ -15,7 +15,7 @@ module Financor
 	  validates :unit_number, numericality: { only_integer: true }
 	  validates :unit_price, numericality: { greater_than: 0 }
 	  validates :total_amount, numericality: { greater_than: 0 }
-	  validates :user_id, presence: true
+	  #validates :user_id, presence: true
 	  validates :notes, length: { maximum: 255 }
     validates :line_type, length: { maximum: 30 }
     #validates :curr_rate, numericality: true
@@ -52,6 +52,17 @@ module Financor
 
     def calculate_total
       set_calculations
+    end
+
+    def self.search(search_id)
+      search = Roster::Search.find(search_id)
+      involines = Financor::Involine.order(:created_at, :desc)
+      involines = involines.where("name like ?", "%#{search.filter["name"]}%") if search.filter["name"].present?
+      #involines = involines.where(invoice_date: search.filter["docdate1"]..search.filter["docdate2"]) if search.filter["docdate1"].present?
+      involines = involines.where(company_id: search.filter["company_id"]) if search.filter["company_id"].present?
+      involines = involines.where(debit_credit: search.filter["debit_credit"]) if search.filter["debit_credit"].present?
+      involines = involines.where(curr: search.filter["curr"]) if search.filter["curr"].present?
+      involines
     end
 
     private
