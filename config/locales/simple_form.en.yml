@@ -35,7 +35,7 @@ en:
         vat_total: "VAT Total"
         net_total: "Net Total"
       involine:
-        name: "Invoice line description"
+        name: "Invoice line title"
         curr: "Line Currency"
         unit_number: "Unit"
         unit_type: "Type"

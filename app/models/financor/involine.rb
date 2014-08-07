@@ -15,7 +15,7 @@ module Financor
 	  validates :unit_number, numericality: { only_integer: true }
 	  validates :unit_price, numericality: { greater_than: 0 }
 	  validates :total_amount, numericality: { greater_than: 0 }
-	  validates :user_id, presence: true
+	  #validates :user_id, presence: true
 	  validates :notes, length: { maximum: 255 }
     validates :line_type, length: { maximum: 30 }
     #validates :curr_rate, numericality: true
@@ -26,13 +26,13 @@ module Financor
     validates :vat_rate, numericality: true
     validates :vat_amount, numericality: true
     validates :taxfree_amount, numericality: true
-    validates_associated :invoice
-    validates_associated :company
+    #validates_associated :invoice
+    #validates_associated :company
 
 	  default_scope { where(patron_id: Nimbos::Patron.current_id) }
 
     #before_save :calculate_total
-    before_create  :set_calculations, :if => Proc.new { |involine| involine.isfrom == "manuel" }
+    before_validation :set_calculations, :if => Proc.new { |involine| involine.isfrom == "manuel" }
     before_update  :set_calculations
     after_create   :update_invoice, :if => Proc.new { |involine| involine.isfrom == "manuel" }
 	  after_update   :update_invoice
@@ -52,6 +52,17 @@ module Financor
 
     def calculate_total
       set_calculations
+    end
+
+    def self.search(search_id)
+      search = Roster::Search.find(search_id)
+      involines = Financor::Involine.order(:created_at, :desc)
+      involines = involines.where("name like ?", "%#{search.filter["name"]}%") if search.filter["name"].present?
+      #involines = involines.where(invoice_date: search.filter["docdate1"]..search.filter["docdate2"]) if search.filter["docdate1"].present?
+      involines = involines.where(company_id: search.filter["company_id"]) if search.filter["company_id"].present?
+      involines = involines.where(debit_credit: search.filter["debit_credit"]) if search.filter["debit_credit"].present?
+      involines = involines.where(curr: search.filter["curr"]) if search.filter["curr"].present?
+      involines
     end
 
     private
@@ -97,7 +108,7 @@ module Financor
 	    	  invoice.taxed_amount   += self.total_amount
 	    	end
 
-      	invoice.save!	    	
+      	invoice.save
       end
     end
 
@@ -113,7 +124,7 @@ module Financor
 	    else
 	      invoice.taxed_amount   -= self.total_amount
 	    end
-      invoice.save!
+      invoice.save
 
     end
 

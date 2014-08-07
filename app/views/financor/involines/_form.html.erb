@@ -29,6 +29,7 @@
                 <%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] }, input_html: { class: "involine-vat-code" } %>
               </div>
             </div>
+            <%= f.input :isfrom, as: :hidden, input_html: { value: "manuel" } %>
           </div>
         </div>
       </div>

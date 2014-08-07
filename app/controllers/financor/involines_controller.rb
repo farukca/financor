@@ -33,11 +33,10 @@ module Financor
 
       respond_to do |format|
         if @involine.save
-          flash[:notice] = t("simple_form.messages.defaults.created", model: Financor::Involine.model_name.human)
-          format.html { redirect_to @invoice }
+          format.html { redirect_to @invoice, notice: t("simple_form.messages.defaults.created", model: Financor::Involine.model_name.human) }
           #format.html { render 'detail', notice: 'invoice was successfully created.' }
           format.json { render json: @involine, status: :created, location: @involine }
-          format.js
+          format.js { flash.now[:notice] = t("simple_form.messages.defaults.created", model: Financor::Involine.model_name.human) }
         else
           format.html { render action: "new" }
           format.json { render json: @involine.errors, status: :unprocessable_entity }
@@ -55,7 +54,7 @@ module Financor
 
           format.html { redirect_to @involine, notice: t("simple_form.messages.defaults.updated", model: Financor::Involine.model_name.human) }
           format.json { head :ok }
-          format.js
+          format.js { flash.now[:notice] = t("simple_form.messages.defaults.updated", model: Financor::Involine.model_name.human) }
         else
           format.html { render action: "edit" }
           format.json { render json: @involine.errors, status: :unprocessable_entity }

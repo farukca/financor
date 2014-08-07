@@ -1,7 +1,11 @@
 <% if @taxcode.errors.present? %>
-  $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= escape_javascript error_messages_for(@taxcode) %></div>');
   toastr.error('<%= j error_messages_for(@taxcode) %>');
+  $("#messages").show();
+  $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= j error_messages_for(@taxcode) %></div>');
+  $("#messages").fadeOut(4000);
 <% else %>
   $("#taxcode_form_div").html('<%= j render "financor/taxcodes/form" %>');
-  //$('#new_taxcode').each(function() { this.reset(); });
 <% end %>
+jQuery(document).ready(function() {       
+  App.initAjax();
+});

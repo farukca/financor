@@ -22,7 +22,7 @@ module Financor
 	  validates :debit_credit, presence: true, length: { maximum: 10 }
 	  validates :curr, presence: true, length: { maximum: 3 }
     #validates :curr_rate, numericality: true
-	  validates :user_id, presence: true
+	  #validates :user_id, presence: true
 	  validates :notes, length: { maximum: 500 }
     validates :invoice_amount, numericality: true
     validates :taxfree_amount, numericality: true

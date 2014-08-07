@@ -35,7 +35,7 @@ tr:
         vat_total: "KDV Toplam"
         net_total: "Fatura Toplamı"
       involine:
-        name: "Fatura kalem açıklaması"
+        name: "Fatura kalem adı"
         curr: "Döviz"
         unit_number: "Birim"
         unit_type: "Tipi"

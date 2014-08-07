@@ -24,10 +24,9 @@ module Financor
 
       respond_to do |format|
         if @taxcode.save
-          flash[:notice] = t("simple_form.messages.defaults.created", model: Financor::Taxcode.model_name.human)
-          format.html { redirect_to taxcodes_url }
+          format.html { redirect_to taxcodes_url, notice: t("simple_form.messages.defaults.created", model: Financor::Taxcode.model_name.human) }
           format.json { render json: @taxcode, status: :created, location: @taxcode }
-          format.js
+          format.js { flash.now[:notice] = t("simple_form.messages.defaults.created", model: Financor::Taxcode.model_name.human) }
         else
           format.html { render action: "new" }
           format.json { render json: @taxcode.errors, status: :unprocessable_entity }
@@ -42,7 +41,7 @@ module Financor
         if @taxcode.update_attributes(taxcode_params)
           format.html { redirect_to @taxcode, notice: t("simple_form.messages.defaults.updated", model: Financor::Taxcode.model_name.human) }
           format.json { head :ok }
-          format.js
+          format.js { flash.now[:notice] = t("simple_form.messages.defaults.updated", model: Financor::Taxcode.model_name.human) }
         else
           format.html { render action: "edit" }
           format.json { render json: @taxcode.errors, status: :unprocessable_entity }
