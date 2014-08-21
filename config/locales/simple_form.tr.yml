@@ -36,6 +36,8 @@ tr:
         net_total: "Fatura Toplamı"
       involine:
         name: "Fatura kalem adı"
+        company_id: "Fatura Firması"
+        debit_credit: "Gelir/Gider"
         curr: "Döviz"
         unit_number: "Birim"
         unit_type: "Tipi"
@@ -85,3 +87,6 @@ tr:
           novat: "KDV Yok"
           vatincluded: "KDV tutara dahil"
           excludedvat: "KDV ayrıca eklenecek"
+        debit_credit:
+          debit: "Gelir Kalem"
+          credit: "Gider Kalem"

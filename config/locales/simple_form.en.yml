@@ -36,6 +36,8 @@ en:
         net_total: "Net Total"
       involine:
         name: "Invoice line title"
+        company_id: "Invoice Company"
+        debit_credit: "Debit/Credit"
         curr: "Line Currency"
         unit_number: "Unit"
         unit_type: "Type"
@@ -68,12 +70,12 @@ en:
           confirmed: "Confirmed"
           cancelled: "Cancelled"
         debit_credit:
-          debit: "Debit"
-          credit: "Credit"
+          debit: "Debit Inv."
+          credit: "Credit Inv."
         invoice_type:
           refundable: "Refundable"
           nonrefund: "Non-Refundable"
-      involine:
+      defaults:
         unit_type:
           number: "Number"
           day: "Day"
@@ -85,3 +87,6 @@ en:
           novat: "No VAT"
           vatincluded: "VAT included in total"
           excludedvat: "VAT will be added"
+        debit_credit:
+          debit: "Debit Line"
+          credit: "Credit Line"

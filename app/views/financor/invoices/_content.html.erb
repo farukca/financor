@@ -13,7 +13,10 @@
       <div id="invoice_<%= invoice.id %>_involines_list" class="portlet-body">
         <%= render "financor/involines/list", objects: invoice.involines %>
       </div>
-      <div id="invoice_<%= invoice.id %>_new_involine_div" class="portlet-body">
+      <div id="new_involine_div" class="portlet-body">
+        <% if @invoice.involines_count == 0 %>
+          <%= render "financor/involines/form" %>
+        <% end %>
       </div>
     </div>
 

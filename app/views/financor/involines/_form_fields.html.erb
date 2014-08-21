@@ -1,20 +1,21 @@
 <tr class="invoice-line">
-  <td>&nbsp;</td>
 	<td class="col-md-2" style="padding:0;">
 		<%= f.input :name, label: false, placeholder: t("simple_form.labels.involine.name") %>
 	</td>
-	<td class="col-md-3" style="padding:0;">
+	<td class="col-md-2" style="padding:0;">
 		<%= f.input :notes, label: false, placeholder: t("simple_form.labels.involine.notes") %>
 	</td>
 	<td class="col-md-1" style="padding:0;">
 		<%= f.input :unit_number, label: false, placeholder: t("simple_form.labels.involine.unit_number"), input_html: { class: "involine-unit-number changes-invoice-total" } %>
   </td>
   <td class="col-md-1" style="padding:0;">
-    <%= f.input :unit_type, as: :select, label: false, collection: Financor::Involine.invoice_unit_types.map { |t| [t("involines.invoice_unit_types.#{t}"), t] }, include_blank: false %>
+    <%= f.input :unit_type, as: :select, label: false, collection: [:number, :day, :hour, :week, :year, :km], include_blank: false %>
 	</td>
 	<td class="col-md-2" style="padding:0;">
-		<%= f.input :unit_price, label: false, placeholder: t("simple_form.labels.involine.unit_price"), input_html: { style: "width: 60%;", class: "involine-unit-price changes-invoice-total" } %>
-      <%#= f.input :curr, as: :select, label: false, collection: Nimbos::Currency.all, label: false, "data-invoice-curr" => @invoice.curr, style: "width: 35%;" %>
+		<%= f.input :unit_price, label: false, placeholder: t("simple_form.labels.involine.unit_price"), input_html: { class: "involine-unit-price changes-invoice-total" } %>
+	</td>
+	<td class="col-md-1" style="padding:0;">
+    <%= f.input :curr, as: :select, label: false, collection: Nimbos::Currency.all, label: false, input_html: { readonly: true } %>
 	</td>
 	<td class="col-md-1" style="padding:0;">
 		<%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] }, label: false,  input_html: { class: "involine-vat-code changes-invoice-total" } %>

@@ -35,11 +35,14 @@
           </div>
           <div class="col-md-5 col-md-offset-1">
             <div class="row">
-              <div class="col-md-6">
-                <%= f.input :debit_credit, as: :select, collection: [:debit, :credit] %>
+              <div class="col-md-4">
+                <%= f.input :debit_credit, as: :select, collection: [:debit, :credit], include_blank: false %>
               </div>
-              <div class="col-md-6">
-                <%= f.input :invoice_type, as: :select, collection: [:refundable, :nonrefund] %>
+              <div class="col-md-4">
+                <%= f.input :invoice_type, as: :select, collection: [:refundable, :nonrefund], include_blank: false %>
+              </div>
+              <div class="col-md-4">
+                <%= f.input :branch_id, as: :select, collection: current_patron.branches, include_blank: false %>
               </div>
             </div>
             <div class="row">
@@ -50,68 +53,29 @@
                 <%= f.input :invoice_date, as: :string, input_html: { class: "datepicker" } %>
               </div>
               <div class="col-md-4">
-                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all %>
+                <%= f.input :due_date, as: :string, input_html: { class: "datepicker" } %>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
-                <%= f.input :due_date, as: :string, input_html: { class: "datepicker" } %>
+              <div class="col-md-4">
+                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, include_blank: false %>
               </div>
-              <div class="col-md-6">
-                <%= f.input :branch_id, as: :select, collection: current_patron.branches, include_blank: false %>
+              <div class="col-md-4">
+                
+              </div>
+              <div class="col-md-4">
+                
               </div>
             </div>
-            
+            <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("simple_form.labels.invoice.notes") %>
             <%#= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("simple_form.labels.invoice.notes") %>
             <%= f.input :invoiced_type, as: :hidden, label: false %>
             <%= f.input :invoiced_id, as: :hidden, label: false %>
           </div>
         </div>
-        <% if params[:action] != "edit" %>
         <div class="row">
-          <div class="col-xs-12 table-responsive">
-            <table class="table table-condensed">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th><%= t("simple_form.labels.involine.name") %></th>
-                  <th><%= t("simple_form.labels.involine.notes") %></th>
-                  <th><%= t("simple_form.labels.involine.unit_number") %></th>
-                  <th><%= t("simple_form.labels.involine.unit_type") %></th>
-                  <th><%= t("simple_form.labels.involine.unit_price") %></th>
-                  <th><%= t("simple_form.labels.involine.tax") %> <%= link_to financor.taxcodes_path, remote: true do %><i class="fa fa-gear"></i><% end %></th>
-                  <th><%= t("simple_form.labels.involine.total_amount") %></th>
-                </tr>
-              </thead>
-              <tbody>
-                <%= f.fields_for :involines, validate: false do |inf| %>
-                  <%= render 'financor/involines/involines_fields', :f => inf %>
-                <% end %>
-                <tr class="invoice-totals">
-                  <td colspan="5">
-                    <%= link_to iconed_link_label(Financor::Involine.model_name.human, "fa-plus", "add"), "#", class: "btn green", id: "new_invoice_line_btn" %>
-                  </td>
-                  <td colspan="2">
-                    <strong><%= t("simple_form.labels.invoice.sub_total") %>:</strong>
-                    <span id="invoice-total-cell" class="pull-right"></span>
-                    <br>
-                    <strong><%= t("simple_form.labels.invoice.vat_total") %>:</strong>
-                    <span id="invoice-tax-cell" class="pull-right"></span>
-                    <br>
-                    <strong><%= t("simple_form.labels.invoice.net_total") %>:</strong>
-                    <span id="invoice-balance-cell" class="pull-right"></span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <% end %>
-        <div class="row">
-          <div class="col-md-3">
-            <%= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("simple_form.labels.invoice.notes") %>
-          </div>
-          <div class="col-md-3 col-md-offset-6">
+          <div class="col-md-6 col-md-offset-6">
+            
             <%#= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("simple_form.labels.invoice.notes") %>
           </div>
         </div>

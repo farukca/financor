@@ -12,6 +12,9 @@ module Financor
 
     def show
       @invoice = Invoice.find(params[:id])
+      if @invoice.involines.size == 0
+        @involine = @invoice.involines.new(curr: @invoice.curr)
+      end
     end
 
     def new

@@ -4,6 +4,7 @@ module Financor
 		attr_accessor :vat_id, :vat_status, :isfrom
 
     belongs_to :invoice#, counter_cache: true, touch: true
+    belongs_to :parent, polymorphic: true, touch: true
 		belongs_to :company, class_name: Financor.company_class
 	  belongs_to :user, class_name: Financor.user_class
 	  #belongs_to :branch, class_name: Financor.branch_class
@@ -34,9 +35,9 @@ module Financor
     #before_save :calculate_total
     before_validation :set_calculations, :if => Proc.new { |involine| involine.isfrom == "manuel" }
     before_update  :set_calculations
-    after_create   :update_invoice, :if => Proc.new { |involine| involine.isfrom == "manuel" }
-	  after_update   :update_invoice
-	  before_destroy :update_invoice_for_destroy
+    after_create   :update_invoice, :if => Proc.new { |involine| (involine.invoice_id.present?) && (involine.isfrom == "manuel") }
+	  after_update   :update_invoice, :if => Proc.new { |involine| involine.invoice_id.present? }
+	  before_destroy :update_invoice_for_destroy, :if => Proc.new { |involine| involine.invoice_id.present? }
 
   	def self.invoice_unit_types
       %w[number day hour week year km]
@@ -69,7 +70,6 @@ module Financor
 
     def set_calculations
     	self.total_amount = self.unit_number * self.unit_price
-
     	if self.vat_id.present?
         tax = Taxcode.find(self.vat_id)
         self.vat_rate       = tax.rate

@@ -1,7 +1,7 @@
 class CreateFinancorInvolines < ActiveRecord::Migration
   def change
     create_table :financor_involines do |t|
-      t.integer  :invoice_id, null: false
+      t.integer  :invoice_id
       t.integer  :company_id, null: false
       t.string   :name, limit: 255, null: false
       t.string   :debit_credit, null: false, limit: 10

@@ -1,42 +1,17 @@
-<div class="modal-dialog">
-  <div class="modal-content">
-
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-      <h4 class="modal-title"><%= Financor::Involine.model_name.human %></h4>
-    </div>
     <%= simple_form_for [@invoice, @involine], html: { class: 'horizontal-form invoice-line' }, remote: true do |f| %>
       <%= f.error_notification %>
       <%= f.error :base, :error_method => :to_sentence, class: "alert alert-danger" %>
 
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-12">
-            <%= f.input :name %>
-            <%= f.input :notes %>
-            <div class="row">
-              <div class="col-md-3">
-                <%= f.input :unit_number, input_html: { class: "involine-unit-number" } %>
-              </div>
-              <div class="col-md-2">
-                <%= f.input :unit_type, as: :select, collection: Financor::Involine.invoice_unit_types.map { |t| [t("involines.invoice_unit_types.#{t}"), t] }, include_blank: false %>
-              </div>
-              <div class="col-md-4">
-                <%= f.input :unit_price, input_html: { class: "involine-unit-price" } %>
-                <%#= f.input_field :curr, as: :select, collection: Nimbos::Currency.all, label: false, "data-invoice-curr" => @invoice.curr, style: "width: 25%;" %>
-              </div>
-              <div class="col-md-3">
-                <%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] }, input_html: { class: "involine-vat-code" } %>
-              </div>
-            </div>
-            <%= f.input :isfrom, as: :hidden, input_html: { value: "manuel" } %>
-          </div>
+      	<div class="form-body">
+        <table>
+          <tbody>
+          	<%= render "financor/involines/form_fields", f: f %>
+          </tbody>
+        </table>
         </div>
-      </div>
-      <div class="modal-footer">
+        <%= f.input :isfrom, as: :hidden, input_html: { value: "manuel" } %>
+      <div class="form-actions">
         <%= f.submit t("simple_form.helpers.submit.defaults.create"), class: 'btn btn-info' %>
-        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true"><%= t("simple_form.helpers.defaults.close") %></a>
+        <a href="#" data-href="#new_involine_div" class="btn emptyDiv"><%= t("simple_form.helpers.defaults.close") %></a>
       </div>
     <% end %>
-  </div>
-</div>

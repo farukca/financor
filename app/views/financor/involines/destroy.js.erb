@@ -5,7 +5,9 @@
   $("#messages").fadeOut(4000);
 <% else %>
   $("#involine_<%= @involine.id %>_div").remove();
-  $("invoice_<%= @invoice.id %>_totals").html('<%= j render "financor/invoices/totals", invoice: @invoice %>');
+  <% if @involine.invoice_id.present? %>
+    $("invoice_<%= @invoice.id %>_totals").html('<%= j render "financor/invoices/totals", invoice: @invoice %>');
+  <% end %>
   toastr.info('<%= j flash[:notice] %>');
   $("#messages").show();
   $("#messages").html('<div id="flash_notice" class="alert alert-notice"><%= j flash[:notice] %></div>');

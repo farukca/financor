@@ -3,17 +3,18 @@
 		<thead>
       <tr>
         <th class="col-md-2"><%= t("simple_form.labels.involine.name") %></th>
-        <th class="col-md-2"><%= t("simple_form.labels.involine.notes") %></th>
+        <th class="col-md-2"><%= t("simple_form.labels.involine.company_id") %></th>
+        <th class="col-md-1"><%= t("simple_form.labels.involine.debit_credit") %></th>
         <th class="col-md-1"><%= t("simple_form.labels.involine.unit_number") %></th>
-        <th class="col-md-1"><%= t("simple_form.labels.involine.unit_type") %></th>
-        <th class="col-md-3"><%= t("simple_form.labels.involine.unit_price") %></th>
+        <th class="col-md-2"><%= t("simple_form.labels.involine.unit_price") %></th>
+        <th class="col-md-1"><%= t("simple_form.labels.defaults.currency") %></th>
         <th class="col-md-1"><%= t("simple_form.labels.involine.tax") %></th>
-        <th class="col-md-2"><%= t("simple_form.labels.involine.total_amount") %></th>
-        <th class="hidden-print">#</th>
+        <th class="col-md-1"><%= t("simple_form.labels.involine.total_amount") %></th>
+        <th class="col-md-1 hidden-print">#</th>
       </tr>
     </thead>
 	  <tbody id="involines_table_body">
-	    <%= render objects %>
+	    <%= render partial: "financor/involines/estimate", collection: objects, as: :involine %>
 	  </tbody>
 	 </table>
 

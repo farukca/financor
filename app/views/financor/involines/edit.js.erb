@@ -4,8 +4,14 @@
   $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= j error_messages_for(@involine) %></div>');
   $("#messages").fadeOut(4000);
 <% else %>
-	$("#modalWindow").html("<%= escape_javascript(render 'financor/involines/form') %>");
-	$("#modalWindow").modal();
+	//$("#modalWindow").html("<%#= escape_javascript(render 'financor/involines/form') %>");
+	//$("#modalWindow").modal();
+	<% if @invoice %>
+	  $("#new_involine_div").html("<%= escape_javascript(render 'financor/involines/form') %>");
+	<% else %>
+	  $("#new_involine_div").html("<%= escape_javascript(render 'financor/involines/estimates_form') %>");
+	<% end %>
+  $("#involine_name").focus();
 <% end %>
 jQuery(document).ready(function() {       
   App.initAjax();

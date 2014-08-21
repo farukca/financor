@@ -1,7 +1,8 @@
 <tr id="involine_<%= involine.id %>_div">
   <td><%= involine.name %></td>
   <td><%= involine.notes %></td>
-	<td><%= involine.unit_number %> <%= t("involines.invoice_unit_types.#{involine.unit_type}") %></td>
+	<td><%= involine.unit_number %></td>
+	<td><%= t("simple_form.options.involine.unit_type.#{involine.unit_type}") %></td>
 	<td><%= involine.unit_price %></td>
 	<td><%= involine.vat_amount %></td>
 	<td><%= involine.total_amount %></td>
