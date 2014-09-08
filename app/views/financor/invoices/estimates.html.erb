@@ -1,0 +1,55 @@
+<div class="row">
+
+  <%= render "shared/page_title", page_title: Financor::Invoice.model_name.human(count: 2), page_small_title: t("invoices.defaults.intro_message"), model_name: "invoices", model_path: "financor/invoices" %>
+  
+	<div class="row" id="invoice_<%= @invoice.id %>_profile">
+
+	  <div class="col-md-12" id="invoice_<%= @invoice.id %>_profile_header" style="margin-bottom:20px;">
+	    <%= render partial: "header", locals: { invoice: @invoice } %>
+	  </div>
+
+	  <div class="col-md-12" id="invoice_<%= @invoice.id %>_involines">
+			<div class="row">
+			  <div class="col-md-11 col-md-offset-1">
+			    <div class="tabbable-custom">
+			      <ul class="nav nav-tabs">
+			        <li class="active">
+			          <a href="#invoice_<%= @invoice.id %>_estimates" data-toggle="tab"><i class="fa fa-money"></i> <%= "#{Financor::Involine.model_name.human(count: 2)}" %></a>
+			          <%=  %>
+			        </li>
+			      </ul>
+			      <div class="tab-content">
+			        <div class="tab-pane active" id="invoice_<%= @invoice.id %>_involines">
+			          <div id="invoice_<%= @invoice.id %>_involines_list">
+			          	<%= render "financor/involines/list", objects: @invoice.involines %>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+	  </div>
+
+	  <div class="col-md-12" id="invoice_<%= @invoice.id %>_estimates">
+			<div class="row">
+			  <div class="col-md-11 col-md-offset-1">
+			    <div class="tabbable-custom">
+			      <ul class="nav nav-tabs">
+			        <li class="active">
+			          <a href="#invoice_<%= @invoice.id %>_estimates" data-toggle="tab"><i class="fa fa-money"></i> <%= "#{Financor::Involine.model_name.human(count: 2)} (Beklenen)" %></a>
+			          <%=  %>
+			        </li>
+			      </ul>
+			      <div class="tab-content">
+			        <div class="tab-pane active" id="invoice_<%= @invoice.id %>_estimates">
+			          <%= render "financor/involines/estimates_list", objects: @invoice.estimates %>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+	  </div>
+
+	</div>
+
+</div>

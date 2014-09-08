@@ -1,16 +1,20 @@
-<ul class="list-unstyled amounts pull-right">
-	<li>
-		<strong><%= t("simple_form.labels.invoice.sub_total") %>:</strong> <%= print_price(invoice_amount_without_taxes(invoice), invoice.curr) %>
+<ul class="list-group amounts">
+	<li class="list-group-item">
+		<span class="badge badge-info"><%= print_price(invoice_amount_without_taxes(invoice), invoice.curr) %></span>
+		<%= t("simple_form.labels.invoice.sub_total") %>
 	</li>
 	<% if invoice.discount_amount > 0 %>
-	<li>
-		<strong>Discount:</strong> <%= print_price(invoice.discount_amount, invoice.curr) %>
-	</li>
+    <li class="list-group-item">
+		  <span class="badge badge-info"><%= print_price(invoice.discount_amount, invoice.curr) %></span>
+		  Discount
+	  </li>
 	<% end %>
-	<li>
-		<strong><%= t("simple_form.labels.invoice.vat_total") %>:</strong> <%= print_price(invoice.tax_amount, invoice.curr) %>
+	<li class="list-group-item">
+		<span class="badge badge-info"><%= print_price(invoice.tax_amount, invoice.curr) %></span>
+		<%= t("simple_form.labels.invoice.vat_total") %>
 	</li>
-	<li>
-		<strong><%= t("simple_form.labels.invoice.net_total") %>:</strong> <%= print_price(invoice.invoice_amount, invoice.curr) %>
+	<li class="list-group-item">
+		<span class="badge badge-info"><%= print_price(invoice.invoice_amount, invoice.curr) %></span>
+		<%= t("simple_form.labels.invoice.net_total") %>
 	</li>
 </ul>

@@ -13,7 +13,7 @@ module Financor
     def show
       @invoice = Invoice.find(params[:id])
       if @invoice.involines.size == 0
-        @involine = @invoice.involines.new(curr: @invoice.curr)
+        @involine = Involine.new(curr: @invoice.curr, invoice_id: @invoice.id)
       end
     end
 
@@ -29,6 +29,10 @@ module Financor
     end
 
     def edit
+      @invoice = Invoice.find(params[:id])
+    end
+
+    def estimates
       @invoice = Invoice.find(params[:id])
     end
 

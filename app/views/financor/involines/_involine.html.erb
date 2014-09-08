@@ -1,17 +1,23 @@
 <tr id="involine_<%= involine.id %>_div">
   <td><%= involine.name %></td>
-  <td><%= involine.notes %></td>
+  <td class="text-muted"><%= involine.notes %></td>
 	<td><%= involine.unit_number %></td>
 	<td><%= t("simple_form.options.involine.unit_type.#{involine.unit_type}") %></td>
 	<td><%= involine.unit_price %></td>
 	<td><%= involine.vat_amount %></td>
 	<td><%= involine.total_amount %></td>
 	<td class="hidden-print">
+	  <% if @invoice_id_changed %>
+	    <%= link_to financor.involine_path(involine, "involine[invoice_id]" => "", "invoice_id" => @invoice.id), remote: true, method: "put", data: {confirm: t("simple_form.messages.involine.remove_from_invoice")}, title: t("simple_form.helpers.involine.remove_from_invoice") do %>
+		  	<i class="fa fa-arrow-down"></i>
+		  <% end %>	    
+	  <% else %>
 			<%= link_to financor.edit_invoice_involine_path(involine.invoice, involine), remote: true, title: t("simple_form.helpers.defaults.edit") do %>
 			  <i class="fa fa-edit"></i>
-			<% end %>		
-			<%= link_to [involine.invoice, involine], method: :delete, remote: true, data: { confirm: t("simple_form.messages.defaults.destroy_confirm") }, title: t("simple_form.helpers.defaults.delete") do %>
+			<% end if involine.invoice %>
+			<%= link_to financor.involine_path(involine), method: :delete, remote: true, data: { confirm: t("simple_form.messages.defaults.destroy_confirm") }, title: t("simple_form.helpers.defaults.delete") do %>
 			  <i class="fa fa-trash-o"></i>
 			<% end %>
+		<% end %>
 	</td>
 </tr>

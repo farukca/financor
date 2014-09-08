@@ -8,10 +8,8 @@
     <div class="profile-info">
         <h1>
           <%= invoice.name %>
-        </h1>
-        <p>
           <span class="text-muted" style="white-space:pre-wrap"><%= invoice.notes %></span>
-        </p>
+        </h1>
         <ul class="list-inline blog-tags">
           <li>
             <i class="fa fa-building-o"></i> <%= link_to company_name(invoice.company), network.company_path(invoice.company) %>
@@ -28,9 +26,9 @@
         </ul>
     </div>
   </div>
-  <div class="col-md-3 col-md-offset-1" id="invoice_<%= invoice.id %>_totals">
+  <div class="col-md-4" id="invoice_<%= invoice.id %>_totals">
     <%= render "totals", invoice: invoice %>
   </div>
-  <hr>
+
 
 </div>

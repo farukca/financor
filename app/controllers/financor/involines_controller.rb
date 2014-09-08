@@ -34,13 +34,12 @@ module Financor
     def create
       if params[:invoice_id].present?
         @invoice = Invoice.find(params[:invoice_id])
-        @involine = @invoice.involines.build(involine_params)
+        @involine = @invoice.involines.new(involine_params)
         @involine.set_invoice_values(@invoice)
       else
         @involine = Involine.new(involine_params)
       end
       @involine.user_id = current_user.id
-      @involine.isfrom  = "manuel"
 
       respond_to do |format|
         if @involine.save
@@ -57,13 +56,20 @@ module Financor
     end
 
     def update
-      @invoice  = Invoice.find(params[:invoice_id]) if params[:invoice_id].present?
+      @invoice  = Invoice.find(params[:invoice_id])
       @involine = Involine.find(params[:id])
+
+      @invoice_id_changed = false
+      if params[:involine].has_key?(:invoice_id)
+        @invoice_id_changed = true
+      end
+      
       respond_to do |format|
         if @involine.update_attributes(involine_params)
           if @invoice
             @invoice.reload
           end
+          
           #format.html { redirect_to @involine, notice: t("simple_form.messages.defaults.updated", model: Financor::Involine.model_name.human) }
           format.json { head :ok }
           format.js { flash.now[:notice] = t("simple_form.messages.defaults.updated", model: Financor::Involine.model_name.human) }
@@ -89,7 +95,7 @@ module Financor
 
     private
     def involine_params
-      params.require(:involine).permit(:name, :company_id, :unit_number, :unit_type, :unit_price, :total_amount, :line_type, :debit_credit, :branch_id, :curr, :curr_rate, :notes, :vat_id, :vat_status, :parent_type, :parent_id)
+      params.require(:involine).permit(:name, :company_id, :unit_number, :unit_type, :unit_price, :total_amount, :line_type, :debit_credit, :branch_id, :curr, :curr_rate, :notes, :vat_id, :vat_status, :parent_type, :parent_id, :invoice_id)
     end
 
   end

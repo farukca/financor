@@ -42,7 +42,7 @@ en:
         unit_number: "Unit"
         unit_type: "Type"
         unit_price: "Unit price"
-        total_amount: "Line Total"
+        total_amount: "Total"
         tax: "Tax"
         notes: "Line Notes"
       taxcode:
@@ -90,3 +90,11 @@ en:
         debit_credit:
           debit: "Debit Line"
           credit: "Credit Line"
+    messages:
+      involine:
+        add_to_invoice: "This line will be added to invoice, continue ?"
+        remove_from_invoice: "This line will be removed from invoice, continue ?"
+    helpers:
+      involine:
+        add_to_invoice: "Add to invoice"
+        remove_from_invoice: "Remove from invoice"

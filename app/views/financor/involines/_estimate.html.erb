@@ -1,4 +1,4 @@
-<tr id="involine_<%= involine.id %>_div">
+<tr id="estimate_involine_<%= involine.id %>_div">
   <td><%= involine.name %></td>
   <td><%= company_name(involine.company) %></td>
   <td><%= t("simple_form.options.involine.debit_credit.#{involine.debit_credit}") %></td>
@@ -8,11 +8,17 @@
 	<td><%= involine.vat_amount %></td>
 	<td><%= involine.total_amount %></td>
 	<td class="hidden-print">
+	  <% if (params[:action] == "estimates") || @invoice_id_changed %>
+	    <%= link_to financor.involine_path(involine, "involine[invoice_id]" => @invoice.id, "invoice_id" => @invoice.id), remote: true, method: "put", data: {confirm: t("simple_form.messages.involine.add_to_invoice")}, title: t("simple_form.helpers.involine.add_to_invoice") do %>
+		  	<i class="fa fa-arrow-up"></i>
+		  <% end %>
+	  <% else %>
 			<%= link_to financor.edit_involine_path(involine), remote: true, title: t("simple_form.helpers.defaults.edit") do %>
 			  <i class="fa fa-edit"></i>
 			<% end %>		
 			<%= link_to financor.involine_path(involine), method: :delete, remote: true, data: { confirm: t("simple_form.messages.defaults.destroy_confirm") }, title: t("simple_form.helpers.defaults.delete") do %>
 			  <i class="fa fa-trash-o"></i>
 			<% end %>
+		<% end %>
 	</td>
 </tr>	    

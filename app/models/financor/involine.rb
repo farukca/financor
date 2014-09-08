@@ -1,9 +1,9 @@
 module Financor
   class Involine < ActiveRecord::Base
 		
-		attr_accessor :vat_id, :vat_status, :isfrom
+		attr_accessor :vat_status
 
-    belongs_to :invoice#, counter_cache: true, touch: true
+    belongs_to :invoice, touch: true#, counter_cache: true
     belongs_to :parent, polymorphic: true, touch: true
 		belongs_to :company, class_name: Financor.company_class
 	  belongs_to :user, class_name: Financor.user_class
@@ -13,7 +13,7 @@ module Financor
 	  #validates :branch_id, :load_coun, :unload_coun, presence: true
 	  validates :debit_credit, presence: true, length: { maximum: 10 }
 	  validates :curr, presence: true, length: { maximum: 3 }
-	  validates :unit_number, numericality: { only_integer: true }
+	  validates :unit_number, numericality: { only_integer: true, greater_than: 0 }
 	  validates :unit_price, numericality: { greater_than: 0 }
 	  validates :total_amount, numericality: { greater_than: 0 }
 	  #validates :user_id, presence: true
@@ -33,15 +33,11 @@ module Financor
 	  default_scope { where(patron_id: Nimbos::Patron.current_id) }
 
     #before_save :calculate_total
-    before_validation :set_calculations, :if => Proc.new { |involine| involine.isfrom == "manuel" }
-    before_update  :set_calculations
-    after_create   :update_invoice, :if => Proc.new { |involine| (involine.invoice_id.present?) && (involine.isfrom == "manuel") }
-	  after_update   :update_invoice, :if => Proc.new { |involine| involine.invoice_id.present? }
-	  before_destroy :update_invoice_for_destroy, :if => Proc.new { |involine| involine.invoice_id.present? }
-
-  	def self.invoice_unit_types
-      %w[number day hour week year km]
-    end
+    before_validation :calculate_line_amounts
+    #before_update  :calculate_line_amounts
+    after_create   :add_amounts_to_invoice, :if => Proc.new { |involine| involine.invoice_id.present? }
+	  after_update   :update_amounts_on_invoice#, :if => Proc.new { |involine| involine.invoice_id.present? }
+	  before_destroy :subtract_amounts_from_invoice, :if => Proc.new { |involine| involine.invoice_id.present? }
 
     def set_invoice_values(invoice)
       self.company_id   = invoice.company_id
@@ -52,12 +48,12 @@ module Financor
     end
 
     def calculate_total
-      set_calculations
+      calculate_line_amounts
     end
 
     def self.search(search_id)
       search = Roster::Search.find(search_id)
-      involines = Financor::Involine.order(:created_at, :desc)
+      involines = Financor::Involine.order(created_at: :desc)
       involines = involines.where("name like ?", "%#{search.filter["name"]}%") if search.filter["name"].present?
       #involines = involines.where(invoice_date: search.filter["docdate1"]..search.filter["docdate2"]) if search.filter["docdate1"].present?
       involines = involines.where(company_id: search.filter["company_id"]) if search.filter["company_id"].present?
@@ -67,8 +63,7 @@ module Financor
     end
 
     private
-
-    def set_calculations
+    def calculate_line_amounts
     	self.total_amount = self.unit_number * self.unit_price
     	if self.vat_id.present?
         tax = Taxcode.find(self.vat_id)
@@ -84,48 +79,74 @@ module Financor
     	end
     end
 
-    def update_invoice
-    	if self.total_amount_changed? || self.vat_amount_changed? || self.vat_rate_changed?
-	    	invoice = self.invoice
+    def add_amounts_to_invoice
+      invoice = self.invoice
+      #add new amounts
+      invoice.invoice_amount   += self.total_amount
+      invoice.invoice_amount   += self.vat_amount
+      invoice.tax_amount       += self.vat_amount
+      if vat_rate == 0
+        invoice.taxfree_amount += self.total_amount
+      else
+        invoice.taxed_amount   += self.total_amount
+      end
+      invoice.involines_count  += 1
 
-	    	#subtract old values
-	    	invoice.invoice_amount   -= self.total_amount_was
-        invoice.invoice_amount   -= self.vat_amount_was
-	    	invoice.tax_amount       -= self.vat_amount_was
-	    	if vat_rate_was == 0
-	    	  invoice.taxfree_amount -= self.total_amount_was
-	    	else
-	    	  invoice.taxed_amount   -= self.total_amount_was
-	    	end
+      invoice.save
+    end
 
-	    	#add new amounts
-	    	invoice.invoice_amount   += self.total_amount
-        invoice.invoice_amount   += self.vat_amount
-	    	invoice.tax_amount       += self.vat_amount
-	    	if vat_rate == 0
-	    	  invoice.taxfree_amount += self.total_amount
-	    	else
-	    	  invoice.taxed_amount   += self.total_amount
-	    	end
+    def subtract_amounts_from_invoice
+      invoice = Invoice.find(self.invoice_id_was)
+      #substract old amounts from invoice
+      if invoice
+        invoice.invoice_amount   -= self.total_amount
+        invoice.invoice_amount   -= self.vat_amount
+        invoice.tax_amount       -= self.vat_amount
+        if vat_rate == 0
+          invoice.taxfree_amount -= self.total_amount
+        else
+          invoice.taxed_amount   -= self.total_amount
+        end
+        invoice.involines_count  -= 1
 
-      	invoice.save
+        invoice.save
       end
     end
 
-    def update_invoice_for_destroy
-      invoice = self.invoice
+    def update_amounts_on_invoice
+      if self.invoice_id_changed?
+        if self.invoice_id_was.nil?
+          add_amounts_to_invoice
+        else
+          subtract_amounts_from_invoice
+        end
+      elsif self.invoice_id.present?
+      	if self.total_amount_changed? || self.vat_amount_changed? || self.vat_rate_changed?
+  	    	invoice = self.invoice
 
-	    #subtract old values
-	    invoice.invoice_amount   -= self.total_amount
-      invoice.invoice_amount   -= self.vat_amount
-	    invoice.tax_amount       -= self.vat_amount
-	    if vat_rate == 0
-	      invoice.taxfree_amount -= self.total_amount
-	    else
-	      invoice.taxed_amount   -= self.total_amount
-	    end
-      invoice.save
+  	    	#subtract old values
+  	    	invoice.invoice_amount   -= self.total_amount_was
+          invoice.invoice_amount   -= self.vat_amount_was
+  	    	invoice.tax_amount       -= self.vat_amount_was
+  	    	if vat_rate_was == 0
+  	    	  invoice.taxfree_amount -= self.total_amount_was
+  	    	else
+  	    	  invoice.taxed_amount   -= self.total_amount_was
+  	    	end
 
+  	    	#add new amounts
+  	    	invoice.invoice_amount   += self.total_amount
+          invoice.invoice_amount   += self.vat_amount
+  	    	invoice.tax_amount       += self.vat_amount
+  	    	if vat_rate == 0
+  	    	  invoice.taxfree_amount += self.total_amount
+  	    	else
+  	    	  invoice.taxed_amount   += self.total_amount
+  	    	end
+
+      	  invoice.save
+        end
+      end
     end
 
   end

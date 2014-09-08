@@ -42,7 +42,7 @@ tr:
         unit_number: "Birim"
         unit_type: "Tipi"
         unit_price: "Birim fiyatı"
-        total_amount: "Satır Toplamı"
+        total_amount: "Toplam"
         tax: "KDV"
         notes: "Satır açıklaması"
       taxcode:
@@ -90,3 +90,11 @@ tr:
         debit_credit:
           debit: "Gelir Kalem"
           credit: "Gider Kalem"
+    messages:
+      involine:
+        add_to_invoice: "Bu satır faturaya eklenecek, devam etmek istiyor musunuz ?"
+        remove_from_invoice: "Bu satır faturadan çıkartılacak, devam etmek istiyor musunuz ?"
+    helpers:
+      involine:
+        add_to_invoice: "Faturaya Ekle"
+        remove_from_invoice: "Faturradan Çıkar"

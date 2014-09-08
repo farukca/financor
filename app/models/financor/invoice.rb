@@ -38,9 +38,13 @@ module Financor
 	  default_scope { where(patron_id: Nimbos::Patron.current_id) }
 	  scope :active, where(status: "active")
 
-    before_validation :set_invoice_lines
+    #before_validation :set_invoice_lines
   	before_create :generate_uuid
     after_create  :set_company_financial
+
+    def to_param
+      "#{id}-#{name.parameterize}"
+    end
 
   	def self.invoice_status
       %w[active confirmed cancelled]
@@ -52,6 +56,11 @@ module Financor
 
   	def self.invoice_types
       %w[refundable nonrefund]
+    end
+
+    def estimates
+      estimates = Financor::Involine.where("company_id = ? AND debit_credit = ? AND invoice_id isnull", self.company_id, self.debit_credit)
+      estimates
     end
 
     def self.search(search_id)

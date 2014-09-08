@@ -4,9 +4,11 @@
   $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= j error_messages_for(@involine) %></div>');
   $("#messages").fadeOut(4000);
 <% else %>
-  $("#involine_<%= @involine.id %>_div").remove();
   <% if @involine.invoice_id.present? %>
+    $("#involine_<%= @involine.id %>_div").remove();
     $("invoice_<%= @invoice.id %>_totals").html('<%= j render "financor/invoices/totals", invoice: @invoice %>');
+  <% else %>
+    $("#estimate_involine_<%= @involine.id %>_div").remove();
   <% end %>
   toastr.info('<%= j flash[:notice] %>');
   $("#messages").show();

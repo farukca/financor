@@ -4,11 +4,22 @@
   $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= j error_messages_for(@involine) %></div>');
   $("#messages").fadeOut(4000);
 <% else %>
-  <% if @involine.invoice_id.present? %>
-    $("#involine_<%= @involine.id %>_div").replaceWith('<%= j render @involine %>');
+  <% if @invoice_id_changed %>
+    <% if @involine.invoice_id.present? %>
+      $("#involines_table_body").append('<%= j render @involine %>');
+      $("#estimate_involine_<%= @involine.id %>_div").remove();
+    <% else %>
+      $("#estimate_involines_table_body").append('<%= j render "financor/involines/estimate", involine: @involine %>');
+      $("#involine_<%= @involine.id %>_div").remove();
+    <% end %>
     $("invoice_<%= @invoice.id %>_totals").html('<%= j render "financor/invoices/totals", invoice: @invoice %>');
   <% else %>
-    $("#involine_<%= @involine.id %>_div").replaceWith('<%= j render "financor/involines/estimate", involine: @involine %>');
+    <% if @involine.invoice_id.present? %>
+      $("#involine_<%= @involine.id %>_div").replaceWith('<%= j render @involine %>');
+      $("invoice_<%= @invoice.id %>_totals").html('<%= j render "financor/invoices/totals", invoice: @invoice %>');
+    <% else %>
+      $("#involine_<%= @involine.id %>_div").replaceWith('<%= j render "financor/involines/estimate", involine: @involine %>');
+    <% end %>
   <% end %>
   $("#new_involine_div").html('');
   toastr.info('<%= j flash[:notice] %>');

@@ -8,12 +8,14 @@
         <th class="col-md-1"><%= t("simple_form.labels.involine.unit_type") %></th>
         <th class="col-md-3"><%= t("simple_form.labels.involine.unit_price") %></th>
         <th class="col-md-1"><%= t("simple_form.labels.involine.tax") %></th>
-        <th class="col-md-2"><%= t("simple_form.labels.involine.total_amount") %></th>
-        <th class="hidden-print">#</th>
+        <th class="col-md-1"><%= t("simple_form.labels.involine.total_amount") %></th>
+        <th class="col-md-1 hidden-print">#</th>
       </tr>
     </thead>
 	  <tbody id="involines_table_body">
-	    <%= render objects %>
+	  	<% objects.each do |involine| %>
+        <%= render partial: "financor/involines/involine", locals: { involine: involine } %>
+		  <% end %>
 	  </tbody>
 	 </table>
 

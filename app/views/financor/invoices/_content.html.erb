@@ -2,21 +2,33 @@
 
   <div class="col-md-11 col-md-offset-1">
 
-    <div class="portlet box grey">
-      <% content_for(:portlet_actions, flush: true) do %>
-        <%= link_to financor.new_invoice_involine_path(invoice), remote: true, class: "btn green btn-sm" do %>
-          <%= iconed_link_label(Financor::Involine.model_name.human, "fa-plus", "add") %>
-        <% end %>
-      <% end %>
-      <%= render "shared/portlet_title", title: Financor::Involine.model_name.human(count: 2) %>
-
-      <div id="invoice_<%= invoice.id %>_involines_list" class="portlet-body">
-        <%= render "financor/involines/list", objects: invoice.involines %>
-      </div>
-      <div id="new_involine_div" class="portlet-body">
-        <% if @invoice.involines_count == 0 %>
-          <%= render "financor/involines/form" %>
-        <% end %>
+    <div class="tabbable-custom">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#invoice_<%= @invoice.id %>_involines" data-toggle="tab"><i class="fa fa-money"></i> <%= Financor::Involine.model_name.human(count: 2) %></a>
+        </li>
+        <li class="pull-right">
+          <%= link_to financor.new_invoice_involine_path(invoice), remote: true, class: "btn green" do %>
+            <%= iconed_link_label(Financor::Involine.model_name.human, "fa-plus", "add") %>
+          <% end %>
+        </li>
+        <li class="pull-right">
+          <%= link_to financor.estimates_invoice_path(invoice), class: "btn info" do %>
+            <%= iconed_link_label("#{Financor::Involine.model_name.human(count: 2)} (Beklenen)", "fa-random", "add") %>
+          <% end %>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="invoice_<%= @invoice.id %>_involines">
+          <div id="invoice_<%= invoice.id %>_involines_list">
+            <%= render "financor/involines/list", objects: invoice.involines %>
+          </div>
+          <div id="new_involine_div" class="portlet-body">
+            <% if @invoice.involines_count == 0 %>
+              <%= render "financor/involines/form" %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -19,7 +19,7 @@
                 <%= f.input :unit_number, input_html: { class: "involine-unit-number" } %>
               </div>
               <div class="col-md-2">
-                <%= f.input :unit_type, as: :select, collection: Financor::Involine.invoice_unit_types.map { |t| [t("involines.invoice_unit_types.#{t}"), t] }, include_blank: false %>
+                <%= f.input :unit_type, as: :select, collection: [:number, :day, :hour, :week, :year, :km], include_blank: false %>
               </div>
               <div class="col-md-4">
                 <%= f.input :unit_price, input_html: { class: "involine-unit-price" } %>
@@ -29,7 +29,6 @@
                 <%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] }, input_html: { class: "involine-vat-code" } %>
               </div>
             </div>
-            <%= f.input :isfrom, as: :hidden, input_html: { value: "manuel" } %>
           </div>
         </div>
       </div>
