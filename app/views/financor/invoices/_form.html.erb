@@ -84,7 +84,7 @@
 
       <div class="form-actions">
         <%= f.button :submit, t("simple_form.helpers.defaults.save"), :class => 'btn btn-info' %>
-        <a href="" class="btn"><%= t("simple_form.helpers.defaults.cancel") %></a>
+        <%= render "shared/cancel_button" %>
       </div>
     <% end %>
   </div>
