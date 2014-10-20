@@ -91,6 +91,8 @@ en:
           debit: "Debit Line"
           credit: "Credit Line"
     messages:
+      defaults:
+        no_rate_found: "Currency rates is not avaliable at this date"
       involine:
         add_to_invoice: "This line will be added to invoice, continue ?"
         remove_from_invoice: "This line will be removed from invoice, continue ?"

@@ -9,5 +9,7 @@ Financor::Engine.routes.draw do
   resources :budgetlines
 
   resources :taxcodes
-
+  resources :currency_rates
+  get 'find_rate', to: 'currency_rates#find_rate'
+  
 end

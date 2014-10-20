@@ -1,0 +1,31 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+
+get_currency_rate = (current_curr) ->
+  process_rate = 1.00000
+  $.ajax
+    type: "GET"
+    url: "/find_rate"
+    dataType: "JSON"
+    data: current_curr
+    success: (data) ->
+      console.log data
+      if data?
+        process_rate = data['selling']
+      else
+        toastr.error "Bu tarihte döviz kurları bulunamadı/Currency rates not avaliable at this date"
+      return
+  process_rate
+
+change_invoice_rate = (event) ->
+  unless $("#invoice_curr").val() is $("#invoice_local_curr").val()
+    currency_rate =
+      curr: $("#invoice_curr").val()
+      rate_date: $("#invoice_invoice_date").val()
+    returned_rate = get_currency_rate(currency_rate)
+    $("#invoice_curr_rate").val(returned_rate)
+  else
+    $("#invoice_curr_rate").val 1.00000
+
+$(document).on "change", "#invoice_curr", (event) ->
+  change_invoice_rate(event)

@@ -43,8 +43,8 @@ module Financor
       self.company_id   = invoice.company_id
       self.debit_credit = invoice.debit_credit
       self.curr         = invoice.curr
-      self.curr_rate    = 1.0
-      self.invoice_rate = 1.0
+      #self.curr_rate    = 1.0
+      #self.invoice_rate = 1.0
     end
 
     def calculate_total

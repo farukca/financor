@@ -18,7 +18,7 @@ module Financor
     end
 
     def new
-    	@invoice = Invoice.new(invoice_date: Time.zone.today, branch_id: current_user.branch_id)
+    	@invoice = Invoice.new(invoice_date: Time.zone.today, branch_id: current_user.branch_id, local_curr: current_patron.currency, curr: current_patron.currency, curr_rate: 1.00000)
       3.times do
         @involine = @invoice.involines.new
       end

@@ -11,7 +11,7 @@ module Financor
 
 	  has_many :comments, class_name: Financor.comment_class, as: :commentable, dependent: :destroy
 
-    attr_accessor :invoice_financial_id
+    attr_accessor :invoice_financial_id, :local_curr
 
 	  validates :name, presence: true, length: { maximum: 30 }
     validates :name, uniqueness: { case_sensitive: false, scope: :patron_id }, if: Proc.new { |a| (a.debit_credit == "debit") }
@@ -78,7 +78,6 @@ module Financor
 		private
   	def generate_uuid
   		self.uuid = Time.now.to_i.to_s
-  		self.curr_rate = 1
   	end
 
     def set_invoice_lines
@@ -87,7 +86,7 @@ module Financor
         line.company_id   = self.company_id
         line.debit_credit = self.debit_credit
         line.curr         = self.curr
-        line.curr_rate    = 1.0
+        #line.curr_rate    = 1.0
         line.invoice_rate = 1.0
 
         line.calculate_total

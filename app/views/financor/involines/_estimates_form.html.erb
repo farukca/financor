@@ -27,16 +27,14 @@
 		    <%= f.input :curr, as: :select, collection: Nimbos::Currency.all %>
 			</div>
 			<div class="col-md-1" style="padding:0;">
-				<%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] } %>
+		    <%= f.input :curr_rate, input_html: { readonly: true } %>
 			</div>
 			<div class="col-md-1" style="padding:0;">
-				<%#= f.input :total_amount, label: false, placeholder: t("simple_form.labels.involine.total_amount"), input_html: { disabled: true, class: "involine-total" } %>
-
+				<%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] } %>
 			</div>
-
+      <%= f.input :parent_type, as: :hidden %>
+      <%= f.input :parent_id, as: :hidden %>
     </div>
-    <%= f.input :parent_type, as: :hidden %>
-    <%= f.input :parent_id, as: :hidden %>
     <div class="form-actions">
       <%= f.submit t("simple_form.helpers.submit.defaults.create"), class: 'btn btn-info' %>
       <a href="#" data-href="#new_involine_div" class="btn emptyDiv"><%= t("simple_form.helpers.defaults.close") %></a>

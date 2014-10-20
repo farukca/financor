@@ -91,6 +91,8 @@ tr:
           debit: "Gelir Kalem"
           credit: "Gider Kalem"
     messages:
+      defaults:
+        no_rate_found: "Bu tarihe ait döviz kurları bulunamadı"
       involine:
         add_to_invoice: "Bu satır faturaya eklenecek, devam etmek istiyor musunuz ?"
         remove_from_invoice: "Bu satır faturadan çıkartılacak, devam etmek istiyor musunuz ?"

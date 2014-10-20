@@ -61,7 +61,7 @@
                 <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, include_blank: false %>
               </div>
               <div class="col-md-4">
-                
+                <%= f.input :curr_rate, input_html: { readonly: true } %>
               </div>
               <div class="col-md-4">
                 
@@ -71,6 +71,7 @@
             <%#= f.input :notes, as: :text, input_html: { rows: "2" }, label: t("simple_form.labels.invoice.notes") %>
             <%= f.input :invoiced_type, as: :hidden, label: false %>
             <%= f.input :invoiced_id, as: :hidden, label: false %>
+            <%= f.input :local_curr, as: :hidden, label: false %>
           </div>
         </div>
         <div class="row">
