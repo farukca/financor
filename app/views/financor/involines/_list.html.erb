@@ -7,7 +7,10 @@
         <th class="col-md-1"><%= t("simple_form.labels.involine.unit_number") %></th>
         <th class="col-md-1"><%= t("simple_form.labels.involine.unit_type") %></th>
         <th class="col-md-3"><%= t("simple_form.labels.involine.unit_price") %></th>
-        <th class="col-md-1"><%= t("simple_form.labels.involine.tax") %></th>
+        <th class="col-md-1">
+        	<%= t("simple_form.labels.involine.tax") %>
+        	<%= link_to financor.taxcodes_path, remote: true do %><i class="fa fa-gear"></i><% end %>
+        </th>
         <th class="col-md-1"><%= t("simple_form.labels.involine.total_amount") %></th>
         <th class="col-md-1 hidden-print">#</th>
       </tr>

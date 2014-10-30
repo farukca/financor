@@ -2,13 +2,13 @@
       <%= f.error_notification %>
       <%= f.error :base, :error_method => :to_sentence, class: "alert alert-danger" %>
 
-      	<div class="form-body">
+      <div class="">
         <table>
           <tbody>
           	<%= render "financor/involines/form_fields", f: f %>
           </tbody>
         </table>
-        </div>
+      </div>
       <div class="form-actions">
         <%= f.submit t("simple_form.helpers.submit.defaults.create"), class: 'btn btn-info' %>
         <a href="#" data-href="#new_involine_div" class="btn emptyDiv"><%= t("simple_form.helpers.defaults.close") %></a>

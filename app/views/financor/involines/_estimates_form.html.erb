@@ -1,43 +1,54 @@
-<div class="col-md-12">
   <%= simple_form_for @involine, html: { class: 'horizontal-form invoice-line' }, remote: true do |f| %>
     <%= f.error_notification %>
     <%= f.error :base, :error_method => :to_sentence, class: "alert alert-danger" %>
 
     <div class="form-body">
-			<div class="col-md-2" style="padding:0;">
-				<%= f.input :name %>
-				<%#= f.input :notes, label: false, placeholder: t("simple_form.labels.involine.notes") %>
-			</div>
-			<div class="col-md-2" style="padding:0;">
-		    <%= f.input :company_id, as: :company, hide_new_link: true %>
-			</div>
-			<div class="col-md-1" style="padding:0;">
-			  <%= f.input :debit_credit, as: :select, collection: [:debit, :credit], include_blank: false %>
-			</div>
-			<div class="col-md-1" style="padding:0;">
-				<%= f.input :unit_number %>
-		  </div>
-		  <div class="col-md-1" style="padding:0;">
-		    <%= f.input :unit_type, as: :select, collection: [:number, :day, :hour, :week, :year, :km], include_blank: false %>
-			</div>
-			<div class="col-md-2" style="padding:0;">
-				<%= f.input :unit_price %>
-			</div>
-			<div class="col-md-1" style="padding:0;">
-		    <%= f.input :curr, as: :select, collection: Nimbos::Currency.all %>
-			</div>
-			<div class="col-md-1" style="padding:0;">
-		    <%= f.input :curr_rate, input_html: { readonly: true } %>
-			</div>
-			<div class="col-md-1" style="padding:0;">
-				<%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] } %>
-			</div>
-      <%= f.input :parent_type, as: :hidden %>
-      <%= f.input :parent_id, as: :hidden %>
+    	<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-6">
+							<%= f.input :name %>
+						</div>
+						<div class="col-md-6">
+							<%= f.input :notes, placeholder: t("simple_form.labels.involine.notes") %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8">
+							<%= f.input :company_id, as: :company, hide_new_link: true %>
+						</div>
+						<div class="col-md-4">
+							<%= f.input :debit_credit, as: :select, collection: [:debit, :credit], include_blank: false %>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-3">
+							<%= f.input :unit_price %>
+						</div>
+						<div class="col-md-3">
+			    		<%= f.input :curr, as: :select, collection: Nimbos::Currency.all %>
+			    	</div>
+						<div class="col-md-3">
+							<%= f.input :unit_number %>
+						</div>
+						<div class="col-md-3">
+			    		<%= f.input :unit_type, as: :select, collection: [:number, :day, :hour, :week, :year, :km], include_blank: false %>
+			    	</div>
+			    </div>
+			    <div class="row">
+						<div class="col-md-4">
+							<%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] } %>
+						</div>
+					</div>
+				</div>
+      	<%= f.input :parent_type, as: :hidden %>
+      	<%= f.input :parent_id, as: :hidden %>
+      </div>
     </div>
     <div class="form-actions">
       <%= f.submit t("simple_form.helpers.submit.defaults.create"), class: 'btn btn-info' %>
       <a href="#" data-href="#new_involine_div" class="btn emptyDiv"><%= t("simple_form.helpers.defaults.close") %></a>
     </div>
   <% end %>
-</div>
