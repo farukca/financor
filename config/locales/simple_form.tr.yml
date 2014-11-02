@@ -100,3 +100,4 @@ tr:
       involine:
         add_to_invoice: "Faturaya Ekle"
         remove_from_invoice: "Faturradan Çıkar"
+        add_estimates_to_invoice: "Beklenen Kalemlerden Seç"

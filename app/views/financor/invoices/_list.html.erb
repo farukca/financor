@@ -31,5 +31,19 @@
 				 </div>
 			<% end %>
 		</div>
+
+		<div class="table-responsive col-md-2 col-md-offset-8" id="invoices_totals_list_div">
+			<h4><%= t("simple_form.labels.defaults.total") %></h4>
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<% objects.select("curr, sum(invoice_amount) as invoice_amount").group("curr").reorder("curr").each do |invoice_total| %>
+					  <tr>
+							<th><span class="pull-right"><%= print_price(invoice_total.invoice_amount, invoice_total.curr) %></span></th>
+						</tr>
+					<% end %>
+				</thead>			
+			</table>
+		</div>
+
 	</div>
 </div>

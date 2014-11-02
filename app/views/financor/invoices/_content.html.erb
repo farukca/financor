@@ -14,7 +14,7 @@
         </li>
         <li class="pull-right">
           <%= link_to financor.estimates_invoice_path(invoice), class: "btn info" do %>
-            <%= iconed_link_label("#{Financor::Involine.model_name.human(count: 2)} (Beklenen)", "fa-random", "add") %>
+            <i class="fa fa-random"></i><%= t("simple_form.helpers.involine.add_estimates_to_invoice") %>
           <% end %>
         </li>
       </ul>

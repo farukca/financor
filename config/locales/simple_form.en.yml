@@ -100,3 +100,4 @@ en:
       involine:
         add_to_invoice: "Add to invoice"
         remove_from_invoice: "Remove from invoice"
+        add_estimates_to_invoice: "Select estimates"
