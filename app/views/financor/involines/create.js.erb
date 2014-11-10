@@ -11,6 +11,9 @@
     $("#estimate_involines_table_body").append('<%= j render "financor/involines/estimate", involine: @involine %>');
   <% end %>
   $('#new_involine').each(function() { this.reset(); });
+  <% if @involine.company_id.present? %>
+    $("#involine_company_id").select2("val", <%= @involine.company_id %>)
+  <% end %>
   $("#involine_name").focus();
   toastr.info('<%= j flash[:notice] %>');
   $("#messages").show();
