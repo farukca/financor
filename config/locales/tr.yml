@@ -72,3 +72,6 @@ tr:
       financor/taxcode:
         one: "Vergi Kod Tanımı"
         other: "Vergi Kod Tanımları"
+      financor/currency_rate:
+        one: "Kur"
+        other: "Kurlar"

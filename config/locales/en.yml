@@ -72,3 +72,6 @@ en:
       financor/taxcode:
         one: "Tax Rate"
         other: "Tax Rates"
+      financor/currency_rate:
+        one: "Currency Rate"
+        other: "Currency Rates"

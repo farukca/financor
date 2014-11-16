@@ -15,7 +15,10 @@
     <div class="col-md-10">
       <div class="inbox-header">
         <h1 class="pull-left"><small><%= t("simple_form.labels.defaults.list", model: Financor::Invoice.model_name.human) %></small></h1>
-        <%= render "shared/quick_search_form", model_name: "Financor::Invoice" %>
+        <%#= render "shared/quick_search_form", model_name: "Financor::Invoice" %>
+        <%= link_to roster.new_search_path(model: "Financor::Invoice"), class: "btn link pull-right" do %>
+          <i class="fa fa-search"></i>  <%= t("simple_form.helpers.defaults.advanced_search") %>
+        <% end %>
       </div>
 
       <div class="inbox-content" id="invoices_list">

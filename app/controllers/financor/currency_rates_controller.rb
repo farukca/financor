@@ -3,8 +3,10 @@ require_dependency "financor/application_controller"
 module Financor
   class CurrencyRatesController < ApplicationController
     before_filter :require_login
+    layout "admin"
 
     def index
+      @currency_rates = Financor::CurrencyRate.order("created_at desc, curr asc").limit(20).page(params[:page]).per(20)
     end
 
     def show
@@ -12,7 +14,7 @@ module Financor
 
     def find_rate
       date_for_rate = params[:rate_date] || Time.zone.today
-    	@currency_rate = CurrencyRate.find_by("bank = 'tcmb' AND bank_curr = ? AND curr = ? AND rate_date = ?", current_patron.currency, params[:curr], date_for_rate)
+    	@currency_rate = Financor::CurrencyRate.find_by("bank = 'tcmb' AND bank_curr = ? AND curr = ? AND rate_date = ?", current_patron.currency, params[:curr], date_for_rate)
 
       respond_to do |format|
         format.json { render json: @currency_rate }

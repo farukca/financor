@@ -1,0 +1,45 @@
+<div id="currency_rates_list_div" class="table-responsive">
+	<table class="table table-striped table-bordered table-hover" id="currency_rates_list_table">
+		<thead>
+		  <th class="col-md-2"><%= t("simple_form.labels.currency_rate.bank") %></th>
+		  <th class="col-md-2"><%= t("simple_form.labels.currency_rate.rate_date") %></th>
+		  <th class="col-md-2"><%= t("simple_form.labels.currency_rate.curr") %></th>
+		  <th class="col-md-1"><%= t("simple_form.labels.currency_rate.buying") %></th>
+		  <th class="col-md-1"><%= t("simple_form.labels.currency_rate.selling") %></th>
+		  <th class="col-md-1"><%= t("simple_form.labels.currency_rate.banknote_buying") %></th>
+		  <th class="col-md-1"><%= t("simple_form.labels.currency_rate.banknote_selling") %></th>
+		  <th class="col-md-1"><%= t("simple_form.labels.currency_rate.bank_curr") %></th>
+		  <th class="col-md-1"></th>
+		</thead>
+		<tbody>
+		  <% @currency_rates.each do |currency_rate| %>
+		    <tr>
+		      <td><%= currency_rate.bank %></td>
+		      <td><%= currency_rate.rate_date %></td>
+		      <td><%= currency_rate.unit %>&nbsp;<%= currency_rate.curr %></td>
+		      <td><%= currency_rate.buying %></td>
+		      <td><%= currency_rate.selling %></td>
+		      <td><%= currency_rate.banknote_buying %></td>
+		      <td><%= currency_rate.banknote_selling %></td>
+		      <td><%= currency_rate.bank_curr %></td>
+		      <td>
+		        <span class="hide_on_closed">
+		          <%#= link_to nimbos.edit_currency_rate_path(currency_rate) do %>
+		            <!--i class="fa fa-edit"></i-->
+		          <%# end %>
+		          <%#= link_to nimbos.currency_rate_path(currency_rate), method: :delete, data: { confirm: t("simple_form.messages.defaults.destroy_confirm") }, title: t("simple_form.helpers.defaults.delete") do %>
+		            <!--i class="fa fa-trash-o"></i-->
+		          <%# end %>
+		        </span>
+		      </td>
+		    </tr>
+		  <% end %>
+		</tbody>
+	</table>
+
+	<% if @currency_rates.respond_to? :current_page %>
+		<ul class="pagination">
+			<%= paginate @currency_rates, remote: true %>
+		</ul>
+	<% end %>
+</div>
