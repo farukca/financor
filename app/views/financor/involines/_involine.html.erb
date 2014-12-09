@@ -2,7 +2,7 @@
   <td><%= involine.name %></td>
   <td class="text-muted"><%= involine.notes %></td>
 	<td><%= involine.unit_number %></td>
-	<td><%= t("simple_form.options.involine.unit_type.#{involine.unit_type}") %></td>
+	<td><%= t("simple_form.options.defaults.unit_type.#{involine.unit_type}") %></td>
 	<td><%= print_price(involine.unit_price, involine.curr) %></td>
 	<td><%= print_price(involine.vat_amount, involine.curr) %></td>
 	<td><%= print_price(involine.total_amount, involine.curr) %></td>

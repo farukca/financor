@@ -44,6 +44,7 @@ en:
         unit_price: "Unit price"
         total_amount: "Total"
         tax: "Tax"
+        vat_id: "VAT Rate"
         notes: "Line Notes"
       taxcode:
         name: "Tax Name"

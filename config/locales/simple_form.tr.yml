@@ -44,6 +44,7 @@ tr:
         unit_price: "Birim fiyatı"
         total_amount: "Toplam"
         tax: "KDV"
+        vat_id: "KDV Oranı"
         notes: "Satır açıklaması"
       taxcode:
         name: "Vergi Adı"
@@ -75,7 +76,7 @@ tr:
         invoice_type:
           refundable: "Ticari Fatura"
           nonrefund: "Temel Fatura"
-      involine:
+      defaults:
         unit_type:
           number: "Adet"
           day: "Gün"
