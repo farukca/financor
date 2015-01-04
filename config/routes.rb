@@ -1,5 +1,7 @@
 Financor::Engine.routes.draw do
 
+  resources :finpoints
+
   resources :invoices do
     resources :involines
     get 'preview', on: :member

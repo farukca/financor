@@ -1,6 +1,6 @@
 <div id="involines_list_div" class="table-responsive">
-	<table class="table table-striped table-bordered table-hover" id="involines_list_table">
-		<thead>
+  <table class="table table-striped table-bordered table-hover" id="involines_list_table">
+    <thead>
       <tr>
         <th class="col-md-2"><%= t("simple_form.labels.involine.name") %></th>
         <th class="col-md-2"><%= t("simple_form.labels.involine.notes") %></th>
@@ -8,23 +8,23 @@
         <th class="col-md-1"><%= t("simple_form.labels.involine.unit_type") %></th>
         <th class="col-md-3"><%= t("simple_form.labels.involine.unit_price") %></th>
         <th class="col-md-1">
-        	<%= t("simple_form.labels.involine.tax") %>
-        	<%= link_to financor.taxcodes_path, remote: true do %><i class="fa fa-gear"></i><% end %>
+          <%= t("simple_form.labels.involine.tax") %>
+          <%= link_to financor.taxcodes_path, remote: true do %><i class="fa fa-gear"></i><% end %>
         </th>
         <th class="col-md-1"><%= t("simple_form.labels.involine.total_amount") %></th>
         <th class="col-md-1 hidden-print">#</th>
       </tr>
     </thead>
-	  <tbody id="involines_table_body">
-	  	<% objects.each do |involine| %>
+    <tbody id="involines_table_body">
+      <% objects.each do |involine| %>
         <%= render partial: "financor/involines/involine", locals: { involine: involine } %>
-		  <% end %>
-	  </tbody>
-	 </table>
+	  <% end %>
+	</tbody>
+  </table>
 
-	<% if objects.respond_to? :current_page %>
-	  <ul class="pagination">
-	   	<%= paginate objects, remote: true %>
-	  </ul>
-	<% end %>
+  <% if objects.respond_to? :current_page %>
+    <ul class="pagination">
+      <%= paginate objects, remote: true %>
+    </ul>
+  <% end %>
 </div>

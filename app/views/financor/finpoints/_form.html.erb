@@ -1,0 +1,38 @@
+<div class="portlet box green">
+  <%= render "shared/portlet_title", title: Financor::Finpoint.model_name.human %>
+
+  <div class="portlet-body form">
+    <%= simple_form_for @finpoint, :html => {:class => 'horizontal-form'}, :validate => true do |f| %>
+      <%= f.error_notification %>
+      <%= f.error :base, :error_method => :to_sentence, class: "alert alert-danger" %>
+
+      <div class="form-body">
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.input :title %>
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.input :point_type, as: :select, collection: [:cash_point, :bank_account, :credit_card], include_blank: false %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all %>    
+              </div>
+            </div>
+            <%= f.input :manager_id, as: :select, collection: current_patron.users %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :reference %>
+            <%= f.input :bank %>
+            <%= f.input :branch_id, as: :select, collection: current_patron.branches %>
+          </div>
+        </div>
+        
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, t("simple_form.helpers.defaults.save"), class: 'btn btn-info', id: 'finpoint_submit_button' %>
+        <%= render "shared/cancel_button" %>
+      </div>
+    <% end %>
+  </div>
+</div>

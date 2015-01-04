@@ -1,0 +1,37 @@
+<h1>Listing finpoints</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Point type</th>
+      <th>Curr</th>
+      <th>Reference</th>
+      <th>Bank</th>
+      <th>Branch</th>
+      <th>Manager</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @finpoints.each do |finpoint| %>
+      <tr>
+        <td><%= finpoint.title %></td>
+        <td><%= finpoint.point_type %></td>
+        <td><%= finpoint.curr %></td>
+        <td><%= finpoint.reference %></td>
+        <td><%= finpoint.bank %></td>
+        <td><%= finpoint.branch %></td>
+        <td><%= finpoint.manager %></td>
+        <td><%= link_to 'Show', finpoint %></td>
+        <td><%= link_to 'Edit', edit_finpoint_path(finpoint) %></td>
+        <td><%= link_to 'Destroy', finpoint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Finpoint', new_finpoint_path %>
