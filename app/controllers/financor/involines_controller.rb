@@ -43,6 +43,7 @@ module Financor
 
       respond_to do |format|
         if @involine.save
+          @invoice.reload if @invoice
           #format.html { redirect_to @invoice, notice: t("simple_form.messages.defaults.created", model: Financor::Involine.model_name.human) }
           #format.html { render 'detail', notice: 'invoice was successfully created.' }
           format.json { render json: @involine, status: :created, location: @involine }
@@ -66,9 +67,7 @@ module Financor
       
       respond_to do |format|
         if @involine.update_attributes(involine_params)
-          if @invoice
-            @invoice.reload
-          end
+          @invoice.reload if @invoice
           
           #format.html { redirect_to @involine, notice: t("simple_form.messages.defaults.updated", model: Financor::Involine.model_name.human) }
           format.json { head :ok }

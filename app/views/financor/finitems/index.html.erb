@@ -1,0 +1,40 @@
+<%= link_to "New Item", financor.new_finitem_path, remote: true %>
+<div id="finitems_list_div" class="table-responsive">
+  <table class="table table-bordered table-hover" id="finitems_list_table">
+    <thead>
+      <tr>
+        <th class="col-md-2"><%= t("simple_form.labels.finitem.code") %></th>
+        <th class="col-md-3"><%= t("simple_form.labels.finitem.name") %></th>
+        <th class="col-md-1"><%= t("simple_form.labels.finitem.sales_price") %></th>
+        <th class="col-md-1"><%= t("simple_form.labels.finitem.purchase_price") %></th>
+        <th class="col-md-2"><%= t("simple_form.labels.finitem.item_type") %></th>
+        <th class="col-md-1"></th>
+      </tr>
+    </thead>
+    <tbody id="finitems_table_body">
+      <% @finitems.each do |finitem| %>
+        <tr id="finitem_<%= finitem.id %>_div">
+          <td><%= finitem.code %></td>
+          <td><%= finitem.name %></td>
+          <td><%= print_price(finitem.sales_price, finitem.sales_curr) %></td>
+          <td><%= print_price(finitem.purchase_price, finitem.purchase_curr) %></td>
+          <td><%= finitem.item_type %></td>
+          <td>
+            <%= link_to financor.edit_finitem_path(finitem), remote: true, title: t("simple_form.helpers.defaults.edit") do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+            <%= link_to financor.finitem_path(finitem), method: :delete, remote: true, data: { confirm: t("simple_form.messages.defaults.destroy_confirm") }, title: t("simple_form.helpers.defaults.delete") do %>
+              <i class="fa fa-trash-o"></i>
+            <% end %>
+          </td>
+        </tr>
+	    <% end %>
+	  </tbody>
+  </table>
+
+  <% if @finitems.respond_to? :current_page %>
+    <ul class="pagination">
+      <%= paginate @finitems, remote: true %>
+    </ul>
+  <% end %>
+</div>

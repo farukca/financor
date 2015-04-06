@@ -1,26 +1,28 @@
 <tr class="invoice-line">
-	<td class="col-md-2" style="padding:0;">
-		<%= f.input :name, label: false, placeholder: t("simple_form.labels.involine.name") %>
+	<td style="padding:0;">
+		<%= f.input :finitem_id, as: :finitem, label: false, hide_new_link: true %>
 	</td>
-	<td class="col-md-2" style="padding:0;">
-		<%= f.input :notes, label: false, placeholder: t("simple_form.labels.involine.notes") %>
+	<td style="padding:0;">
+		<%= f.input :name, label: false, placeholder: t("simple_form.labels.involine.name"), input_html: { class: "involine-name" } %>
 	</td>
-	<td class="col-md-1" style="padding:0;">
+	<td style="padding:0;">
 		<%= f.input :unit_number, label: false, placeholder: t("simple_form.labels.involine.unit_number"), input_html: { class: "involine-unit-number changes-invoice-total" } %>
   </td>
-  <td class="col-md-1" style="padding:0;">
-    <%= f.input :unit_type, as: :select, label: false, collection: [:number, :day, :hour, :week, :year, :km], include_blank: false %>
+  <td style="padding:0;">
+    <%#= f.input :unit_type, as: :select, label: false, collection: [:number, :day, :hour, :week, :year, :km], include_blank: false %>
+    <%= f.input :unit_type, label: false %>
 	</td>
-	<td class="col-md-2" style="padding:0;">
+	<td style="padding:0;">
 		<%= f.input :unit_price, label: false, placeholder: t("simple_form.labels.involine.unit_price"), input_html: { class: "involine-unit-price changes-invoice-total" } %>
 	</td>
-	<td class="col-md-1" style="padding:0;">
-    <%= f.input :curr, as: :select, label: false, collection: Nimbos::Currency.all, label: false, input_html: { readonly: true } %>
+	<td style="padding:0;">
+    <%#= f.input :curr, as: :select, label: false, collection: Nimbos::Currency.all, label: false, input_html: { readonly: true } %>
+    <%= f.input :curr, label: false %>
 	</td>
-	<td class="col-md-1" style="padding:0;">
+	<td style="padding:0;">
 		<%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] }, label: false,  input_html: { class: "involine-vat-code changes-invoice-total" } %>
 	</td>
-	<td class="col-md-2" style="padding:0;">
+	<td style="padding:0;">
 		<%= f.input :total_amount, label: false, placeholder: t("simple_form.labels.involine.total_amount"), input_html: { disabled: true, class: "involine-total" } %>
 	</td>
 </tr>

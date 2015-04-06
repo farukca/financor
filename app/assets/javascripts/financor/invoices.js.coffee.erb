@@ -6,28 +6,48 @@ calculate_involine_total = ->
   $invoice_balance = 0
   $tax_total       = 0
 
-  $(".invoice-line").each ->
+  $(".involine-line").each ->
     $qnt_col = $(this).find(".involine-unit-number")
     $price_col = $(this).find(".involine-unit-price")
+    $discount_col = $(this).find(".involine-discount-rate")
     $tax_col = $(this).find(".involine-vat-code")
-    $total_col = $(this).find(".involine-total")
+    $total_col = $(this).find(".involine-price")
     
     #console.log($qnt + " | " + $price);
-    total = parseFloat($price_col.val()) * parseFloat($qnt_col.val())
+    line_price = parseFloat($price_col.val()) || 0
+    line_unit  = parseFloat($qnt_col.val()) || 1
+    line_discount = parseFloat($discount_col.val()) || 0
+    if line_discount > 0
+      total = +(line_price - ((line_price * line_discount) / 100)).toFixed(2) * line_unit
+    else
+      total = +(line_price * line_unit).toFixed(2)
+
     tax_rate = 0
-    if $tax_col.children("option:selected").data("rate")
-      tax_rate = $tax_col.children("option:selected").data("rate")
-      if tax_rate == ""
-        tax_rate=0
-    tax = (Math.round(((total * tax_rate)), 2) / 100)
+    tax      = 0
+    tax_status = $(".tax_status_selection").first().find('option:selected').val()
+
+    if tax_status != "n"
+      if $tax_col.children("option:selected").data("rate")
+        tax_rate = +($tax_col.children("option:selected").data("rate")) || 0
+
+      if tax_rate > 0
+        if tax_status == 'e'
+          tax = +((total * tax_rate) / 100).toFixed(2)
+        else
+          ex_tax = +((total * 100) / (tax_rate + 100)).toFixed(2)
+          tax    = +(total - ex_tax).toFixed(2)
+          total  = ex_tax
+
+    $(this).find(".involine-discount-amount").val line_discount
+    $(this).find(".involine-vat-amount").val tax
     $total_col.val total
     $invoice_total += total
-    $tax_total += tax
+    $tax_total     += tax
     $invoice_balance += (total + tax)
 
-  $("#invoice-total-cell").text $invoice_total
-  $("#invoice-tax-cell").text $tax_total
-  $("#invoice-balance-cell").text $invoice_balance
+  $("#invoice-total-cell").text $invoice_total.toFixed(2)
+  $("#invoice-tax-cell").text $tax_total.toFixed(2)
+  $("#invoice-balance-cell").text $invoice_balance.toFixed(2)
 
 add_line_to_invoice = ->
   lastNestedForm = $('.invoice-line').last()
@@ -81,6 +101,15 @@ $(document).on "change", ".changes-invoice-total", (event) ->
 $(document).on "click", "#new_invoice_line_btn", (event) ->
   event.preventDefault()
   add_line_to_invoice()
+
+$(document).on "click", ".remove-invo-line", (event) ->
+  $(this).closest(".involine-line").remove()
+  event.preventDefault()
+
+$(document).on "click", ".remove_nested_item", (event) ->
+  $(this).parent().children('.removable_item')[0].value = "true"
+  $(this).closest(".involine-line").hide()
+  event.preventDefault()
 
 $(document).on "change", "#invoice_company_id", (event) ->
   if $(this).val()

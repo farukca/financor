@@ -1,0 +1,12 @@
+<% if @finitem.errors.present? %>
+  toastr.error('<%= j error_messages_for(@finitem) %>');
+  $("#messages").show();
+  $("#messages").html('<div id="flash_notice" class="alert alert-error"><%= j error_messages_for(@finitem) %></div>');
+  $("#messages").fadeOut(4000);
+<% else %>
+  toastr.info('<%= j flash[:notice] %>');
+  $("#messages").show();
+  $("#messages").html('<div id="flash_notice" class="alert alert-notice"><%= j flash[:notice] %></div>');
+  $("#messages").fadeOut(5000);
+  $('#modalWindow').modal('hide');
+<% end %>

@@ -1,0 +1,1 @@
+json.(finitem, :id, :code, :name, :sales_price, :sales_curr, :sales_notes, :purchase_price, :purchase_curr, :purchase_notes, :stock_unit, :min_stock_unit)

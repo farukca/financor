@@ -1,0 +1,6 @@
+$("#modalWindow").html('<%= j render "financor/finitems/form" %>');
+$("#modalWindow").modal();
+$("#finitem_code").focus();
+jQuery(document).ready(function() {       
+  App.initAjax();
+});

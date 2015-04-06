@@ -1,6 +1,7 @@
 Financor::Engine.routes.draw do
 
   resources :finpoints
+  resources :finitems
 
   resources :invoices do
     resources :involines

@@ -1,41 +1,36 @@
-
-        <% if params[:action] != "edit" %>
-        <div class="row">
-          <div class="col-xs-12 table-responsive">
-            <table class="table table-condensed">
-              <thead>
-                <tr>
-                  <th><%= t("simple_form.labels.involine.name") %></th>
-                  <th><%= t("simple_form.labels.involine.notes") %></th>
-                  <th><%= t("simple_form.labels.involine.unit_number") %></th>
-                  <th><%= t("simple_form.labels.involine.unit_type") %></th>
-                  <th><%= t("simple_form.labels.involine.unit_price") %></th>
-                  <th><%= t("simple_form.labels.defaults.currency") %></th>
-                  <th><%= t("simple_form.labels.involine.tax") %> <%= link_to financor.taxcodes_path, remote: true do %><i class="fa fa-gear"></i><% end %></th>
-                  <th><%= t("simple_form.labels.involine.total_amount") %></th>
-                </tr>
-              </thead>
-              <tbody>
-                <%= f.fields_for :involines, validate: false do |inf| %>
-                  <%= render 'financor/involines/form_fields', :f => inf %>
-                <% end %>
-                <tr class="invoice-totals">
-                  <td colspan="5">
-                    <%= link_to iconed_link_label(Financor::Involine.model_name.human, "fa-plus", "add"), "#", class: "btn green", id: "new_invoice_line_btn" %>
-                  </td>
-                  <td colspan="2">
-                    <strong><%= t("simple_form.labels.invoice.sub_total") %>:</strong>
-                    <span id="invoice-total-cell" class="pull-right"></span>
-                    <br>
-                    <strong><%= t("simple_form.labels.invoice.vat_total") %>:</strong>
-                    <span id="invoice-tax-cell" class="pull-right"></span>
-                    <br>
-                    <strong><%= t("simple_form.labels.invoice.net_total") %>:</strong>
-                    <span id="invoice-balance-cell" class="pull-right"></span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <div class="col-xs-12 table-responsive">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th class="col-md-2"><%= t("simple_form.labels.involine.name") %></th>
+          <th class="col-md-2"><%= t("simple_form.labels.involine.notes") %></th>
+          <th class="col-md-1"><%= t("simple_form.labels.involine.unit_number") %></th>
+          <th class="col-md-1"><%= t("simple_form.labels.involine.unit_type") %></th>
+          <th class="col-md-1"><%= t("simple_form.labels.involine.unit_price") %></th>
+          <th class="col-md-2"><%= t("simple_form.labels.defaults.currency") %></th>
+          <th class="col-md-1"><%= t("simple_form.labels.involine.tax") %> <%= link_to financor.taxcodes_path, remote: true do %><i class="fa fa-gear"></i><% end %></th>
+          <th class="col-md-1"><%= t("simple_form.labels.involine.total_amount") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.simple_fields_for :involines, validate: false do |inf| %>
+          <%= render 'financor/involines/form_fields', :f => inf %>
         <% end %>
+        <tr class="invoice-totals">
+          <td colspan="5">
+            <%= link_to iconed_link_label(Financor::Involine.model_name.human, "fa-plus", "add"), "#", class: "btn green", id: "new_invoice_line_btn" %>
+          </td>
+          <td colspan="2">
+            <strong><%= t("simple_form.labels.invoice.sub_total") %>:</strong>
+            <span id="invoice-total-cell" class="pull-right"></span>
+            <br>
+            <strong><%= t("simple_form.labels.invoice.vat_total") %>:</strong>
+            <span id="invoice-tax-cell" class="pull-right"></span>
+            <br>
+            <strong><%= t("simple_form.labels.invoice.net_total") %>:</strong>
+            <span id="invoice-balance-cell" class="pull-right"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

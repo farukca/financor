@@ -1,7 +1,7 @@
 module Financor
   class Involine < ActiveRecord::Base
 		
-		attr_accessor :vat_status
+		attr_accessor :vat_status, :finitem_id, :account_id, :discount_rate
 
     belongs_to :invoice, touch: true#, counter_cache: true
     belongs_to :parent, polymorphic: true, touch: true
