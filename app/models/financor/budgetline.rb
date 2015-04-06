@@ -10,8 +10,8 @@ module Financor
 	  validates :notes, length: { maximum: 500 }
 
 	  default_scope { where(patron_id: Nimbos::Patron.current_id) }
-	  scope :active, where(status: "active")
-	  scope :latests, order("created_at desc")
+	  scope :active, -> { where(status: "active") }
+	  scope :latests, -> { order("created_at desc") }
 
 	  def to_s
 	    name
