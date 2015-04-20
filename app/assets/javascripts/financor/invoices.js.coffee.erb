@@ -40,6 +40,7 @@ calculate_involine_total = ->
 
     $(this).find(".involine-discount-amount").val line_discount
     $(this).find(".involine-vat-amount").val tax
+    $(this).find(".involine-vat-rate").val tax_rate
     $total_col.val total
     $invoice_total += total
     $tax_total     += tax

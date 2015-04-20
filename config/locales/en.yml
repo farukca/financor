@@ -75,3 +75,6 @@ en:
       financor/currency_rate:
         one: "Currency Rate"
         other: "Currency Rates"
+      financor/finitem:
+        one: "Inventory Item"
+        other: "Inventories"

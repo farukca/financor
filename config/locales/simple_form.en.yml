@@ -35,6 +35,7 @@ en:
         vat_total: "VAT Total"
         net_total: "Net Total"
       involine:
+        finitem_id: "Inv.Item"
         name: "Invoice line title"
         company_id: "Invoice Company"
         debit_credit: "Debit/Credit"

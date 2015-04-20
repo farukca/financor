@@ -75,3 +75,6 @@ tr:
       financor/currency_rate:
         one: "Kur"
         other: "Kurlar"
+      financor/finitem:
+        one: "Stok Kalemi"
+        other: "Stok Kalemleri"
