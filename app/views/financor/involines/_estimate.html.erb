@@ -1,8 +1,8 @@
 <tr id="estimate_involine_<%= involine.id %>_div">
   <td><%= involine.name %></td>
   <td><%= company_name(involine.company) %></td>
-  <td><%= t("simple_form.options.involine.debit_credit.#{involine.debit_credit}") %></td>
-	<td><%= involine.unit_number %> <%= t("simple_form.options.involine.unit_type.#{involine.unit_type}") %></td>
+  <td><%= t("simple_form.options.defaults.debit_credit.#{involine.debit_credit}") %></td>
+	<td><%= involine.unit_number %> <%= t("simple_form.options.defaults.unit_type.#{involine.unit_type}") %></td>
 	<td><%= involine.unit_price %></td>
 	<td><%= involine.curr %></td>
 	<td><%= involine.vat_amount %></td>

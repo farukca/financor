@@ -11,11 +11,14 @@ module Financor
     def new
       @invoice  = nil
       if params[:invoice_id].present?
-        @invoice = Invoice.find(params[:invoice_id])
+        @invoice  = Invoice.find(params[:invoice_id])
         @involine = @invoice.involines.new(curr: @invoice.curr, unit_number: 1)
       elsif params[:position_id].present?
         @position = Logistics::Position.find(params[:position_id])
         @involine = @position.involines.new(unit_number: 1, curr: current_patron.currency, curr_rate: 1.00000)
+      elsif params[:loading_id].present?
+        @loading  = Logistics::Loading.find(params[:loading_id])
+        @involine = @loading.involines.new(unit_number: 1, curr: current_patron.currency, curr_rate: 1.00000)
       else
         @involine = Involine.new(unit_number: 1)
       end

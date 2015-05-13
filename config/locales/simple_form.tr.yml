@@ -35,6 +35,7 @@ tr:
         vat_total: "KDV Toplam"
         net_total: "Fatura Toplamı"
       involine:
+        estimates: "Beklenen"
         finitem_id: "Stok Kodu"
         name: "Fatura kalem adı"
         company_id: "Fatura Firması"
