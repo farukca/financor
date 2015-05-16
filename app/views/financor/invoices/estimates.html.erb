@@ -1,6 +1,6 @@
 <div class="row">
 
-  <%= render "shared/page_title", page_title: Financor::Invoice.model_name.human(count: 2), page_small_title: t("invoices.defaults.intro_message"), model_name: "invoices", model_path: "financor/invoices" %>
+  <%= render "shared/page_title", page_title: Financor::Invoice.model_name.human(count: 2), page_small_title: t("invoices.defaults.intro_message"), model_name: "Financor::Invoice", model_path: "financor/invoices" %>
   
 	<div class="row" id="invoice_<%= @invoice.id %>_profile">
 
