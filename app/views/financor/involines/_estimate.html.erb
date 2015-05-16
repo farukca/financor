@@ -1,12 +1,13 @@
 <tr id="estimate_involine_<%= involine.id %>_div">
+	<td><%= involine.finitem %></td>
   <td><%= involine.name %></td>
   <td><%= company_name(involine.company) %></td>
   <td><%= t("simple_form.options.defaults.debit_credit.#{involine.debit_credit}") %></td>
-	<td><%= involine.unit_number %> <%= t("simple_form.options.defaults.unit_type.#{involine.unit_type}") %></td>
-	<td><%= involine.unit_price %></td>
-	<td><%= involine.curr %></td>
-	<td><%= involine.vat_amount %></td>
-	<td><%= involine.total_amount %></td>
+  <td><%= involine.invoice if involine.invoice %></td>
+	<td><%= involine.unit_number %> <%= t("simple_form.options.defaults.unit_type.#{involine.unit_type}") if involine.unit_type.present? %></td>
+	<td><span class="pull-right"><%= involine.unit_price %> <%= involine.curr %></span></td>
+	<td><span class="pull-right"><%= involine.vat_amount %> <%= involine.curr %></span></td>
+	<td><span class="pull-right"><%= involine.total_amount %> <%= involine.curr %></span></td>
 	<td class="hidden-print">
 	  <% if (params[:action] == "estimates") || @invoice_id_changed %>
 	    <%= link_to financor.involine_path(involine, "involine[invoice_id]" => @invoice.id, "invoice_id" => @invoice.id), remote: true, method: "put", data: {confirm: t("simple_form.messages.involine.add_to_invoice")}, title: t("simple_form.helpers.involine.add_to_invoice") do %>

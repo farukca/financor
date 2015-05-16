@@ -60,7 +60,7 @@ module Financor
     end
 
     def update
-      @invoice  = Invoice.find(params[:invoice_id])
+      @invoice  = Invoice.find(params[:invoice_id]) if params[:invoice_id].present?
       @involine = Involine.find(params[:id])
 
       @invoice_id_changed = false
@@ -97,7 +97,7 @@ module Financor
 
     private
     def involine_params
-      params.require(:involine).permit(:name, :company_id, :unit_number, :unit_type, :unit_price, :total_amount, :line_type, :debit_credit, :branch_id, :curr, :curr_rate, :notes, :vat_id, :vat_status, :parent_type, :parent_id, :invoice_id)
+      params.require(:involine).permit(:finitem_id, :name, :company_id, :unit_number, :unit_type, :unit_price, :total_amount, :line_type, :debit_credit, :branch_id, :curr, :curr_rate, :notes, :vat_id, :vat_status, :parent_type, :parent_id, :invoice_id)
     end
 
   end

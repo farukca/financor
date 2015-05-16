@@ -1,51 +1,38 @@
-  <%= simple_form_for @involine, html: { class: 'horizontal-form invoice-line' }, remote: true do |f| %>
+  <%= simple_form_for @involine, html: { class: 'horizontal-form invoice-line' }, remote: true, validate: true do |f| %>
     <%= f.error_notification %>
     <%= f.error :base, :error_method => :to_sentence, class: "alert alert-danger" %>
 
     <div class="form-body">
     	<div class="row">
-				<div class="col-md-6">
-					<div class="row">
-						<div class="col-md-6">
-							<%= f.input :name %>
-						</div>
-						<div class="col-md-6">
-							<%= f.input :notes, placeholder: t("simple_form.labels.involine.notes") %>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-8">
-							<%= f.input :company_id, as: :company, wrapper: :vertical_input_group, "initial-text" => (@involine.company.name if @involine.company), "initial-id" => @involine.company_id, hide_new_link: true %>
-						</div>
-						<div class="col-md-4">
-							<%= f.input :debit_credit, as: :select, collection: [:debit, :credit], include_blank: false %>
-						</div>
-					</div>
+    		<div class="col-md-6">
+    			<%= f.input :company_id, as: :company, wrapper: :vertical_input_group, "initial-text" => (@involine.company.name if @involine.company), "initial-id" => @involine.company_id, hide_new_link: true %>
+    		</div>
+    		<div class="col-md-2">
+    			<%= f.input :debit_credit, as: :select, collection: [:debit, :credit], include_blank: false %>
+    		</div>
+    	</div>
+    	<div class="row">
+				<div class="col-md-3">
+					<%= f.input :finitem_id, as: :finitem, "initial-text" => (@involine.finitem.name if @involine.finitem), "initial-id" => @involine.finitem_id, hide_new_link: true %>
 				</div>
-				<div class="col-md-6">
-					<div class="row">
-						<div class="col-md-3">
-							<%= f.input :unit_price %>
-						</div>
-						<div class="col-md-3">
-			    		<%= f.input :curr, as: :select, collection: Nimbos::Currency.all %>
-			    	</div>
-						<div class="col-md-3">
-							<%= f.input :unit_number %>
-						</div>
-						<div class="col-md-3">
-			    		<%= f.input :unit_type, as: :select, collection: [:number, :day, :hour, :week, :year, :km], include_blank: false %>
-			    	</div>
-			    </div>
-			    <div class="row">
-						<div class="col-md-4">
-							<%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] } %>
-						</div>
-					</div>
+				<div class="col-md-3">
+					<%= f.input :name, input_html: { class: "involine-name" } %>
 				</div>
-      	<%= f.input :parent_type, as: :hidden %>
-      	<%= f.input :parent_id, as: :hidden %>
-      </div>
+				<div class="col-md-1" style="padding: 0;">
+					<%= f.input :unit_number, input_html: { class: "involine-unit-number" } %>
+				</div>
+				<div class="col-md-2" style="padding: 0;">
+					<%= f.input :unit_price, input_html: { class: "involine-unit-price" } %>
+				</div>
+				<div class="col-md-1" style="padding: 0;">
+			    <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, input_html: { class: "involine-currency" } %>
+			  </div>
+				<div class="col-md-2" style="padding: 0;">
+					<%= f.input :vat_id, as: :select, collection: Financor::Taxcode.all.map { |t| [t.name, t.id, { "data-rate" => t.rate }] },  input_html: { class: "involine-vat-code" } %>
+				</div>
+			</div>
+      <%= f.input :parent_type, as: :hidden %>
+      <%= f.input :parent_id, as: :hidden %>
     </div>
     <div class="form-actions">
       <%= f.submit t("simple_form.helpers.submit.defaults.create"), class: 'btn btn-info' %>

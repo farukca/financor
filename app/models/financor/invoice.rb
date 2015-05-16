@@ -46,6 +46,10 @@ module Financor
       "#{id}-#{name.parameterize}"
     end
 
+    def to_s
+      name
+    end
+
   	def self.invoice_status
       %w[active confirmed cancelled]
     end
