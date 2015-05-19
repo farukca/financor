@@ -78,3 +78,6 @@ en:
       financor/finitem:
         one: "Inventory Item"
         other: "Inventories"
+      financor/finpoint:
+        one: "Bank-Cash"
+        other: "Banks-Cash Points"

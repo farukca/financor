@@ -1,0 +1,22 @@
+<div id="finpoint_#{finpoint.id}_profile_header" class="">
+
+  <div class="col-md-1 col-xs-3 col-sm-3">
+    <i class="fa fa-building-o fa-5x"></i>
+  </div>
+
+  <div class="col-md-11 col-xs-9 col-sm-9">
+    <div class="row">
+      <div class="col-md-10 profile-info">
+        <h1>
+          <%= finpoint_name(finpoint) %>
+        </h1>
+        <p>
+          <i class="fa fa-map-marker"></i>
+          <%= branch_name(finpoint.branch) %>
+        </p>
+      </div>
+    </div>
+    <hr>
+  </div>
+
+</div>

@@ -78,3 +78,6 @@ tr:
       financor/finitem:
         one: "Stok Kalemi"
         other: "Stok Kalemleri"
+      financor/finpoint:
+        one: "Banka-Kasa"
+        other: "Bankalar-Kasalar"

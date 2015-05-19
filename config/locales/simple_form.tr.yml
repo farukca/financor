@@ -54,6 +54,13 @@ tr:
         name: "Vergi Adı"
         rate: "Oran %"
         code: "Maliye Kodu"
+      finpoint:
+        title: "Banka-Kasa Adı"
+        point_type: "Tipi"
+        curr: "Döviz"
+        manager_id: "Sorumlu Kişi"
+        reference: "Referans (Hesap No, Iban, K.Kartı No ...)"
+        bank: "Banka Adı"
     placeholders:
       invoice:
         company_id: "Fatura firmasını seçiniz"
@@ -80,6 +87,11 @@ tr:
         invoice_type:
           refundable: "Ticari Fatura"
           nonrefund: "Temel Fatura"
+      finpoint:
+        point_type:
+          cash_point: "Kasa"
+          bank_account: "Banka Hesabı"
+          credit_card: "Kredi Kartı"
       defaults:
         unit_type:
           number: "Adet"

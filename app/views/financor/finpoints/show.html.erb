@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <% content_for(:breadcrumb_actions, flush: true) do %>
+    <%= render "actions", finpoint: @finpoint %>
+  <% end %>
 
+  <%= render partial: "profile", locals: { finpoint: @finpoint } %>
+
+</div>
 <p>
-  <strong>Title:</strong>
+  <strong><%= t("simple_form.labels.financor.name") %>:</strong>
   <%= @finpoint.title %>
 </p>
 

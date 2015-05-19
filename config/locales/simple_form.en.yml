@@ -54,6 +54,13 @@ en:
         name: "Tax Name"
         rate: "Rate %"
         code: "Code"
+      finpoint:
+        title: "Bank-Cash Point Name"        
+        point_type: "Point Type"
+        curr: "Currency"
+        manager_id: "Person in Charge"
+        reference: "Reference (Account No, Iban, C.Card No ...)"
+        bank: "Bank Name"
     placeholders:
       invoice:
         company_id: "Fatura firmasını seçiniz"
