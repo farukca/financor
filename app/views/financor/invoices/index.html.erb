@@ -1,9 +1,9 @@
 <div id="invoices_index" class="row">
 
-  <%= render "shared/page_title", page_title: Financor::Invoice.model_name.human(count: 2), page_small_title: t("invoices.defaults.intro_message"), model_name: "invoices", model_path: "financor/invoices" %>
+  <%= render "shared/page_title", page_title: Financor::Invoice.model_name.human(count: 2), page_small_title: t("invoices.defaults.intro_message"), model_name: "Financor::Invoice", model_path: "financor/invoices" %>
 
   <div class="inbox">
-    <div class="col-md-2">
+    <div class="col-md-3">
       <ul class="inbox-nav margin-bottom-10">
         <li class="compose-btn">
           <%= link_to financor.new_invoice_path, class: "btn green" do %>
@@ -12,13 +12,9 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-12">
       <div class="inbox-header">
         <h1 class="pull-left"><small><%= t("simple_form.labels.defaults.list", model: Financor::Invoice.model_name.human) %></small></h1>
-        <%#= render "shared/quick_search_form", model_name: "Financor::Invoice" %>
-        <%= link_to roster.new_search_path(model: "Financor::Invoice"), class: "btn link pull-right" do %>
-          <i class="fa fa-search"></i>  <%= t("simple_form.helpers.defaults.advanced_search") %>
-        <% end %>
       </div>
 
       <div class="inbox-content" id="invoices_list">

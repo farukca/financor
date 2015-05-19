@@ -1,12 +1,13 @@
 module Financor
   class Involine < ActiveRecord::Base
 		
-		attr_accessor :vat_status, :finitem_id, :account_id, :discount_rate
+		attr_accessor :vat_status, :account_id, :discount_rate
 
     belongs_to :invoice, touch: true#, counter_cache: true
     belongs_to :parent, polymorphic: true, touch: true
 		belongs_to :company, class_name: Financor.company_class
 	  belongs_to :user, class_name: Financor.user_class
+    belongs_to :finitem
 	  #belongs_to :branch, class_name: Financor.branch_class
 
 	  validates :name, presence: true, length: { maximum: 255 }

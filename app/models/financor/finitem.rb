@@ -33,5 +33,13 @@ module Financor
       { id: id, text: name }
     end
 
+    def to_param
+      "#{id}-#{name.parameterize}"
+    end
+
+    def to_s
+      "#{code} #{name}"
+    end
+
   end
 end

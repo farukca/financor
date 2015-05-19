@@ -10,7 +10,7 @@
 
         <div class="row" style="margin-bottom:40px;">
           <div class="col-md-6">
-            <%= f.input :company_id, as: :company, "initial-text" => (@invoice.company.name if @invoice.company), "initial-id" => @invoice.company_id %>
+            <%= f.input :company_id, as: :company, wrapper: :vertical_input_group, "initial-text" => (@invoice.company.name if @invoice.company), "initial-id" => @invoice.company_id %>
             <div class="row slidingDiv" id="invoice_company_financials">
               <div class="col-md-6">
                 <%= f.input :invoice_title %>

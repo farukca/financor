@@ -22,18 +22,18 @@
 						</tr>
 					<% end %>
 				</tbody>
-				<tfoot>
-					<% objects.select("curr, sum(invoice_amount) as invoice_amount").group("curr").reorder("curr").each do |invoice_total| %>
+				<!--tfoot>
+					<%# objects.select("curr, sum(invoice_amount) as invoice_amount").group("curr").reorder("curr").each do |invoice_total| %>
 					  <tr>
 					    <td></td>
 					    <td></td>
-					    <th><%= t("simple_form.labels.defaults.total") %></th>
-					    <td>:</td>
-							<th><span class="pull-right"><%= invoice_total.invoice_amount %></span></th>
-							<th><%= invoice_total.curr %></th>
+					    <th></th>
+					    <td><%#= t("simple_form.labels.defaults.total") %>:</td>
+							<th><span class="pull-right"><%#= invoice_total.invoice_amount %></span></th>
+							<th><%#= invoice_total.curr %></th>
 						</tr>
-					<% end %>
-				</tfoot>
+					<%# end %>
+				</tfoot-->
 			</table>
 			<% if objects.respond_to? :current_page %>
 			  <div class: "pagination">
