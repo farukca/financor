@@ -1,0 +1,30 @@
+<div id="finpoin_details" class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <tr>
+        <td class="col-md-2"><strong><%= t("simple_form.labels.finpoint.title") %> :</strong></td>
+        <td class="col-md-3"><%= @finpoint.title %></td>
+        <td class="col-md-2"><strong><%= t("simple_form.labels.finpoint.point_type") %> :</strong></td>
+        <td class="col-md-3"><%= t("simple_form.options.finpoint.point_type.#{@finpoint.point_type}") %></td>
+      </tr>
+      <tr>
+        <td><strong><%= t("simple_form.labels.finpoint.curr") %> :</strong></td>
+        <td><%= @finpoint.curr %></td>
+        <td><strong><%= t("simple_form.labels.finpoint.bank") %> :</strong></td>
+        <td><%= @finpoint.bank %></td>
+      </tr>
+      <tr>
+        <td><strong><%= t("simple_form.labels.finpoint.reference") %> :</strong></td>
+        <td><%= @finpoint.reference %></td>
+        <td><strong><%= t("simple_form.labels.finpoint.branch") %> :</strong></td>
+        <td><%= @finpoint.branch %></td>
+      </tr>
+      <tr>
+        <td><strong><%= t("simple_form.labels.finpoint.manager_id") %> :</strong></td>
+        <td><%= @finpoint.manager %></td>
+        <td><strong></strong></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div>

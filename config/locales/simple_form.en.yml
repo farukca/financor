@@ -1,6 +1,8 @@
 en:
   simple_form:
     labels:
+      defaults:
+        finance: "Finance"
       budgetline:
         name: "Description"
         line_type: "Debit/Credit Type"
@@ -60,8 +62,10 @@ en:
         point_type: "Point Type"
         curr: "Currency"
         manager_id: "Person in Charge"
-        reference: "Reference (Account No, Iban, C.Card No ...)"
-        bank: "Bank Name"
+        reference: "Reference"
+        bank: "Bank Name"        
+        finpoints: "Bank-Cash Points"
+        branch: "Branch"
     placeholders:
       invoice:
         company_id: "Fatura firmasını seçiniz"
@@ -71,6 +75,8 @@ en:
         name: "Enter debit or credit description"
         company: "Select invoice company"
         line_group: "Select item group"
+      finpoint:
+        reference: "Account No, Iban, C.Card No ..."
     hints:
       taxcode:
         name: "Ex: VAT18"
@@ -88,6 +94,11 @@ en:
         invoice_type:
           refundable: "Refundable"
           nonrefund: "Non-Refundable"
+      finpoint:
+        point_type:
+          cash_point: "Cash"
+          bank_account: "Bank Account"
+          credit_card: "Credit Card"
       defaults:
         unit_type:
           number: "Number"

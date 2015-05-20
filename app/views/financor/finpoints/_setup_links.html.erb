@@ -1,0 +1,9 @@
+<div class="dropdown pull-right">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+		  <i class="fa fa-cogs"></i>
+	</a>
+	<ul class="dropdown-menu">
+	  <li><%= link_to Nimbos::Counter.model_name.human, nimbos.new_counter_path(counter_type: "Loading"), remote: true %></li>
+	  <li><%= link_to Logistics::Route.model_name.human(count: 2), logistics.routes_path %></li>
+	</ul>
+</div>

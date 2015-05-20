@@ -16,7 +16,7 @@
                 <%= f.input :point_type, as: :select, collection: [:cash_point, :bank_account, :credit_card], include_blank: false %>
               </div>
               <div class="col-md-6">
-                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all %>    
+                <%= f.input :curr, as: :select, collection: Nimbos::Currency.all, include_blank: false %>    
               </div>
             </div>
             <%= f.input :manager_id, as: :select, collection: current_patron.users %>

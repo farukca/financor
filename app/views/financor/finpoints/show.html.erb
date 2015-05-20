@@ -1,47 +1,6 @@
-<p id="notice"><%= notice %></p>
-<div class="row">
-  <% content_for(:breadcrumb_actions, flush: true) do %>
-    <%= render "actions", finpoint: @finpoint %>
-  <% end %>
-
-  <%= render partial: "profile", locals: { finpoint: @finpoint } %>
-
+<div id="finpoint_show">
+  <%= render "shared/page_title", page_title: t("simple_form.labels.finpoint.finpoints"), page_small_title: t("leads.defaults.intro_message"), model_name: "finpoints", model_path: "financor/finpoints" %>
+  <div class="row">
+  	<%= render partial: "profile", locals: { finpoint: @finpoint } %>
+  </div>
 </div>
-<p>
-  <strong><%= t("simple_form.labels.financor.name") %>:</strong>
-  <%= @finpoint.title %>
-</p>
-
-<p>
-  <strong>Point type:</strong>
-  <%= @finpoint.point_type %>
-</p>
-
-<p>
-  <strong>Curr:</strong>
-  <%= @finpoint.curr %>
-</p>
-
-<p>
-  <strong>Reference:</strong>
-  <%= @finpoint.reference %>
-</p>
-
-<p>
-  <strong>Bank:</strong>
-  <%= @finpoint.bank %>
-</p>
-
-<p>
-  <strong>Branch:</strong>
-  <%= @finpoint.branch %>
-</p>
-
-<p>
-  <strong>Manager:</strong>
-  <%= @finpoint.manager %>
-</p>
-
-
-<%= link_to 'Edit', edit_finpoint_path(@finpoint) %> |
-<%= link_to 'Back', finpoints_path %>

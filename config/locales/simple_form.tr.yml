@@ -1,6 +1,8 @@
 tr:
   simple_form:
     labels:
+      defaults:
+        finance: "Finans"
       budgetline:
         name: "Açıklama"
         line_type: "Gelir/Gider Tipi"
@@ -60,8 +62,10 @@ tr:
         point_type: "Tipi"
         curr: "Döviz"
         manager_id: "Sorumlu Kişi"
-        reference: "Referans (Hesap No, Iban, K.Kartı No ...)"
+        reference: "Referans"
         bank: "Banka Adı"
+        finpoints: "Banka-Kasa Tanımları"
+        branch: "Şube"
     placeholders:
       invoice:
         company_id: "Fatura firmasını seçiniz"
@@ -71,6 +75,8 @@ tr:
         name: "Tahmini gelir veya gider açıklamasını giriniz, ör. Navlun geliri..."
         company: "Kalem faturalanacaksa ilgili firmayı seçiniz"
         line_group: "Gelir/Gider grubunu seçiniz"
+      finpoint:
+        reference: "Hesap No, Iban, K.Kartı No ..."
     hints:
       taxcode:
         name: "Örn:KDV18"
