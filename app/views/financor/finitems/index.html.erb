@@ -1,40 +1,23 @@
-<%= link_to "New Item", financor.new_finitem_path, remote: true %>
-<div id="finitems_list_div" class="table-responsive">
-  <table class="table table-bordered table-hover" id="finitems_list_table">
-    <thead>
-      <tr>
-        <th class="col-md-2"><%= t("simple_form.labels.finitem.code") %></th>
-        <th class="col-md-3"><%= t("simple_form.labels.finitem.name") %></th>
-        <th class="col-md-1"><%= t("simple_form.labels.finitem.sales_price") %></th>
-        <th class="col-md-1"><%= t("simple_form.labels.finitem.purchase_price") %></th>
-        <th class="col-md-2"><%= t("simple_form.labels.finitem.item_type") %></th>
-        <th class="col-md-1"></th>
-      </tr>
-    </thead>
-    <tbody id="finitems_table_body">
-      <% @finitems.each do |finitem| %>
-        <tr id="finitem_<%= finitem.id %>_div">
-          <td><%= finitem.code %></td>
-          <td><%= finitem.name %></td>
-          <td><%= print_price(finitem.sales_price, finitem.sales_curr) %></td>
-          <td><%= print_price(finitem.purchase_price, finitem.purchase_curr) %></td>
-          <td><%= finitem.item_type %></td>
-          <td>
-            <%= link_to financor.edit_finitem_path(finitem), remote: true, title: t("simple_form.helpers.defaults.edit") do %>
-              <i class="fa fa-edit"></i>
-            <% end %>
-            <%= link_to financor.finitem_path(finitem), method: :delete, remote: true, data: { confirm: t("simple_form.messages.defaults.destroy_confirm") }, title: t("simple_form.helpers.defaults.delete") do %>
-              <i class="fa fa-trash-o"></i>
-            <% end %>
-          </td>
-        </tr>
-	    <% end %>
-	  </tbody>
-  </table>
+<div id="finitems_index">
+  <%= render "shared/page_title", page_title: Financor::Finitem.model_name.human(count: 2), page_small_title: t("financor.defaults.intro_message"), model_name: "Financor::Finitem", model_path: "financor/finitems" %>
+  <div class="inbox row">
+  	 <div class="col-md-3">
+      <ul class="inbox-nav margin-bottom-10">
+        <li class="compose-btn">
+          <%= link_to financor.new_finitem_path, class: "btn green" do %>
+            <i class="fa fa-edit"></i> <%= t("simple_form.helpers.defaults.new", model: Financor::Finitem.model_name.human) %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-12">
+      <div class="inbox-header">
+        <h1 class="pull-left"><small><%= t("simple_form.labels.defaults.list", model: Financor::Finitem.model_name.human) %></small></h1>
+      </div>
 
-  <% if @finitems.respond_to? :current_page %>
-    <ul class="pagination">
-      <%= paginate @finitems, remote: true %>
-    </ul>
-  <% end %>
+      <div class="inbox-content" id="finitems_list">
+        <%= render "financor/finitems/list", objects: @finitems %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,81 +1,71 @@
-<div class="modal-dialog">
-  <div class="modal-content">
+<div class="portlet box green">
+  <%= render "shared/portlet_title", title: Financor::Finitem.model_name.human %>
 
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-      <h4 class="modal-title"><%= t("simple_form.helpers.defaults.new", model: Financor::Finitem.model_name.human) %></h4>
-    </div>
-
-    <%= simple_form_for @finitem, html: { class: 'form-horizontal' }, remote: true, validate: true do |f| %>
+  <div class="portlet-body form">
+    <%= simple_form_for @finitem, :html => {:class => 'horizontal-form'}, :validate => true do |f| %>
       <%= f.error_notification %>
       <%= f.error :base, :error_method => :to_sentence, class: "alert alert-danger" %>
+      <div class="form-body">
 
-        <div class="modal-body">
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="row">
-                  <div class="col-md-3">
-                    <%= f.input :code  %>
-                  </div>
-                  <div class="col-md-6">
-                    <%= f.input :name %>
-                  </div>
-                  <div class="col-md-3">
-                    <%= f.input :item_type, as: :select, collection: [:cost_type, :invoice_line, :inventory_item] %>
-                  </div>
-                </div>
-                <%= f.input :salable %>
-                <div class="row" id="sales_details" class="slidingDiv">
-                  <div class="col-md-3">
-                    <%= f.input :sales_price %>
-                  </div>
-                  <div class="col-md-2">
-                    <%= f.input :sales_curr, as: :select, collection: Nimbos::Currency.all, include_blank: false %>
-                  </div>
-                  <div class="col-md-6">
-                  	<%= f.input :sales_tax_id, as: :select, collection: Financor::Taxcode.all %>
-                  </div>
-                  <div class="col-md-8 col-md-offset-3">
-                  	<%= f.input :sales_notes, as: :text %>
-                  </div>
-                </div>
-                <%= f.input :purchasable %>
-                <div class="row" id="purchase_details" class="slidingDiv">
-                  <div class="col-md-3">
-                    <%= f.input :purchase_price %>
-                  </div>
-                  <div class="col-md-2">
-                    <%= f.input :purchase_curr, as: :select, collection: Nimbos::Currency.all, include_blank: false %>
-                  </div>
-                  <div class="col-md-6">
-                    <%= f.input :purchase_tax_id, as: :select, collection: Financor::Taxcode.all %>
-                  </div>
-                  <div class="col-md-8 col-md-offset-3">
-                  	<%= f.input :purchase_notes, as: :text %>
-                  </div>
-                </div>
-                <%= f.input :stockable %>
-                <div class="row" id="stock_details" class="slidingDiv">
-                  <div class="col-md-4 col-md-offset-3">
-                    <%= f.input :stock_unit, as: :select, collection: Nimbos::Currency.all, include_blank: false %>
-                  </div>
-                  <div class="col-md-2">
-                    <%= f.input :min_stock_unit %>
-                  </div>
-                </div>
-              </div>
-            </div>
-        	
-        </div>
-
-        <div class="modal-footer">
-          <a href="#" class="btn" data-dismiss="modal" aria-hidden="true"><%= t("simple_form.helpers.defaults.close") %></a>
-          <%= f.submit t("simple_form.helpers.defaults.save"), class: "btn btn-success" %>
-        </div>
-
-    <% end %>
-
+	    <div class="row">
+	      <div class="col-md-12">
+	        <div class="row">
+	          <div class="col-md-3">
+	            <%= f.input :code  %>
+	          </div>
+	          <div class="col-md-6">
+	            <%= f.input :name %>
+	          </div>
+	          <div class="col-md-3">
+	            <%= f.input :item_type, as: :select, collection: [:cost_type, :invoice_line, :inventory_item] %>
+	          </div>
+	        </div>
+	        <%= f.input :salable %>
+	        <div class="row" id="sales_details" class="slidingDiv">
+	          <div class="col-md-2">
+	            <%= f.input :sales_price, :input_html => {style: 'text-align:right;'} %>
+	          </div>
+	          <div class="col-md-2">
+	            <%= f.input :sales_curr, as: :select, collection: Nimbos::Currency.all, include_blank: false %>
+	          </div>
+	          <div class="col-md-3">
+	          	<%= f.input :sales_tax_id, as: :select, collection: Financor::Taxcode.all %>
+	          </div>
+	          <div class="col-md-5">
+	          	<%= f.input :sales_notes, :input_html => {style: 'height:34px;'} %>
+	          </div>
+	        </div>
+	        <%= f.input :purchasable %>
+	        <div class="row" id="purchase_details" class="slidingDiv">
+	          <div class="col-md-2">
+	            <%= f.input :purchase_price, :input_html => {style: 'text-align:right;'} %>
+	          </div>
+	          <div class="col-md-2">
+	            <%= f.input :purchase_curr, as: :select, collection: Nimbos::Currency.all, include_blank: false %>
+	          </div>
+	          <div class="col-md-3">
+	            <%= f.input :purchase_tax_id, as: :select, collection: Financor::Taxcode.all %>
+	          </div>
+	          <div class="col-md-5">
+	          	<%= f.input :purchase_notes, :input_html => {style: 'height:34px;'} %>
+	          </div>
+	        </div>
+	        <%= f.input :stockable %>
+	        <div class="row" id="stock_details" class="slidingDiv">
+	          <div class="col-md-2">
+	            <%= f.input :min_stock_unit, :input_html => {style: 'text-align:right;'} %>
+	          </div>
+	          <div class="col-md-2">
+	            <%= f.input :stock_unit, as: :select, collection: [:number, :kg, :ton], include_blank: false %>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	</div>
+	<div class="form-actions">
+	  <%= f.submit t("simple_form.helpers.defaults.save"), class: "btn btn-success" %>
+	  <%= render "shared/cancel_button" %>
+	</div>
+	<% end %>
   </div>
-
 </div>

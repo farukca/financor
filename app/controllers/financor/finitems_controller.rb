@@ -25,7 +25,7 @@ module Financor
 		end
 
     def new
-    	@finitem = Finitem.new(salable: true, purchasable: true, stockable: true)
+    	@finitem = Finitem.new(salable: false, purchasable: false, stockable: false)
     end
 
     def edit
@@ -42,12 +42,12 @@ module Financor
 
       respond_to do |format|
         if @finitem.save
-          #format.html { redirect_to @invoice, notice: t("simple_form.messages.defaults.created", model: Financor::Finitem.model_name.human) }
+          format.html { redirect_to @finitem, notice: t("simple_form.messages.defaults.created", model: Financor::Finitem.model_name.human) }
           #format.html { render 'detail', notice: 'invoice was successfully created.' }
           format.json { render json: @finitem, status: :created, location: @finitem }
           format.js { flash.now[:notice] = t("simple_form.messages.defaults.created", model: Financor::Finitem.model_name.human) }
         else
-          #format.html { render action: "new" }
+          format.html { render action: "new" }
           format.json { render json: @finitem.errors, status: :unprocessable_entity }
           format.js
         end
@@ -60,11 +60,11 @@ module Financor
       
       respond_to do |format|
         if @finitem.update_attributes(finitem_params)          
-          #format.html { redirect_to @finitem, notice: t("simple_form.messages.defaults.updated", model: Financor::Finitem.model_name.human) }
+          format.html { redirect_to @finitem, notice: t("simple_form.messages.defaults.updated", model: Financor::Finitem.model_name.human) }
           format.json { head :ok }
           format.js { flash.now[:notice] = t("simple_form.messages.defaults.updated", model: Financor::Finitem.model_name.human) }
         else
-          #format.html { render action: "edit" }
+          format.html { render action: "edit" }
           format.json { render json: @finitem.errors, status: :unprocessable_entity }
           format.js
         end

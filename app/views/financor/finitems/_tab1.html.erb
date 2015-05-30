@@ -1,0 +1,56 @@
+<div id="finitem_details" class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+		  <tr>
+				<td class="col-md-2"><strong><%= t("simple_form.labels.finitem.code") %></strong></td>
+				<td class="col-md-10" colspan="3"><%= @finitem.code %></td>
+		  </tr>
+	  	<tr>
+				<td class="col-md-2"><strong><%= t("simple_form.labels.finitem.name") %></strong></td>
+				<td class="col-md-10" colspan="3"><%= @finitem.name %></td>
+		  </tr>
+		  <tr>
+				<td class="col-md-2"><strong><%= t("simple_form.labels.finitem.item_type") %></strong></td>
+				<td class="col-md-10" colspan="3"><%= t("simple_form.options.finitem.item_type.#{@finitem.item_type}") %></td>
+		  </tr>
+		  <tr>
+				<td class="col-md-2"><strong><%= t("simple_form.labels.finitem.salable") %></strong></td>
+				<td class="col-md-10" colspan="3"><% if @finitem.salable %><i class="fa fa-check"></i><% else %><i class="fa fa-times"></i><% end %></td>
+		  </tr>
+	    <% if @finitem.salable %>
+	      <tr>
+	        <td class="col-md-2"><strong><%= t("simple_form.labels.finitem.sales_price") %></strong></td>
+	        <td class="col-md-10">
+	        	<%= print_price(@finitem.sales_price, @finitem.sales_curr) if @finitem.sales_price > 0 %> <%= "+ (#{@finitem.sales_tax.name})" if @finitem.sales_tax %>
+	        	<%= ", #{@finitem.sales_notes}" if @finitem.sales_notes? %>
+	        </td>
+	      </tr>
+	  	<% end %>
+		  <tr>
+				<td class="col-md-2"><strong><%= t("simple_form.labels.finitem.purchasable") %></strong></td>
+				<td class="col-md-10" colspan="3"><% if @finitem.purchasable %><i class="fa fa-check"></i><% else %><i class="fa fa-times"></i><% end %></td>
+		  </tr>
+		 	<% if @finitem.purchasable %>
+			  <tr>
+			    <td class="col-md-2"><strong><%= t("simple_form.labels.finitem.purchase_price") %></strong></td>
+			    <td class="col-md-10">
+			    	<%= print_price(@finitem.sales_price, @finitem.sales_curr) %> <%= "+ (#{@finitem.purchase_tax.name})" if @finitem.purchase_tax %>
+			    	<%= ", #{@finitem.purchase_notes}" if @finitem.purchase_notes %>
+			    </td>
+			  </tr>
+			<% end %>
+		  <tr>
+				<td class="col-md-2"><strong><%= t("simple_form.labels.finitem.stockable") %></strong></td>
+				<td class="col-md-10" colspan="3"><% if @finitem.stockable %><i class="fa fa-check"></i><% else %><i class="fa fa-times"></i><% end %></td>
+		  </tr>
+		 	<% if @finitem.stockable %>
+			  <tr>
+			    <td class="col-md-2"><strong><%= t("simple_form.labels.finitem.min_stock_unit") %></strong></td>
+			    <td class="col-md-3"><%= @finitem.min_stock_unit %></td>
+			    <td class="col-md-2"><strong><%= t("simple_form.labels.finitem.stock_unit") %></strong></td>
+			    <td class="col-md-3"><%= @finitem.stock_unit %></td>
+			  </tr>
+			<% end %>
+    </table>
+  </div>
+</div>

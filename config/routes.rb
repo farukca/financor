@@ -10,6 +10,7 @@ Financor::Engine.routes.draw do
   end
   resources :involines
   resources :budgetlines
+  resources :accounts
 
   resources :taxcodes
   resources :currency_rates

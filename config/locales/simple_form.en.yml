@@ -66,6 +66,25 @@ en:
         bank: "Bank Name"        
         finpoints: "Bank-Cash Points"
         branch: "Branch"
+      finitem:
+        code: "Code"
+        name: "Name"
+        sales_price: "Sales Price"
+        sales_curr: "Sales Currency"
+        purchase_price: "Purchase Price"
+        purchase_curr: "Purchase Currency"
+        item_type: "Type"
+        sales_tax_id: "Tax Rate"
+        finitems:  "Financial Item Definitions"
+        salable: "Salable"
+        sales_tax_id: "Sales Tax Rate"
+        purchasable: "Purchasable"
+        purchase_tax_id: "Purchase Tax Rate"
+        stockable: "Stockable"
+        stock_unit: "Stock Unit"
+        min_stock_unit: "Minimum Stock"
+        sales_notes: "Sales Notes"
+        purchase_notes: "Purchase Notes"
     placeholders:
       invoice:
         company_id: "Fatura firmasını seçiniz"
@@ -99,6 +118,11 @@ en:
           cash_point: "Cash"
           bank_account: "Bank Account"
           credit_card: "Credit Card"
+      finitem:
+        item_type:
+          cost_type: "Cost Account"
+          invoice_line: "Invoice Account"
+          inventory_item: "Inventory Item"
       defaults:
         unit_type:
           number: "Number"

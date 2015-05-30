@@ -11,13 +11,13 @@ jQuery ->
     else
       $('#purchase_details').hide()
 
-	set_stock_view = ->
+  set_stock_view = ->
     if $('#finitem_stockable').is(":checked")
       $('#stock_details').show()
     else
       $('#stock_details').hide()
 
-	$(document).on "change", "#finitem_salable", (event) ->
+  $(document).on "change", "#finitem_salable", (event) ->
     set_sales_view()
 
   $(document).on "change", "#finitem_purchasable", (event) ->
@@ -25,3 +25,7 @@ jQuery ->
 
   $(document).on "change", "#finitem_stockable", (event) ->
     set_stock_view()
+    
+  set_sales_view()
+  set_purchase_view()
+  set_stock_view()

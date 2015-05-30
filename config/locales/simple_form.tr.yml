@@ -66,6 +66,25 @@ tr:
         bank: "Banka Adı"
         finpoints: "Banka-Kasa Tanımları"
         branch: "Şube"
+      finitem:
+        code: "Kodu"
+        name: "Adı"
+        sales_price: "Satış Bedeli"
+        sales_curr: "Satış Dövizi"
+        purchase_price: "Satın Alma Bedeli"
+        purchase_curr: "Satın Alma Dövizi"
+        item_type: "Tipi"
+        sales_tax_id: "Vergi Oranı"
+        finitems:  "Finansal Kalem Tanımları"
+        salable: "Satılabilir"
+        sales_tax_id: "Satış Vergi Oranı"
+        purchasable: "Satın Alınabilir"
+        purchase_tax_id: "Satın Alma Vergi Oranı"
+        stockable: "Stoklanabilir"
+        stock_unit: "Stok Birimi"
+        min_stock_unit: "Minimum Stok"
+        sales_notes: "Satış Notu"
+        purchase_notes: "Satın Alma Notu"
     placeholders:
       invoice:
         company_id: "Fatura firmasını seçiniz"
@@ -99,6 +118,16 @@ tr:
           cash_point: "Kasa"
           bank_account: "Banka Hesabı"
           credit_card: "Kredi Kartı"
+      finitem:
+        item_type:
+          cost_type: "Masraf Kalemi"
+          invoice_line: "Fatura Kalemi"
+          inventory_item: "Stok Kalemi"
+        stock_unit:
+          number: "Adet"
+          kg: "Kg"
+          pallet: "Palet"
+          packet: "Paket"
       defaults:
         unit_type:
           number: "Adet"

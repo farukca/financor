@@ -76,8 +76,8 @@ en:
         one: "Currency Rate"
         other: "Currency Rates"
       financor/finitem:
-        one: "Inventory Item"
-        other: "Inventories"
+        one: "Financial Item"
+        other: "Financial Items"
       financor/finpoint:
         one: "Bank-Cash"
         other: "Banks-Cash Points"

@@ -4,6 +4,8 @@ module Financor
 	  belongs_to :user, class_name: Financor.user_class
     belongs_to :invoiced, polymorphic: true, touch: true#, counter_cache: true
 	  belongs_to :branch, class_name: Financor.branch_class
+    belongs_to :sales_tax, class_name: Financor::Taxcode
+    belongs_to :purchase_tax, class_name: Financor::Taxcode
 
   	has_many   :involines
 	  accepts_nested_attributes_for :involines, :reject_if => proc { |a| a[:name].blank? }

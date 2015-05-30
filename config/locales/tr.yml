@@ -76,8 +76,8 @@ tr:
         one: "Kur"
         other: "Kurlar"
       financor/finitem:
-        one: "Stok Kalemi"
-        other: "Stok Kalemleri"
+        one: "Finans Kalemi"
+        other: "Finans Kalemleri"
       financor/finpoint:
         one: "Banka-Kasa"
         other: "Banka-Kasa Tanımları"

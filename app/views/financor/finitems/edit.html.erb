@@ -1,0 +1,8 @@
+<div class="row">
+
+<%= render "shared/page_title", page_title: Financor::Finitem.model_name.human(count: 2), page_small_title: t("finitems.defaults.intro_message"), model_name: "Financor::Finitem", model_path: "financor/finitems" %>
+
+  <div class="col-md-12">
+    <%= render 'form' %>
+  </div>
+</div>
