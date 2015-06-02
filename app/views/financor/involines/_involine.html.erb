@@ -1,11 +1,11 @@
 <tr id="involine_<%= involine.id %>_div">
+	<td><%= involine.finitem.code if involine.finitem %></td>
   <td><%= involine.name %></td>
-  <td class="text-muted"><%= involine.notes %></td>
 	<td><%= involine.unit_number %></td>
-	<td><%= t("simple_form.options.defaults.unit_type.#{involine.unit_type}") %></td>
-	<td><%= print_price(involine.unit_price, involine.curr) %></td>
-	<td><%= print_price(involine.vat_amount, involine.curr) %></td>
-	<td><%= print_price(involine.total_amount, involine.curr) %></td>
+	<td><%= t("simple_form.options.defaults.unit_type.#{involine.unit_type || "number"}") %></td>
+	<td><span class="pull-right"><%= print_price(involine.unit_price, "") %></span></td>
+	<td><span class="pull-right"><%= print_price(involine.vat_amount, "") %></span></td>
+	<td><span class="pull-right"><%= print_price(involine.total_amount, involine.curr) %></span></td>
 	<td class="hidden-print">
 	  <% if @invoice_id_changed %>
 	    <%= link_to financor.involine_path(involine, "involine[invoice_id]" => "", "invoice_id" => @invoice.id), remote: true, method: "put", data: {confirm: t("simple_form.messages.involine.remove_from_invoice")}, title: t("simple_form.helpers.involine.remove_from_invoice") do %>

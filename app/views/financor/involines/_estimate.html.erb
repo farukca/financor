@@ -1,5 +1,5 @@
 <tr id="estimate_involine_<%= involine.id %>_div">
-	<td><%= involine.finitem %></td>
+	<td><%= involine.finitem.code if involine.finitem %></td>
   <td><%= involine.name %></td>
   <td><%= company_name(involine.company) %></td>
   <td><%= t("simple_form.options.defaults.debit_credit.#{involine.debit_credit}") %></td>
